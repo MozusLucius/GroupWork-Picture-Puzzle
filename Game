@@ -1,26 +1,22 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 
 public class Game implements ActionListener {
 
     Pictures pics = new Pictures();
-    JButton icon, changer, b1, b2, b3, b4, b5, b6, b7, b8, b9, pause;
-    //JLabel int here for timer
-    JLabel timer, currentLevel;
+    JButton icon, b1, b2, b3, b4, b5, b6, b7, b8, b9, pause, resume, restart;
+    JLabel basisImage, currentLevel, timerLabel;
     Icon mover;
+    //timer stuffs
+    int timerSeconds = 0;
+    public static Timer timer;
 
     Game() {
         currentLevel = new JLabel("Level: 1");
-        currentLevel.setFont(new Font("Georgia", Font.BOLD, 45));
-        currentLevel.setForeground(Color.BLACK);
-        timer = new JLabel("00:00");
-        timer.setFont(new Font("Lucida Console", Font.BOLD, 30));
-        timer.setBackground(Color.BLACK);
+        timerLabel = new JLabel("00:00");
         pause = new JButton("PAUSE");
-        pause.setFont(new Font("Arial", Font.BOLD, 18));
-        pause.setFocusable(false);
-        pause.setBackground(new Color(0xfcacac));
+        resume = new JButton("RESUME");
+        restart = new JButton("RESTART");
 
         b1 = new JButton(); b2 = new JButton(); b3 = new JButton();
         b4 = new JButton(); b5 = new JButton(); b6 = new JButton();
@@ -29,28 +25,47 @@ public class Game implements ActionListener {
         b4.setIcon(pics.l8); b5.setIcon(pics.l2); b6.setIcon(pics.l7);
         b7.setIcon(pics.l6); b8.setIcon(pics.l9); b9.setIcon(pics.l5);
 
+        basisImage = new JLabel();
+        basisImage.setIcon(pics.logo);
         mover = b1.getIcon();
         icon = new JButton();
         icon.setIcon(b1.getIcon());
-        changer = new JButton();
-        changer.setIcon(pics.logo);
 
         b1.addActionListener(this); b2.addActionListener(this); b3.addActionListener(this);
         b4.addActionListener(this); b5.addActionListener(this); b6.addActionListener(this);
         b7.addActionListener(this); b8.addActionListener(this); b9.addActionListener(this);
         icon.addActionListener(this);
-        changer.addActionListener(this);
 
+        timer = new Timer(1000, e -> {
+            timerSeconds++;
+            updateTimerLabel();
+        });
+        timer.start();
+
+        restart.addActionListener(e ->{
+            timer.stop();
+            timerSeconds = 0;
+            updateTimerLabel();
+            timer.start();
+        });
     }
 
-    /*
-        1. All button's functions
-            A. icon button functions
-            B. Puzzle Buttons
-            C. changer button functions
-        */
+    public void updateTimerLabel(){
+        int minutes = timerSeconds / 60;
+        int seconds = timerSeconds % 60;
+        timerLabel.setText(String.format("%02d:%02d", minutes, seconds));
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
+        //timer
+        if (e.getSource() == pause){
+            System.out.println("Pause button is clicked");
+            timer.stop();
+        } else if (e.getSource() == resume){
+            timer.restart();
+        }
+
         //All button's functions
         //icon button's functions
         if (e.getSource() == icon) {
@@ -237,103 +252,48 @@ public class Game implements ActionListener {
             }
         }
 
-        //changer button's functions
-        if (e.getSource() == changer) {
-            System.out.println("Changer clicked");
-            Icon ch = changer.getIcon();
-            //2nd Image
-            if (ch == pics.logo) {
-                currentLevel.setText("Level: 2");
-                System.out.println("Logo changed to Mansion B");
-                changer.setIcon(pics.mB);
-                b1.setIcon(pics.mB4);
-                b2.setIcon(pics.mB2);
-                b3.setIcon(pics.mB6);
-                b4.setIcon(pics.mB9);
-                b5.setIcon(pics.mB1);
-                b6.setIcon(pics.mB5);
-                b7.setIcon(pics.mB3);
-                b8.setIcon(pics.mB8);
-                b9.setIcon(pics.mB7);
-                icon.setIcon(b1.getIcon());
-                mover = icon.getIcon();
-            }
-            //3rd Image
-            else if (ch == pics.mB) {
-                currentLevel.setText("Level: 3");
-                System.out.println("Mansion B changed to Mansion A");
-                changer.setIcon(pics.mA);
-                b1.setIcon(pics.mA2);
-                b2.setIcon(pics.mA1);
-                b3.setIcon(pics.mA6);
-                b4.setIcon(pics.mA9);
-                b5.setIcon(pics.mA4);
-                b6.setIcon(pics.mA5);
-                b7.setIcon(pics.mA8);
-                b8.setIcon(pics.mA3);
-                b9.setIcon(pics.mA7);
-                icon.setIcon(b1.getIcon());
-                mover = icon.getIcon();
-            }
-            //4th Image
-            else if (ch == pics.mA) {
-                currentLevel.setText("Level: 4");
-                System.out.println("Mansion A changed to Person B");
-                icon.setIcon(pics.pB1);
-                mover = icon.getIcon();
-                changer.setIcon(pics.pB);
-                b1.setIcon(pics.pB4);
-                b2.setIcon(pics.pB7);
-                b3.setIcon(pics.pB5);
-                b4.setIcon(pics.pB2);
-                b5.setIcon(pics.pB3);
-                b6.setIcon(pics.pB9);
-                b7.setIcon(pics.pB8);
-                b8.setIcon(pics.pB6);
-                b9.setIcon(pics.pB1);
-            }
-            //5th Image
-            else if (ch == pics.pB) {
-                currentLevel.setText("Level: 5");
-                System.out.println("Person B changed to Nature B");
-                icon.setIcon(pics.nB1);
-                mover = icon.getIcon();
-                changer.setIcon(pics.nB);
-                b1.setIcon(pics.nB9);
-                b2.setIcon(pics.nB5);
-                b3.setIcon(pics.nB2);
-                b4.setIcon(pics.nB1);
-                b5.setIcon(pics.nB3);
-                b6.setIcon(pics.nB8);
-                b7.setIcon(pics.nB6);
-                b8.setIcon(pics.nB7);
-                b9.setIcon(pics.nB4);
-            }
-            //back to 1st Image
-            else {
-                currentLevel.setText("Level: 1");
-                System.out.println("Nature B changed to Logo");
-                changer.setIcon(pics.logo);
-                b1.setIcon(pics.l3);
-                b2.setIcon(pics.l4);
-                b3.setIcon(pics.l1);
-                b4.setIcon(pics.l8);
-                b5.setIcon(pics.l2);
-                b6.setIcon(pics.l7);
-                b7.setIcon(pics.l6);
-                b8.setIcon(pics.l9);
-                b9.setIcon(pics.l5);
-                icon.setIcon(b1.getIcon());
-                mover = icon.getIcon();
-            }
-        }//end of changer
         //Order checker/If puzzle is solved
-//        Levels l = new Levels();
-//        if (l.level2.getUI().equals(changer.getText())){
-//            changer.doClick();
-//
-//        }
+    }
 
+    void Level2() {
+        currentLevel.setText("Level: 2");
+        b1.setIcon(pics.mB4); b2.setIcon(pics.mB2); b3.setIcon(pics.mB6);
+        b4.setIcon(pics.mB9); b5.setIcon(pics.mB1); b6.setIcon(pics.mB5);
+        b7.setIcon(pics.mB3); b8.setIcon(pics.mB8); b9.setIcon(pics.mB7);
+        basisImage.setIcon(pics.mB);
+        mover = b1.getIcon();
+        icon.setIcon(b1.getIcon());
 
+    }
+
+    void Level3() {
+        currentLevel.setText("Level: 3");
+        b1.setIcon(pics.mA2); b2.setIcon(pics.mA1); b3.setIcon(pics.mA6);
+        b4.setIcon(pics.mA9); b5.setIcon(pics.mA4); b6.setIcon(pics.mA5);
+        b7.setIcon(pics.mA8); b8.setIcon(pics.mA3); b9.setIcon(pics.mA7);
+        basisImage.setIcon(pics.mA);
+        mover = b1.getIcon();
+        icon.setIcon(b1.getIcon());
+
+    }
+
+    void Level4() {
+        currentLevel.setText("Level: 4");
+        b1.setIcon(pics.pB9); b2.setIcon(pics.pB5); b3.setIcon(pics.pB2);
+        b4.setIcon(pics.pB1); b5.setIcon(pics.pB3); b6.setIcon(pics.pB8);
+        b7.setIcon(pics.pB6); b8.setIcon(pics.pB2); b9.setIcon(pics.pB4);
+        basisImage.setIcon(pics.pB);
+        mover = b1.getIcon();
+        icon.setIcon(b1.getIcon());
+
+    }
+    void Level5() {
+        currentLevel.setText("Level: 5");
+        b1.setIcon(pics.nB4); b2.setIcon(pics.nB7); b3.setIcon(pics.nB5);
+        b4.setIcon(pics.nB2); b5.setIcon(pics.nB3); b6.setIcon(pics.nB9);
+        b7.setIcon(pics.nB8); b8.setIcon(pics.nB6); b9.setIcon(pics.nB1);
+        basisImage.setIcon(pics.nB);
+        mover = b1.getIcon();
+        icon.setIcon(b1.getIcon());
     }
 }
