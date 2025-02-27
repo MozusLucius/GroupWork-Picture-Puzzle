@@ -3,10 +3,9 @@ import java.awt.*;
 import java.awt.event.*;
 public class Puzzle extends JFrame implements ActionListener{
 
-    JPanel leftCon, centerCon, pgC, idk, idk1, idk2, idk3, idk4, con;
-    JButton mainM;
+    JPanel leftCon, centerCon, pgC, oncePaused, forPauseTitle, forPause, forRestart, forLevels, con;
+    JButton mainM, levelsBack;
     //pup-up once pause is clicked
-    JLayeredPane oncePaused;
     JLabel title;
     //Classes call
     Game g = new Game();
@@ -19,10 +18,11 @@ public class Puzzle extends JFrame implements ActionListener{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().setBackground(new Color(0xf5b982));
         this.setLayout(new BorderLayout());
+
+        //first Panel for Playground
         con = new JPanel();
         con.setBackground(new Color(0xf5b982));
         con.setLayout(new BorderLayout());
-
         //all components in the left
         leftCon = new JPanel();
         leftCon.setBackground(new Color(0xa6784c));
@@ -36,22 +36,24 @@ public class Puzzle extends JFrame implements ActionListener{
         mainM.setFont(new Font("Lucida Console", Font.PLAIN, 18));
         mainM.addActionListener(this);
         g.currentLevel.setBounds(130,2,280,70);
-        g.baseImage.setBounds(13,150,400,400);
-        g.changer.setBounds(13,560,100,100);
-        g.changer.setFocusable(false);
-
+        g.currentLevel.setFont(new Font("Georgia", Font.BOLD, 45));
+        g.currentLevel.setForeground(Color.BLACK);
+        g.basisImage.setBounds(13,150,400,400);
         leftCon.add(mainM);
         leftCon.add(g.currentLevel);
-        leftCon.add(g.baseImage);
-        leftCon.add(g.changer);
-
+        leftCon.add(g.basisImage);
         //Playground
         centerCon = new JPanel();
         centerCon.setOpaque(false);
         centerCon.setLayout(null);
-        g.timerLabel.setBounds(140,65,100,50);
-        g.pause.setBounds(540,68,100,36);
+        g.pause.setFont(new Font("Lucida Console", Font.BOLD, 19));
+        g.pause.setBounds(542,74,98,30);
+        g.pause.setFocusable(false);
+        g.pause.setBackground(new Color(0xfcacac));
         g.pause.addActionListener(this);
+        g.timerLabel.setBounds(140,65,100,50);
+        g.timerLabel.setFont(new Font("Lucida Console", Font.BOLD, 30));
+        g.timerLabel.setBackground(Color.BLACK);
         pgC = new JPanel();
         pgC.setBounds(140,110,500,500);
         pgC.setBackground(Color.BLACK);
@@ -60,41 +62,78 @@ public class Puzzle extends JFrame implements ActionListener{
         pgC.add(g.b4); pgC.add(g.b5); pgC.add(g.b6);
         pgC.add(g.b7); pgC.add(g.b8); pgC.add(g.b9);
         g.icon.setBounds(700,270,167,167);
-
-        centerCon.add(g.timerLabel);
-        centerCon.add(g.pause);
-        centerCon.add(pgC);
-        centerCon.add(g.icon);
+        centerCon.add(g.timerLabel); centerCon.add(pgC);
+        centerCon.add(g.pause); centerCon.add(g.icon);
         con.add(leftCon, BorderLayout.WEST);
         con.add(centerCon, BorderLayout.CENTER);
-        //pause window
-        idk = new JPanel(new GridLayout(0,1));
-        idk1 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        idk2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        idk3 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        idk4 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        title = new JLabel("GAME PAUSED");
-        title.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 22));
-        g.resume.addActionListener(this);
-        idk1.add(title);
-        idk2.add(g.resume);
-        idk3.add(g.restart);
-        idk4.add(g.levelsBack);
-        idk.add(idk1);
-        idk.add(idk2);
-        idk.add(idk3);
-        idk.add(idk4);
 
-        //this.add(idk, BorderLayout.CENTER);
+
+        //pause panel window
+        oncePaused = new JPanel(new GridLayout(0,1)); oncePaused.setBackground(new Color(0xb3875f));
+        forPauseTitle = new JPanel(new FlowLayout(FlowLayout.CENTER,0,70));
+        forPause = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        forRestart = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        forLevels = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        forPauseTitle.setOpaque(false); forRestart.setOpaque(false);
+        forPause.setOpaque(false); forLevels.setOpaque(false);
+        title = new JLabel("GAME PAUSED");
+        title.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 50));
+        title.setForeground(Color.BLACK);
+        g.resume.setPreferredSize(new Dimension(220,100));
+        g.resume.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 24));
+        g.resume.setFocusable(false);
+        g.resume.addActionListener(this);
+        g.restart.setPreferredSize(new Dimension(220,100));
+        g.restart.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 24));
+        g.restart.setFocusable(false);
+        g.restart.addActionListener(this);
+        levelsBack = new JButton("LEVELS");
+        levelsBack.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 24));
+        levelsBack.setFocusable(false);
+        levelsBack.setPreferredSize(new Dimension(220,100));
+        levelsBack.addActionListener(this);
+        forPauseTitle.add(title);   forRestart.add(g.restart);
+        forPause.add(g.resume);     forLevels.add(levelsBack);
+        oncePaused.add(forPauseTitle);
+        oncePaused.add(forPause);
+        oncePaused.add(forRestart);
+        oncePaused.add(forLevels);
+
+        this.add(oncePaused, BorderLayout.CENTER);
         this.add(con, BorderLayout.CENTER);
         this.setVisible(true);
-
     }
-
+    @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == mainM) {
             dispose();
             new Main();
+        }
+        if (e.getSource() == levelsBack){
+            dispose();
+            new Levels();
+        }
+
+        if (e.getSource() == g.pause){
+            System.out.println("It entered this");
+            con.setVisible(false);
+            this.remove(con);
+            this.add(oncePaused, BorderLayout.CENTER);
+            oncePaused.setVisible(true);
+            this.setVisible(true);
+        } else if (e.getSource() == g.resume){
+            oncePaused.setVisible(false);
+            this.remove(oncePaused);
+            this.add(con, BorderLayout.CENTER);
+            con.setVisible(true);
+            this.setVisible(true);
+        }
+        if (e.getSource() == g.restart) {
+            oncePaused.setVisible(false);
+            this.remove(oncePaused);
+            this.add(con, BorderLayout.CENTER);
+            con.setVisible(true);
+            this.setVisible(true);
         }
     }
 
