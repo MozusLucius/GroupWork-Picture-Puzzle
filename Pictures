@@ -1,0 +1,67 @@
+import javax.swing.*;
+
+public class Pictures {
+
+    //images are rumbled here, conditions of them arranged are in subclass:Levels
+    //why rumble the images here and not when
+    //Mendoza
+    Icon logo = new ImageIcon("src/Coding/logo/Clogo.jpg");
+    Icon l1 = new ImageIcon("src/Coding/logo/logo1.jpg");
+    Icon l2 = new ImageIcon("src/Coding/logo/logo2.jpg");
+    Icon l3 = new ImageIcon("src/Coding/logo/logo3.jpg");
+    Icon l4 = new ImageIcon("src/Coding/logo/logo4.jpg");
+    Icon l5 = new ImageIcon("src/Coding/logo/logo5.jpg");
+    Icon l6 = new ImageIcon("src/Coding/logo/logo6.jpg");
+    Icon l7 = new ImageIcon("src/Coding/logo/logo7.jpg");
+    Icon l8 = new ImageIcon("src/Coding/logo/logo8.jpg");
+    Icon l9 = new ImageIcon("src/Coding/logo/logo9.jpg");
+
+    //Mendoza
+    Icon mB = new ImageIcon("src/Coding/mansionB/CmansionB.jpg");
+    Icon mB1 = new ImageIcon("src/Coding/mansionB/mB1.jpg");
+    Icon mB2 = new ImageIcon("src/Coding/mansionB/mB2.jpg");
+    Icon mB3 = new ImageIcon("src/Coding/mansionB/mB3.jpg");
+    Icon mB4 = new ImageIcon("src/Coding/mansionB/mB4.jpg");
+    Icon mB5 = new ImageIcon("src/Coding/mansionB/mB5.jpg");
+    Icon mB6 = new ImageIcon("src/Coding/mansionB/mB6.jpg");
+    Icon mB7 = new ImageIcon("src/Coding/mansionB/mB7.jpg");
+    Icon mB8 = new ImageIcon("src/Coding/mansionB/mB8.jpg");
+    Icon mB9 = new ImageIcon("src/Coding/mansionB/mB9.jpg");
+
+    //Sanchez
+    Icon mA = new ImageIcon("src/Coding/mansionA/CmansionA.png");
+    Icon mA1 = new ImageIcon("src/Coding/mansionA/mA1.png");
+    Icon mA2 = new ImageIcon("src/Coding/mansionA/mA2.png");
+    Icon mA3 = new ImageIcon("src/Coding/mansionA/mA3.png");
+    Icon mA4 = new ImageIcon("src/Coding/mansionA/mA4.png");
+    Icon mA5 = new ImageIcon("src/Coding/mansionA/mA5.png");
+    Icon mA6 = new ImageIcon("src/Coding/mansionA/mA6.png");
+    Icon mA7 = new ImageIcon("src/Coding/mansionA/mA7.png");
+    Icon mA8 = new ImageIcon("src/Coding/mansionA/mA8.png");
+    Icon mA9 = new ImageIcon("src/Coding/mansionA/mA9.png");
+
+    //Mahistrado
+    Icon pB = new ImageIcon("src/Coding/personB/CpersonB.jpg");
+    Icon pB1 = new ImageIcon("src/Coding/personB/pB1.jpg");
+    Icon pB2 = new ImageIcon("src/Coding/personB/pB2.jpg");
+    Icon pB3 = new ImageIcon("src/Coding/personB/pB3.jpg");
+    Icon pB4 = new ImageIcon("src/Coding/personB/pB4.jpg");
+    Icon pB5 = new ImageIcon("src/Coding/personB/pB5.jpg");
+    Icon pB6 = new ImageIcon("src/Coding/personB/pB6.jpg");
+    Icon pB7 = new ImageIcon("src/Coding/personB/pB7.jpg");
+    Icon pB8 = new ImageIcon("src/Coding/personB/pB8.jpg");
+    Icon pB9 = new ImageIcon("src/Coding/personB/pB9.jpg");
+
+    //Barcelona
+    Icon nB = new ImageIcon("src/Coding/natureB/CnatureB.jpg");
+    Icon nB1 = new ImageIcon("src/Coding/natureB/nB1.jpg");
+    Icon nB2 = new ImageIcon("src/Coding/natureB/nB2.jpg");
+    Icon nB3 = new ImageIcon("src/Coding/natureB/nB3.jpg");
+    Icon nB4 = new ImageIcon("src/Coding/natureB/nB4.jpg");
+    Icon nB5 = new ImageIcon("src/Coding/natureB/nB5.jpg");
+    Icon nB6 = new ImageIcon("src/Coding/natureB/nB6.jpg");
+    Icon nB7 = new ImageIcon("src/Coding/natureB/nB7.jpg");
+    Icon nB8 = new ImageIcon("src/Coding/natureB/nB8.jpg");
+    Icon nB9 = new ImageIcon("src/Coding/natureB/nB9.jpg");
+
+}
