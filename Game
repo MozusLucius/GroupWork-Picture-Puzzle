@@ -12,7 +12,7 @@ public class Game implements ActionListener {
     public static Timer timer;
 
     Game() {
-        currentLevel = new JLabel("Level: 1");
+        currentLevel = new JLabel("Level: X");
         timerLabel = new JLabel("00:00");
         pause = new JButton("PAUSE");
         resume = new JButton("RESUME");
@@ -21,9 +21,6 @@ public class Game implements ActionListener {
         b1 = new JButton(); b2 = new JButton(); b3 = new JButton();
         b4 = new JButton(); b5 = new JButton(); b6 = new JButton();
         b7 = new JButton(); b8 = new JButton(); b9 = new JButton();
-        b1.setIcon(pics.l3); b2.setIcon(pics.l4); b3.setIcon(pics.l1);
-        b4.setIcon(pics.l8); b5.setIcon(pics.l2); b6.setIcon(pics.l7);
-        b7.setIcon(pics.l6); b8.setIcon(pics.l9); b9.setIcon(pics.l5);
 
         basisImage = new JLabel();
         basisImage.setIcon(pics.logo);
@@ -255,7 +252,17 @@ public class Game implements ActionListener {
         //Order checker/If puzzle is solved
     }
 
-    void Level2() {
+    public void Level1() {
+        currentLevel.setText("Level: 1");
+        b1.setIcon(pics.l3); b2.setIcon(pics.l4); b3.setIcon(pics.l1);
+        b4.setIcon(pics.l8); b5.setIcon(pics.l2); b6.setIcon(pics.l7);
+        b7.setIcon(pics.l6); b8.setIcon(pics.l9); b9.setIcon(pics.l5);
+        basisImage.setIcon(pics.logo);
+        mover = b1.getIcon();
+        icon.setIcon(b1.getIcon());
+    }
+
+    public void Level2() {
         currentLevel.setText("Level: 2");
         b1.setIcon(pics.mB4); b2.setIcon(pics.mB2); b3.setIcon(pics.mB6);
         b4.setIcon(pics.mB9); b5.setIcon(pics.mB1); b6.setIcon(pics.mB5);
@@ -263,10 +270,9 @@ public class Game implements ActionListener {
         basisImage.setIcon(pics.mB);
         mover = b1.getIcon();
         icon.setIcon(b1.getIcon());
-
     }
 
-    void Level3() {
+    public void Level3() {
         currentLevel.setText("Level: 3");
         b1.setIcon(pics.mA2); b2.setIcon(pics.mA1); b3.setIcon(pics.mA6);
         b4.setIcon(pics.mA9); b5.setIcon(pics.mA4); b6.setIcon(pics.mA5);
@@ -274,10 +280,9 @@ public class Game implements ActionListener {
         basisImage.setIcon(pics.mA);
         mover = b1.getIcon();
         icon.setIcon(b1.getIcon());
-
     }
 
-    void Level4() {
+    public void Level4() {
         currentLevel.setText("Level: 4");
         b1.setIcon(pics.pB9); b2.setIcon(pics.pB5); b3.setIcon(pics.pB2);
         b4.setIcon(pics.pB1); b5.setIcon(pics.pB3); b6.setIcon(pics.pB8);
@@ -285,9 +290,8 @@ public class Game implements ActionListener {
         basisImage.setIcon(pics.pB);
         mover = b1.getIcon();
         icon.setIcon(b1.getIcon());
-
     }
-    void Level5() {
+    public void Level5() {
         currentLevel.setText("Level: 5");
         b1.setIcon(pics.nB4); b2.setIcon(pics.nB7); b3.setIcon(pics.nB5);
         b4.setIcon(pics.nB2); b5.setIcon(pics.nB3); b6.setIcon(pics.nB9);
