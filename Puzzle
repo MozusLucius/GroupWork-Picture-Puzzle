@@ -134,6 +134,7 @@ public class Puzzle extends JFrame implements ActionListener{
             this.add(con, BorderLayout.CENTER);
             con.setVisible(true);
             this.setVisible(true);
+
         }
     }
 
