@@ -10,6 +10,8 @@ public class Game implements ActionListener {
     //timer stuffs
     int timerSeconds = 0;
     public static Timer timer;
+    public boolean solved = false;
+    Icon[] correctOrder1 = {pics.l1, pics.l2, pics.l3, pics.l4, pics.l5, pics.l6, pics.l7, pics.l8, pics.l9};
 
     Game() {
         currentLevel = new JLabel("Level: X");
@@ -42,12 +44,6 @@ public class Game implements ActionListener {
         });
         timer.start();
 
-//        restart.addActionListener(e ->{
-//            timer.stop();
-//            timerSeconds = 0;
-//            updateTimerLabel();
-//            timer.start();
-//        });
     }
 
     public void updateTimerLabel(){
@@ -68,15 +64,15 @@ public class Game implements ActionListener {
             System.out.println("Game Restart button clicked");
             Puzzle p = new Puzzle();
             if (basisImage.getIcon() == pics.logo){
-                p.g.Level1();
+                p.game.Level1();
             } else if (basisImage.getIcon() == pics.mB){
-                p.g.Level2();
+                p.game.Level2();
             } else if (basisImage.getIcon() == pics.mA){
-                p.g.Level3();
+                p.game.Level3();
             } else if (basisImage.getIcon() == pics.pB){
-                p.g.Level4();
+                p.game.Level4();
             } else if (basisImage.getIcon() == pics.nB){
-                p.g.Level5();
+                p.game.Level5();
             }
         }
 
@@ -128,11 +124,9 @@ public class Game implements ActionListener {
         if (e.getSource() == b1) {
             System.out.println("B1 clicked");
             if (b2.getIcon() == mover) {
-                System.out.println("B1 touched B2");
                 b2.setIcon(b1.getIcon());
                 b1.setIcon(mover);
             } else if (b4.getIcon() == mover) {
-                System.out.println("B1 touched B4");
                 b4.setIcon(b1.getIcon());
                 b1.setIcon(mover);
             }
@@ -141,15 +135,12 @@ public class Game implements ActionListener {
         if (e.getSource() == b2) {
             System.out.println("B2 clicked");
             if (b1.getIcon() == mover) {
-                System.out.println("B2 touched B1");
                 b1.setIcon(b2.getIcon());
                 b2.setIcon(mover);
             } else if (b5.getIcon() == mover) {
-                System.out.println("B2 touched B5");
                 b5.setIcon(b2.getIcon());
                 b2.setIcon(mover);
             } else if (b3.getIcon() == mover) {
-                System.out.println("B2 touched B3");
                 b3.setIcon(b2.getIcon());
                 b2.setIcon(mover);
             }
@@ -158,11 +149,9 @@ public class Game implements ActionListener {
         if (e.getSource() == b3) {
             System.out.println("B3 clicked");
             if (b2.getIcon() == mover) {
-                System.out.println("B3 touched B2");
                 b2.setIcon(b3.getIcon());
                 b3.setIcon(mover);
             } else if (b6.getIcon() == mover) {
-                System.out.println("B3 touched B6");
                 b6.setIcon(b3.getIcon());
                 b3.setIcon(mover);
             }
@@ -171,15 +160,12 @@ public class Game implements ActionListener {
         if (e.getSource() == b4) {
             System.out.println("B4 clicked");
             if (b1.getIcon() == mover) {
-                System.out.println("B4 touched B1");
                 b1.setIcon(b4.getIcon());
                 b4.setIcon(mover);
             } else if (b5.getIcon() == mover) {
-                System.out.println("B4 touched B5");
                 b5.setIcon(b4.getIcon());
                 b4.setIcon(mover);
             } else if (b7.getIcon() == mover) {
-                System.out.println("B4 touched B7");
                 b7.setIcon(b4.getIcon());
                 b4.setIcon(mover);
             }
@@ -188,19 +174,15 @@ public class Game implements ActionListener {
         if (e.getSource() == b5) {
             System.out.println("B5 clicked");
             if (b2.getIcon() == mover) {
-                System.out.println("B5 touched b2");
                 b2.setIcon(b5.getIcon());
                 b5.setIcon(mover);
             } else if (b4.getIcon() == mover) {
-                System.out.println("B5 touched B4");
                 b4.setIcon(b5.getIcon());
                 b5.setIcon(mover);
             } else if (b6.getIcon() == mover) {
-                System.out.println("B5 touched B6");
                 b6.setIcon(b5.getIcon());
                 b5.setIcon(mover);
             } else if (b8.getIcon() == mover) {
-                System.out.println("B5 touched B8");
                 b8.setIcon(b5.getIcon());
                 b5.setIcon(mover);
             }
@@ -209,15 +191,12 @@ public class Game implements ActionListener {
         if (e.getSource() == b6) {
             System.out.println("B6 clicked");
             if (b3.getIcon() == mover) {
-                System.out.println("B6 touched B3");
                 b3.setIcon(b6.getIcon());
                 b6.setIcon(mover);
             } else if (b5.getIcon() == mover) {
-                System.out.println("B6 touched B5");
                 b5.setIcon(b6.getIcon());
                 b6.setIcon(mover);
             } else if (b9.getIcon() == mover) {
-                System.out.println("B6 touched B9");
                 b9.setIcon(b6.getIcon());
                 b6.setIcon(mover);
             }
@@ -226,11 +205,9 @@ public class Game implements ActionListener {
         if (e.getSource() == b7) {
             System.out.println("B7 clicked");
             if (b4.getIcon() == mover) {
-                System.out.println("B7 touched B4");
                 b4.setIcon(b7.getIcon());
                 b7.setIcon(mover);
             } else if (b8.getIcon() == mover) {
-                System.out.println("B7 touched B8");
                 b8.setIcon(b7.getIcon());
                 b7.setIcon(mover);
             }
@@ -239,15 +216,12 @@ public class Game implements ActionListener {
         if (e.getSource() == b8) {
             System.out.println("B8 clicked");
             if (b7.getIcon() == mover) {
-                System.out.println("B8 touched B7");
                 b7.setIcon(b8.getIcon());
                 b8.setIcon(mover);
             } else if (b5.getIcon() == mover) {
-                System.out.println("B8 touched B5");
                 b5.setIcon(b8.getIcon());
                 b8.setIcon(mover);
             } else if (b9.getIcon() == mover) {
-                System.out.println("B8 touched B9");
                 b9.setIcon(b8.getIcon());
                 b8.setIcon(mover);
             }
@@ -256,17 +230,25 @@ public class Game implements ActionListener {
         if (e.getSource() == b9) {
             System.out.println("B9 clicked");
             if (b6.getIcon() == mover) {
-                System.out.println("B9 touched B6");
                 b6.setIcon(b9.getIcon());
                 b9.setIcon(mover);
             } else if (b8.getIcon() == mover) {
-                System.out.println("B9 touched B8");
                 b8.setIcon(b9.getIcon());
                 b9.setIcon(mover);
             }
         }
-
         //Order checker/If puzzle is solved
+        if ((b1.getIcon() == pics.l1) && (b2.getIcon() == pics.l2) && (b3.getIcon() == pics.l3)
+                && (b4.getIcon() == pics.l4) && (b5.getIcon() == pics.l5) && (b6.getIcon() == pics.l6)
+                && (b7.getIcon() == pics.l7) && (b8.getIcon() == pics.l8) && (b9.getIcon() == pics.l9)){
+            System.out.println("Puzzle Solved");
+            solved = true;
+            timer.stop();
+        } else if ((b1.getIcon() == pics.mB1) && (b2.getIcon() == pics.mB2) && (b3.getIcon() == pics.mB3)
+                && (b4.getIcon() == pics.mB4) && (b5.getIcon() == pics.mB5) && (b6.getIcon() == pics.mB6)
+                && (b7.getIcon() == pics.mB7) && (b8.getIcon() == pics.mB8) && (b9.getIcon() == pics.mB9)){
+            timer.stop();
+        }
     }
 
     public void Level1() {
@@ -277,6 +259,7 @@ public class Game implements ActionListener {
         basisImage.setIcon(pics.logo);
         mover = b1.getIcon();
         icon.setIcon(b1.getIcon());
+
     }
 
     public void Level2() {
