@@ -265,6 +265,30 @@ public class Game implements ActionListener {
             puzzle.checkIfGameIsSolved();
             System.out.println(solved);
             timer.stop();
+        } else if ((b1.getIcon() == pics.mA1) && (b2.getIcon() == pics.mA2) && (b3.getIcon() == pics.mA3)
+                && (b4.getIcon() == pics.mA4) && (b5.getIcon() == pics.mA5) && (b6.getIcon() == pics.mA6)
+                && (b7.getIcon() == pics.mA7) && (b8.getIcon() == pics.mA8) && (b9.getIcon() == pics.mA9)) {
+            System.out.println("Puzzle Solved");
+            solved = true;
+            puzzle.checkIfGameIsSolved();
+            System.out.println(solved);
+            timer.stop();
+        } else if ((b1.getIcon() == pics.pB1) && (b2.getIcon() == pics.pB2) && (b3.getIcon() == pics.pB3)
+                && (b4.getIcon() == pics.pB4) && (b5.getIcon() == pics.pB5) && (b6.getIcon() == pics.pB6)
+                && (b7.getIcon() == pics.pB7) && (b8.getIcon() == pics.pB8) && (b9.getIcon() == pics.pB9)) {
+            System.out.println("Puzzle Solved");
+            solved = true;
+            puzzle.checkIfGameIsSolved();
+            System.out.println(solved);
+            timer.stop();
+        } else if ((b1.getIcon() == pics.nB1) && (b2.getIcon() == pics.nB2) && (b3.getIcon() == pics.nB3)
+                && (b4.getIcon() == pics.nB4) && (b5.getIcon() == pics.nB5) && (b6.getIcon() == pics.nB6)
+                && (b7.getIcon() == pics.nB7) && (b8.getIcon() == pics.nB8) && (b9.getIcon() == pics.nB9)) {
+            System.out.println("Puzzle Solved");
+            solved = true;
+            puzzle.checkIfGameIsSolved();
+            System.out.println(solved);
+            timer.stop();
         }
     }
 
