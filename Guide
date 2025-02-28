@@ -1,0 +1,60 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class Guide extends JFrame implements ActionListener {
+
+    JLabel title, content;
+    JPanel forMenu, forTitle, forContent;
+    JButton mainM;
+
+    Guide(){
+        this.setTitle("Piczzle");
+        this.setSize(1460, 760);
+        this.setLocation(30, 10);
+        this.setResizable(true);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.getContentPane().setBackground(new Color(0xf5b982));
+        this.setLayout(new BorderLayout());
+
+        //main menu
+        forMenu = new JPanel(new FlowLayout(FlowLayout.LEADING));
+        forMenu.setOpaque(false);
+        mainM = new JButton("<html><center>Main<br>Menu</center></html>");
+        mainM.setPreferredSize(new Dimension(80,50));
+        mainM.setFocusable(false);
+        mainM.setBackground(new Color(0xf5e8a6));
+        mainM.setForeground(Color.BLACK);
+        mainM.setFont(new Font("Lucida Console", Font.PLAIN, 18));
+        mainM.addActionListener(this);
+        forMenu.add(mainM);
+        //title
+        forTitle = new JPanel();
+        forTitle.setPreferredSize(new Dimension(0,90));
+        forTitle.setBackground(Color.lightGray);
+        title = new JLabel("HOW TO PLAY");
+        title.setFont(new Font("Book Antiqua", Font.BOLD, 80));
+        title.setForeground(Color.BLACK);
+        title.setBounds(700,30,200,50);
+        forTitle.add(title);
+        //main content
+        forContent = new JPanel(new BorderLayout());
+        forContent.setPreferredSize(new Dimension(0,570));
+        content = new JLabel();
+
+
+        this.add(forMenu, BorderLayout.NORTH);
+        this.add(forTitle, BorderLayout.CENTER);
+        this.add(forContent, BorderLayout.SOUTH);
+        this.setVisible(true);
+    }
+    public void actionPerformed(ActionEvent e){
+        if(e.getSource() == mainM){
+            dispose();
+            new Main();
+        }
+    }
+    public static void main (String[] args){
+        new Guide();
+    }
+}
