@@ -102,23 +102,23 @@ public class Levels extends JFrame implements ActionListener {
         } else if(e.getSource() == level1){
             dispose();
             Puzzle p = new Puzzle();
-            p.g.Level1();
+            p.game.Level1();
         } else if (e.getSource() == level2){
             dispose();
             Puzzle p = new Puzzle();
-            p.g.Level2();
+            p.game.Level2();
         } else if (e.getSource() == level3){
             dispose();
             Puzzle p = new Puzzle();
-            p.g.Level3();
+            p.game.Level3();
         } else if (e.getSource() == level4){
             dispose();
             Puzzle p = new Puzzle();
-            p.g.Level4();
+            p.game.Level4();
         } else if (e.getSource() == level5){
             dispose();
             Puzzle p = new Puzzle();
-            p.g.Level5();
+            p.game.Level5();
         }
     }
     public static void main (String[] args){
