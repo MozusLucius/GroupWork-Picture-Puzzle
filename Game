@@ -10,7 +10,7 @@ public class Game implements ActionListener {
     //timer stuffs
     int timerSeconds = 0;
     public static Timer timer;
-    public boolean solved = false;
+    static boolean solved = false;
     Icon[] correctOrder1 = {pics.l1, pics.l2, pics.l3, pics.l4, pics.l5, pics.l6, pics.l7, pics.l8, pics.l9};
 
     Game() {
@@ -244,6 +244,7 @@ public class Game implements ActionListener {
             System.out.println("Puzzle Solved");
             solved = true;
             timer.stop();
+
         } else if ((b1.getIcon() == pics.mB1) && (b2.getIcon() == pics.mB2) && (b3.getIcon() == pics.mB3)
                 && (b4.getIcon() == pics.mB4) && (b5.getIcon() == pics.mB5) && (b6.getIcon() == pics.mB6)
                 && (b7.getIcon() == pics.mB7) && (b8.getIcon() == pics.mB8) && (b9.getIcon() == pics.mB9)){
