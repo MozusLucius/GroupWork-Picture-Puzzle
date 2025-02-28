@@ -8,7 +8,6 @@ public class Puzzle extends JFrame implements ActionListener{
     //Classes call
     Game game = new Game(this);
 
-//this.game = game;
     Puzzle(){
         
         this.setTitle("Piczzle");
@@ -155,6 +154,7 @@ public class Puzzle extends JFrame implements ActionListener{
 
     public void checkIfGameIsSolved() {
         if (game.solved) {
+            Game.timer.stop();
             JOptionPane.showMessageDialog(this, "Congratulations, you solved the puzzle!");
         }
     }
