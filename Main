@@ -1,6 +1,6 @@
+import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import java.awt.*;
 
 public class Main extends JFrame implements ActionListener {
 
@@ -58,6 +58,7 @@ public class Main extends JFrame implements ActionListener {
 
         this.setVisible(true);
     }
+    @Override
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == levels){
             dispose();

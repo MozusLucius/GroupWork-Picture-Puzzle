@@ -1,14 +1,16 @@
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.*;
 public class Puzzle extends JFrame implements ActionListener{
     JPanel con, leftCon, centerCon, pgC, forIcon, oncePaused, forPauseTitle, forPause, forRestart, forLevels;
     JButton mainM, levelsBack;
     JLabel title, iconLabel;
     //Classes call
-    Game game = new Game();
+    Game game = new Game(this);
+
 //this.game = game;
     Puzzle(){
+        
         this.setTitle("Piczzle");
         this.setSize(1460, 760);
         this.setLocation(30, 10);
@@ -122,9 +124,8 @@ public class Puzzle extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         System.out.println("One of the 9 buttons is clicked.");
-        if (game.solved) {
-            JOptionPane.showMessageDialog(this, "Hello, Welcome to Javatpoint.");
-        }
+        System.out.println(game.solved);
+        
         if (e.getSource() == mainM) {
             dispose();
             new Main();
@@ -149,6 +150,12 @@ public class Puzzle extends JFrame implements ActionListener{
         } else if (e.getSource() == game.restart){
             System.out.println("Puzzle Restart button clicked");
             dispose();
+        }
+    }
+
+    public void checkIfGameIsSolved() {
+        if (game.solved) {
+            JOptionPane.showMessageDialog(this, "Congratulations, you solved the puzzle!");
         }
     }
 }
