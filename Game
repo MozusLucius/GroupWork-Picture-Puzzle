@@ -33,18 +33,21 @@ public class Game implements ActionListener {
         b7.addActionListener(this); b8.addActionListener(this); b9.addActionListener(this);
         icon.addActionListener(this);
 
+        pause.addActionListener(this);
+        resume.addActionListener(this);
+        restart.addActionListener(this);
         timer = new Timer(1000, e -> {
             timerSeconds++;
             updateTimerLabel();
         });
         timer.start();
 
-        restart.addActionListener(e ->{
-            timer.stop();
-            timerSeconds = 0;
-            updateTimerLabel();
-            timer.start();
-        });
+//        restart.addActionListener(e ->{
+//            timer.stop();
+//            timerSeconds = 0;
+//            updateTimerLabel();
+//            timer.start();
+//        });
     }
 
     public void updateTimerLabel(){
@@ -60,7 +63,21 @@ public class Game implements ActionListener {
             System.out.println("Pause button is clicked");
             timer.stop();
         } else if (e.getSource() == resume){
-            timer.restart();
+            timer.start();
+        } else if(e.getSource() == restart){
+            System.out.println("Game Restart button clicked");
+            Puzzle p = new Puzzle();
+            if (basisImage.getIcon() == pics.logo){
+                p.g.Level1();
+            } else if (basisImage.getIcon() == pics.mB){
+                p.g.Level2();
+            } else if (basisImage.getIcon() == pics.mA){
+                p.g.Level3();
+            } else if (basisImage.getIcon() == pics.pB){
+                p.g.Level4();
+            } else if (basisImage.getIcon() == pics.nB){
+                p.g.Level5();
+            }
         }
 
         //All button's functions
@@ -284,7 +301,7 @@ public class Game implements ActionListener {
 
     public void Level4() {
         currentLevel.setText("Level: 4");
-        b1.setIcon(pics.pB9); b2.setIcon(pics.pB5); b3.setIcon(pics.pB2);
+        b1.setIcon(pics.pB9); b2.setIcon(pics.pB5); b3.setIcon(pics.pB7);
         b4.setIcon(pics.pB1); b5.setIcon(pics.pB3); b6.setIcon(pics.pB8);
         b7.setIcon(pics.pB6); b8.setIcon(pics.pB2); b9.setIcon(pics.pB4);
         basisImage.setIcon(pics.pB);
