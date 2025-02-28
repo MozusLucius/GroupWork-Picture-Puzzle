@@ -10,10 +10,12 @@ public class Game implements ActionListener {
     //timer stuffs
     int timerSeconds = 0;
     public static Timer timer;
-    static boolean solved = false;
+    boolean solved = false;
+    private Puzzle puzzle;
     Icon[] correctOrder1 = {pics.l1, pics.l2, pics.l3, pics.l4, pics.l5, pics.l6, pics.l7, pics.l8, pics.l9};
 
-    Game() {
+    Game(Puzzle puzzle) {
+        this.puzzle = puzzle;
         currentLevel = new JLabel("Level: X");
         timerLabel = new JLabel("00:00");
         pause = new JButton("PAUSE");
@@ -155,6 +157,7 @@ public class Game implements ActionListener {
                 b6.setIcon(b3.getIcon());
                 b3.setIcon(mover);
             }
+            checkPuzzle();
         }
         //fourth button
         if (e.getSource() == b4) {
@@ -169,6 +172,7 @@ public class Game implements ActionListener {
                 b7.setIcon(b4.getIcon());
                 b4.setIcon(mover);
             }
+            checkPuzzle();
         }
         //fifth button
         if (e.getSource() == b5) {
@@ -186,6 +190,7 @@ public class Game implements ActionListener {
                 b8.setIcon(b5.getIcon());
                 b5.setIcon(mover);
             }
+            checkPuzzle();
         }
         //sixth button
         if (e.getSource() == b6) {
@@ -200,6 +205,7 @@ public class Game implements ActionListener {
                 b9.setIcon(b6.getIcon());
                 b6.setIcon(mover);
             }
+            checkPuzzle();
         }
         //seventh button
         if (e.getSource() == b7) {
@@ -211,6 +217,7 @@ public class Game implements ActionListener {
                 b8.setIcon(b7.getIcon());
                 b7.setIcon(mover);
             }
+            checkPuzzle();
         }
         //eighth button
         if (e.getSource() == b8) {
@@ -225,6 +232,7 @@ public class Game implements ActionListener {
                 b9.setIcon(b8.getIcon());
                 b8.setIcon(mover);
             }
+            checkPuzzle();
         }
         //ninth button
         if (e.getSource() == b9) {
@@ -236,13 +244,19 @@ public class Game implements ActionListener {
                 b8.setIcon(b9.getIcon());
                 b9.setIcon(mover);
             }
+            checkPuzzle();
         }
-        //Order checker/If puzzle is solved
+       
+    }
+
+    public void checkPuzzle() {
         if ((b1.getIcon() == pics.l1) && (b2.getIcon() == pics.l2) && (b3.getIcon() == pics.l3)
                 && (b4.getIcon() == pics.l4) && (b5.getIcon() == pics.l5) && (b6.getIcon() == pics.l6)
                 && (b7.getIcon() == pics.l7) && (b8.getIcon() == pics.l8) && (b9.getIcon() == pics.l9)){
             System.out.println("Puzzle Solved");
             solved = true;
+            puzzle.checkIfGameIsSolved();
+            System.out.println(solved);
             timer.stop();
 
         } else if ((b1.getIcon() == pics.mB1) && (b2.getIcon() == pics.mB2) && (b3.getIcon() == pics.mB3)
