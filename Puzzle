@@ -3,14 +3,15 @@ import java.awt.*;
 import java.awt.event.*;
 public class Puzzle extends JFrame implements ActionListener{
 
-    JPanel leftCon, centerCon, pgC, oncePaused, forPauseTitle, forPause, forRestart, forLevels, con;
+    JPanel con, leftCon, centerCon, pgC, forIcon, oncePaused, forPauseTitle, forPause, forRestart, forLevels;
     JButton mainM, levelsBack;
-    //pup-up once pause is clicked
-    JLabel title;
+    JLabel title, iconLabel;
     //Classes call
+    Pictures pics = new Pictures();
     Game g = new Game();
 
     Puzzle(){
+
         this.setTitle("Piczzle");
         this.setSize(1460, 760);
         this.setLocation(30, 10);
@@ -61,9 +62,21 @@ public class Puzzle extends JFrame implements ActionListener{
         pgC.add(g.b1); pgC.add(g.b2); pgC.add(g.b3);
         pgC.add(g.b4); pgC.add(g.b5); pgC.add(g.b6);
         pgC.add(g.b7); pgC.add(g.b8); pgC.add(g.b9);
-        g.icon.setBounds(700,270,167,167);
+
+        forIcon = new JPanel(null);
+        forIcon.setBackground(new Color(0xbab5a8));
+        forIcon.setBounds(680,250,187,227);
+//        g.icon.setBounds(700,270,167,167);
+        g.icon.setBounds(10,10,167,167);
+        iconLabel = new JLabel("Icon");
+        iconLabel.setForeground(Color.BLACK);
+        iconLabel.setFont(new Font("Georgia", Font.BOLD, 24));
+        iconLabel.setBounds(65,187,60,20);
+        forIcon.add(g.icon); forIcon.add(iconLabel);
+
+        //all centerCon objects add
         centerCon.add(g.timerLabel); centerCon.add(pgC);
-        centerCon.add(g.pause); centerCon.add(g.icon);
+        centerCon.add(g.pause); centerCon.add(forIcon);
         con.add(leftCon, BorderLayout.WEST);
         con.add(centerCon, BorderLayout.CENTER);
 
@@ -115,7 +128,6 @@ public class Puzzle extends JFrame implements ActionListener{
         }
 
         if (e.getSource() == g.pause){
-            System.out.println("It entered this");
             con.setVisible(false);
             this.remove(con);
             this.add(oncePaused, BorderLayout.CENTER);
@@ -127,17 +139,11 @@ public class Puzzle extends JFrame implements ActionListener{
             this.add(con, BorderLayout.CENTER);
             con.setVisible(true);
             this.setVisible(true);
-        }
-        if (e.getSource() == g.restart) {
-            oncePaused.setVisible(false);
-            this.remove(oncePaused);
-            this.add(con, BorderLayout.CENTER);
-            con.setVisible(true);
-            this.setVisible(true);
-
+        } else if (e.getSource() == g.restart){
+            System.out.println("Puzzle Restart button clicked");
+            dispose();
         }
     }
-
     public static void main (String[] args){
         new Puzzle();
     }
