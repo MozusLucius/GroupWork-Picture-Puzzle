@@ -110,10 +110,6 @@ public class Puzzle extends JFrame implements ActionListener{
         oncePaused.add(forRestart);
         oncePaused.add(forLevels);
 
-        game.b1.addActionListener(this); game.b2.addActionListener(this); game.b3.addActionListener(this);
-        game.b4.addActionListener(this); game.b5.addActionListener(this); game.b6.addActionListener(this);
-        game.b7.addActionListener(this); game.b8.addActionListener(this); game.b9.addActionListener(this);
-
         this.add(oncePaused, BorderLayout.CENTER);
         this.add(con, BorderLayout.CENTER);
         this.setVisible(true);
