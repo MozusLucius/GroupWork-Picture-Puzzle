@@ -39,16 +39,16 @@ public class Pictures {
     Icon m8 = new ImageIcon("src/Coding/Taj Mahal/m8.jpg");
     Icon m9 = new ImageIcon("src/Coding/Taj Mahal/m9.jpg");
 
-    Icon pB = new ImageIcon("src/Coding/personB/CpersonB.jpg");
-    Icon pB1 = new ImageIcon("src/Coding/personB/pB1.jpg");
-    Icon pB2 = new ImageIcon("src/Coding/personB/pB2.jpg");
-    Icon pB3 = new ImageIcon("src/Coding/personB/pB3.jpg");
-    Icon pB4 = new ImageIcon("src/Coding/personB/pB4.jpg");
-    Icon pB5 = new ImageIcon("src/Coding/personB/pB5.jpg");
-    Icon pB6 = new ImageIcon("src/Coding/personB/pB6.jpg");
-    Icon pB7 = new ImageIcon("src/Coding/personB/pB7.jpg");
-    Icon pB8 = new ImageIcon("src/Coding/personB/pB8.jpg");
-    Icon pB9 = new ImageIcon("src/Coding/personB/pB9.jpg");
+    Icon fuji = new ImageIcon("src/Coding/Fuji/fuji.jpg");
+    Icon f1 = new ImageIcon("src/Coding/Fuji/f1.jpg");
+    Icon f2 = new ImageIcon("src/Coding/Fuji/f2.jpg");
+    Icon f3 = new ImageIcon("src/Coding/Fuji/f3.jpg");
+    Icon f4 = new ImageIcon("src/Coding/Fuji/f4.jpg");
+    Icon f5 = new ImageIcon("src/Coding/Fuji/f5.jpg");
+    Icon f6 = new ImageIcon("src/Coding/Fuji/f6.jpg");
+    Icon f7 = new ImageIcon("src/Coding/Fuji/f7.jpg");
+    Icon f8 = new ImageIcon("src/Coding/Fuji/f8.jpg");
+    Icon f9 = new ImageIcon("src/Coding/Fuji/f9.jpg");
 
     Icon nB = new ImageIcon("src/Coding/natureB/CnatureB.jpg");
     Icon nB1 = new ImageIcon("src/Coding/natureB/nB1.jpg");
