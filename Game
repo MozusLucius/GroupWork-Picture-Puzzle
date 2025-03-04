@@ -76,7 +76,7 @@ public class Game implements ActionListener {
                 p.game.Level2();
             } else if (basisImage.getIcon() == pics.mahal){
                 p.game.Level3();
-            } else if (basisImage.getIcon() == pics.pB){
+            } else if (basisImage.getIcon() == pics.fuji){
                 p.game.Level4();
             } else if (basisImage.getIcon() == pics.nB){
                 p.game.Level5();
@@ -258,6 +258,7 @@ public class Game implements ActionListener {
         if ((b1.getIcon() == pics.l1) && (b2.getIcon() == pics.l2) && (b3.getIcon() == pics.l3)
                 && (b4.getIcon() == pics.l4) && (b5.getIcon() == pics.l5) && (b6.getIcon() == pics.l6)
                 && (b7.getIcon() == pics.l7) && (b8.getIcon() == pics.l8) && (b9.getIcon() == pics.l9)){
+            //logo
             System.out.println("Puzzle Solved");
             solved = true;
             puzzle.checkIfGameIsSolved();
@@ -266,6 +267,7 @@ public class Game implements ActionListener {
         } else if ((b1.getIcon() == pics.p1) && (b2.getIcon() == pics.p2) && (b3.getIcon() == pics.p3)
                 && (b4.getIcon() == pics.p4) && (b5.getIcon() == pics.p5) && (b6.getIcon() == pics.p6)
                 && (b7.getIcon() == pics.p7) && (b8.getIcon() == pics.p8) && (b9.getIcon() == pics.p9)){
+            //paris
             System.out.println("Puzzle Solved");
             solved = true;
             puzzle.checkIfGameIsSolved();
@@ -274,14 +276,16 @@ public class Game implements ActionListener {
         } else if ((b1.getIcon() == pics.m1) && (b2.getIcon() == pics.m2) && (b3.getIcon() == pics.m3)
                 && (b4.getIcon() == pics.m4) && (b5.getIcon() == pics.m5) && (b6.getIcon() == pics.m6)
                 && (b7.getIcon() == pics.m7) && (b8.getIcon() == pics.m8) && (b9.getIcon() == pics.m9)) {
+            //taj mahal
             System.out.println("Puzzle Solved");
             solved = true;
             puzzle.checkIfGameIsSolved();
             System.out.println(solved);
             timer.stop();
-        } else if ((b1.getIcon() == pics.pB1) && (b2.getIcon() == pics.pB2) && (b3.getIcon() == pics.pB3)
-                && (b4.getIcon() == pics.pB4) && (b5.getIcon() == pics.pB5) && (b6.getIcon() == pics.pB6)
-                && (b7.getIcon() == pics.pB7) && (b8.getIcon() == pics.pB8) && (b9.getIcon() == pics.pB9)) {
+        } else if ((b1.getIcon() == pics.f1) && (b2.getIcon() == pics.f2) && (b3.getIcon() == pics.f3)
+                && (b4.getIcon() == pics.f4) && (b5.getIcon() == pics.f5) && (b6.getIcon() == pics.f6)
+                && (b7.getIcon() == pics.f7) && (b8.getIcon() == pics.f8) && (b9.getIcon() == pics.f9)) {
+            //fuji
             System.out.println("Puzzle Solved");
             solved = true;
             puzzle.checkIfGameIsSolved();
@@ -331,10 +335,10 @@ public class Game implements ActionListener {
 
     public void Level4() {
         currentLevel.setText("Level: 4");
-        b1.setIcon(pics.pB9); b2.setIcon(pics.pB5); b3.setIcon(pics.pB7);
-        b4.setIcon(pics.pB1); b5.setIcon(pics.pB3); b6.setIcon(pics.pB8);
-        b7.setIcon(pics.pB6); b8.setIcon(pics.pB2); b9.setIcon(pics.pB4);
-        basisImage.setIcon(pics.pB);
+        b1.setIcon(pics.f9); b2.setIcon(pics.f5); b3.setIcon(pics.f7);
+        b4.setIcon(pics.f1); b5.setIcon(pics.f3); b6.setIcon(pics.f8);
+        b7.setIcon(pics.f6); b8.setIcon(pics.f2); b9.setIcon(pics.f4);
+        basisImage.setIcon(pics.fuji);
         mover = b1.getIcon();
         icon.setIcon(b1.getIcon());
     }
