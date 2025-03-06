@@ -7,7 +7,7 @@ public class Main extends JFrame implements ActionListener {
     JLabel title;
     JPanel forTitle, forLevels, forSettings, forGuide;
     JButton levels, settings, guide;
-
+    Mujik music = new Mujik();
     Main(){
         this.setTitle("Piczzle");
         this.setSize(1460, 760);
@@ -56,27 +56,26 @@ public class Main extends JFrame implements ActionListener {
         this.add(forGuide);
         this.add(forSettings);
 
-
         this.setVisible(true);
     }
     @Override
     public void actionPerformed(ActionEvent e){
-        Mujik m = new Mujik();
         if(e.getSource() == levels){
             dispose();
             new Levels();
-            m.soundButton();
+            music.soundButton();
         } else if (e.getSource() == guide) {
             dispose();
             new Guide();
-            m.soundButton();
+            music.soundButton();
+
         }
     }
 
     public static void main (String[] args){
-        new Main();
-        Mujik m = new Mujik();
-        m.playBGM();
+        Main m = new Main();
+        m.music.playBGM();
+
 //        Mujik m = new Mujik();
 //        m.playBGM();
     }
