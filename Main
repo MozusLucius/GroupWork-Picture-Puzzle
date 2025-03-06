@@ -1,26 +1,33 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.io.File;
+import java.io.IOException;
+import javax.sound.sampled.*;
 
 public class Main extends JFrame implements ActionListener {
-
+    Icon picMute = new ImageIcon("src\\Coding\\Sounds\\smallMute.png");
+    Icon picNotMute = new ImageIcon("src\\Coding\\Sounds\\smallVolume.png");
     JLabel title;
-    JPanel forTitle, forLevels, forSettings, forGuide;
-    JButton levels, settings, guide;
+    JPanel mainCon, forTitle, forLevels, forSettings, forGuide, forMute;
+    JButton levels, settings, guide, mute;
+    Clip playBGM;
     Mujik music = new Mujik();
+
     Main(){
         this.setTitle("Piczzle");
-        this.setSize(1460, 760);
+        this.setSize(1460, 770);
         this.setLocation(60, 30);
         this.setResizable(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().setBackground(new Color(0xf5b982));
-        this.setLayout(new GridLayout(0, 1, 0, 0));
+        this.setLayout(new BorderLayout());
 
+        mainCon = new JPanel(new GridLayout(0,1)); mainCon.setOpaque(false);
         title = new JLabel("<html><center>WELCOME TO<br>PICZZLE!</center></html>");
-        title.setFont(new Font("Book Antiqua", Font.BOLD, 80));
+        title.setFont(new Font("Book Antiqua", Font.BOLD, 77));
         title.setForeground(Color.BLACK);
-        title.setBounds(700,30,200,50);
+        title.setPreferredSize(new Dimension(550,175));
         //all buttons
         levels = new JButton("LEVELS");
         levels.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30));
@@ -39,27 +46,28 @@ public class Main extends JFrame implements ActionListener {
         settings.addActionListener(this);
         //all panels to ensure a centered layout for the window
         forTitle = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        forLevels = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 45));
+        forLevels = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 35));
         forGuide = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 20));
         forSettings = new JPanel(new FlowLayout(FlowLayout.CENTER,0,0));
-        forTitle.setOpaque(false);
-        forLevels.setOpaque(false);
-        forSettings.setOpaque(false);
-        forGuide.setOpaque(false);
-        forTitle.add(title);
-        forLevels.add(levels);
-        forGuide.add(guide);
-        forSettings.add(settings);
+        forTitle.setOpaque(false); forLevels.setOpaque(false); forSettings.setOpaque(false); forGuide.setOpaque(false);
+        forTitle.add(title); forLevels.add(levels); forGuide.add(guide); forSettings.add(settings);
+        mainCon.add(forTitle); mainCon.add(forLevels);
+        mainCon.add(forGuide); mainCon.add(forSettings);
 
-        this.add(forTitle);
-        this.add(forLevels);
-        this.add(forGuide);
-        this.add(forSettings);
+        //forMute
+        forMute = new JPanel(new FlowLayout(FlowLayout.RIGHT)); forMute.setOpaque(false);
+        forMute.setPreferredSize(new Dimension(10,49));
+        mute = new JButton(null, picNotMute); mute.setOpaque(false);
+        mute.setPreferredSize(new Dimension(45,45)); mute.addActionListener(this);
+        forMute.add(mute);
 
+        this.add(mainCon, BorderLayout.CENTER);
+        this.add(forMute, BorderLayout.SOUTH);
         this.setVisible(true);
     }
     @Override
     public void actionPerformed(ActionEvent e){
+
         if(e.getSource() == levels){
             dispose();
             new Levels();
@@ -68,15 +76,31 @@ public class Main extends JFrame implements ActionListener {
             dispose();
             new Guide();
             music.soundButton();
-
+        } else if (e.getSource() == settings) {
+            dispose();
+            new Settings();
+            music.soundButton();
+        } else if (e.getSource() == mute){
+            if (mute.getIcon() == picMute){
+                playBGM.start();
+                mute.setIcon(picNotMute);
+            } else if (mute.getIcon() == picNotMute){
+                playBGM.stop();
+                mute.setIcon(picMute);
+            }
         }
     }
 
+    public void setPlayBGM(){
+        try {
+            playBGM = AudioSystem.getClip();
+            playBGM.open(AudioSystem.getAudioInputStream(new File("src\\Coding\\Musika\\Zen.wav")));
+            playBGM.loop(Clip.LOOP_CONTINUOUSLY);
+        }   catch (LineUnavailableException|IOException|UnsupportedAudioFileException e){
+            e.printStackTrace();}
+    }
     public static void main (String[] args){
         Main m = new Main();
-        m.music.playBGM();
-
-//        Mujik m = new Mujik();
-//        m.playBGM();
+        m.setPlayBGM();
     }
 }
