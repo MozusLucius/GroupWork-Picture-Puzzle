@@ -1,0 +1,99 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class Settings extends JFrame implements ActionListener {
+
+    Icon picMute = new ImageIcon("src\\Coding\\Sounds\\smallMute.png");
+    Icon picNotMute = new ImageIcon("src\\Coding\\Sounds\\smallVolume.png");
+    JLabel title, bg, buttons, playB;
+    JPanel forMenu, con, forTitle, forBackground, forButtons, forPlayButtons;
+    JButton mainM, bgMute, buttonsMute, playBMute;
+    Mujik music = new Mujik();
+    BGMusic m = new BGMusic();
+
+    Settings() {
+        BGMusic.resumeMusic();
+        this.setTitle("Piczzle");
+        this.setSize(1460, 760);
+        this.setLocation(60, 30);
+        this.setResizable(true);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.getContentPane().setBackground(new Color(0xf5b982));
+        this.setLayout(new BorderLayout());
+
+        forMenu = new JPanel(new FlowLayout(FlowLayout.LEADING));
+        forMenu.setOpaque(false); forMenu.setPreferredSize(new Dimension(10,55));
+        mainM = new JButton("<html><center>Main<br>Menu</center></html>");
+        mainM.setPreferredSize(new Dimension(75,45));
+        mainM.setFocusable(false);
+        mainM.setBackground(new Color(0xf5e8a6));
+        mainM.setForeground(Color.BLACK);
+        mainM.setFont(new Font("Lucida Console", Font.PLAIN, 17));
+        mainM.addActionListener(this);
+        forMenu.add(mainM);
+
+        //title
+        forTitle = new JPanel(new FlowLayout()); forTitle.setOpaque(false);
+        title = new JLabel("SETTINGS");
+        title.setFont(new Font("Book Antiqua", Font.BOLD, 70));
+        title.setForeground(Color.BLACK);
+        title.setBounds(700, 30, 200, 50);
+        forTitle.add(title);
+        //Background music options
+        forBackground = new JPanel(null);
+        bg = new JLabel("Background Music"); bg.setBounds(200,4,190,30); bg.setFont(new Font("Arial", Font.BOLD, 21));
+        bgMute = new JButton(picNotMute);
+        bgMute.setBounds(0,0,40,40);
+        bgMute.addActionListener(this);
+        forBackground.add(bg);
+        forBackground.add(bgMute);
+        //Button sounds
+        forButtons = new JPanel(null);
+        buttons = new JLabel("Button Sounds"); buttons.setBounds(200,4,190,30); buttons.setFont(new Font("Arial", Font.BOLD, 21));
+        buttonsMute = new JButton(picNotMute);
+        buttonsMute.setBounds(0,0,40,40);
+        buttonsMute.addActionListener(this);
+        forButtons.add(buttons);
+        forButtons.add(buttonsMute);
+        //con
+        con = new JPanel(new GridLayout(0,1)); con.setOpaque(false);
+        con.add(forTitle);
+        con.add(forBackground);
+        con.add(forButtons);
+
+        this.add(forMenu, BorderLayout.NORTH);
+        this.add(con, BorderLayout.CENTER);
+        this.setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed (ActionEvent e){
+
+        if(e.getSource() == mainM){
+            music.setSoundButton();
+            dispose();
+            new Main();
+        }
+        if(e.getSource() == bgMute){
+            System.out.println("bg mute");
+            music.setSoundButton();
+            if (bgMute.getIcon() == picMute){
+                BGMusic.playMusic("src\\Coding\\Sounds\\Zen.wav");
+                bgMute.setIcon(picNotMute);
+            } else if (bgMute.getIcon() == picNotMute){
+                BGMusic.stopMusic();
+                bgMute.setIcon(picMute);
+            }
+        }
+
+        if  (e.getSource() == buttonsMute){
+            music.setSoundButton();
+            music.soundButton.stop();
+        }
+    }
+
+    public static void main (String[] args){
+        new Settings();
+    }
+}
