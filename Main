@@ -7,11 +7,10 @@ public class Main extends JFrame implements ActionListener {
     JLabel title;
     JPanel forTitle, forLevels, forSettings, forGuide;
     JButton levels, settings, guide;
-    Mujik music = new Mujik();
-    BGMusic m = new BGMusic();
+    Tunog m = new Tunog();
 
     Main(){
-        BGMusic.playMusic("src\\Coding\\Sounds\\Zen.wav");
+
         this.setTitle("Piczzle");
         this.setSize(1460, 760);
         this.setLocation(60, 30);
@@ -58,27 +57,28 @@ public class Main extends JFrame implements ActionListener {
         this.add(forLevels);
         this.add(forGuide);
         this.add(forSettings);
-
         this.setVisible(true);
     }
     @Override
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == levels){
-            music.setSoundButton();
-            this.dispose();
+            Tunog.playBMusic(m.hard);
+            dispose();
             new Levels();
         } else if (e.getSource() == guide) {
-            music.setSoundButton();
+            Tunog.playBMusic(m.hard);
             dispose();
             new Guide();
         } else if (e.getSource() == settings) {
-            music.setSoundButton();
-            this.dispose();
+            Tunog.playBMusic(m.hard);
+            dispose();
             new Settings();
         }
     }
 
     public static void main (String[] args){
         new Main();
+
+        Tunog.playBGMusic("src\\Coding\\Sounds\\Zen.wav");
     }
 }
