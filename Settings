@@ -19,7 +19,7 @@ public class Settings extends JFrame implements ActionListener {
     Tunog m = new Tunog();
 
     Settings() {
-        Tunog.resumeBGMusic();
+//        Tunog.resumeBGMusic();
         this.setTitle("Piczzle");
         this.setSize(1460, 760);
         this.setLocation(60, 30);
@@ -95,7 +95,7 @@ public class Settings extends JFrame implements ActionListener {
 
         //Column 4-A
         JPanel column4A = new JPanel(new FlowLayout(FlowLayout.CENTER, 0,30)); column4A.setOpaque(false);
-        playB = new JLabel("Play Button"); playB.setFont(new Font("Arial", Font.BOLD, 21));
+        playB = new JLabel("Play Buttons"); playB.setFont(new Font("Arial", Font.BOLD, 21));
         column4A.add(playB);
         //Column 4-B
         JPanel column4B = new JPanel(new FlowLayout(FlowLayout.CENTER, 20,0)); column4B.setOpaque(false);
@@ -154,27 +154,60 @@ public class Settings extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed (ActionEvent e){
+        Tunog.playBMusic();
         if(e.getSource() == mainM){
-            Tunog.playBMusic(m.hard);
             dispose();
             new Main();
         }
+        //BGMusic
         if(e.getSource() == bgMute){
-            Tunog.playBMusic(m.hard);
             Tunog.stopBGMusic();
             System.out.println("bg mute");
         } else if (e.getSource() == bgUnmute) {
-            Tunog.playBMusic(m.hard);
-            Tunog.playBGMusic("src\\Coding\\Musika\\Zen.wav");
+            Tunog.playBGMusic();
         }
 
+        //PlayBGMusic
+        if  (e.getSource() == pgMute){
+            System.out.println("buttonsMute clicked");
+            Tunog.stopPGMusic();
+        } else if (e.getSource() == pgUnmute) {
+            Tunog.playPGMusic();
+        }
+
+        //button sounds mute
         if  (e.getSource() == buttonsMute){
             System.out.println("buttonsMute clicked");
             Tunog.toggleBMute();
         } else if (e.getSource() == buttonsUnmute) {
-            Tunog.playBMusic(m.hard);
+            System.out.println("buttonsUnmute clicked");
             Tunog.toggleBUnmute();
         }
+
+        //play button sounds mute
+        if  (e.getSource() == pBMute){
+            Tunog.togglePBMute();
+        } else if (e.getSource() == pBUnmute) {Tunog.togglePBUnmute(); Tunog.playPBMusic();}
+
+        //fail sound mute
+        if  (e.getSource() == fMute){
+            Tunog.toggleFailMute();
+        } else if (e.getSource() == fUnmute) {Tunog.toggleFailUnmute(); Tunog.playFailMusic();}
+
+        //solved sound mute
+        if  (e.getSource() == cMute){
+            Tunog.toggleSolvedMute();
+        } else if (e.getSource() == cUnmute) {Tunog.toggleSolvedUnmute(); Tunog.playSolvedMusic();}
+
+        //win sound mute
+        //PlayBGMusic
+        if  (e.getSource() == winMute){
+            System.out.println("buttonsMute clicked");
+            Tunog.stopWinMusic();
+        } else if (e.getSource() == winUnmute) {
+            Tunog.playWinMusic();
+        }
+
     }
 
     public static void main (String[] args){
