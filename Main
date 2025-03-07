@@ -5,26 +5,25 @@ import javax.swing.*;
 public class Main extends JFrame implements ActionListener {
 
     JLabel title;
-    JPanel mainCon, forTitle, forLevels, forSettings, forGuide, forMute;
-    JButton levels, settings, guide, mute;
+    JPanel forTitle, forLevels, forSettings, forGuide;
+    JButton levels, settings, guide;
     Mujik music = new Mujik();
     BGMusic m = new BGMusic();
 
     Main(){
         BGMusic.playMusic("src\\Coding\\Sounds\\Zen.wav");
         this.setTitle("Piczzle");
-        this.setSize(1460, 770);
+        this.setSize(1460, 760);
         this.setLocation(60, 30);
         this.setResizable(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().setBackground(new Color(0xf5b982));
-        this.setLayout(new BorderLayout());
+        this.setLayout(new GridLayout(0, 1, 0, 0));
 
-        mainCon = new JPanel(new GridLayout(0,1)); mainCon.setOpaque(false);
         title = new JLabel("<html><center>WELCOME TO<br>PICZZLE!</center></html>");
-        title.setFont(new Font("Book Antiqua", Font.BOLD, 77));
+        title.setFont(new Font("Book Antiqua", Font.BOLD, 80));
         title.setForeground(Color.BLACK);
-        title.setPreferredSize(new Dimension(550,175));
+        title.setBounds(700,30,200,50);
         //all buttons
         levels = new JButton("LEVELS");
         levels.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30));
@@ -43,28 +42,27 @@ public class Main extends JFrame implements ActionListener {
         settings.addActionListener(this);
         //all panels to ensure a centered layout for the window
         forTitle = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        forLevels = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 35));
+        forLevels = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 45));
         forGuide = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 20));
         forSettings = new JPanel(new FlowLayout(FlowLayout.CENTER,0,0));
-        forTitle.setOpaque(false); forLevels.setOpaque(false); forSettings.setOpaque(false); forGuide.setOpaque(false);
-        forTitle.add(title); forLevels.add(levels); forGuide.add(guide); forSettings.add(settings);
-        mainCon.add(forTitle); mainCon.add(forLevels);
-        mainCon.add(forGuide); mainCon.add(forSettings);
+        forTitle.setOpaque(false);
+        forLevels.setOpaque(false);
+        forSettings.setOpaque(false);
+        forGuide.setOpaque(false);
+        forTitle.add(title);
+        forLevels.add(levels);
+        forGuide.add(guide);
+        forSettings.add(settings);
 
-        //forMute
-        forMute = new JPanel(new FlowLayout(FlowLayout.RIGHT)); forMute.setOpaque(false);
-        forMute.setPreferredSize(new Dimension(10,49));
-        mute = new JButton(); mute.setOpaque(false);
-        mute.setPreferredSize(new Dimension(45,45)); mute.addActionListener(this);
-        forMute.add(mute);
+        this.add(forTitle);
+        this.add(forLevels);
+        this.add(forGuide);
+        this.add(forSettings);
 
-        this.add(mainCon, BorderLayout.CENTER);
-        this.add(forMute, BorderLayout.SOUTH);
         this.setVisible(true);
     }
     @Override
     public void actionPerformed(ActionEvent e){
-
         if(e.getSource() == levels){
             music.setSoundButton();
             this.dispose();
@@ -79,6 +77,7 @@ public class Main extends JFrame implements ActionListener {
             new Settings();
         }
     }
+
     public static void main (String[] args){
         new Main();
     }
