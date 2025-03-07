@@ -11,10 +11,11 @@ public class Game implements ActionListener {
     int timerSeconds = 0;
     public static Timer timer;
     boolean solved = false;
-
-    Puzzle puzzle;
+    Tunog m = new Tunog();
+    private Puzzle puzzle;
 
     Game(Puzzle puzzle) {
+        System.out.println("Constructor: "+solved);
         this.puzzle = puzzle;
         currentLevel = new JLabel("Level: X"); timerLabel = new JLabel("00:00"); pause = new JButton("PAUSE"); resume = new JButton("RESUME"); restart = new JButton("RESTART");
 
@@ -34,7 +35,6 @@ public class Game implements ActionListener {
         resume.addActionListener(this);
         restart.addActionListener(this);
         timer = new Timer(1000, e -> {
-            System.out.println("Time +1");
             timerSeconds++;
             updateTimerLabel();
         });
@@ -48,7 +48,6 @@ public class Game implements ActionListener {
         timerLabel.setText(String.format("%02d:%02d", minutes, seconds));
         if (timerSeconds >= 120){
             timer.stop();
-            //sound fail here
             puzzle.hasFailed = true;
             puzzle.checkIfGameIsSolved();
         }
@@ -94,6 +93,7 @@ public class Game implements ActionListener {
         //All button's functions
         //icon button's functions
         if (e.getSource() == icon) {
+            Tunog.playPBMusic();
             System.out.println("Icons grabbed");
             if (icon.getIcon().equals(b9.getIcon())) {
                 System.out.println("Icon to b1's");
@@ -141,9 +141,11 @@ public class Game implements ActionListener {
             if (b2.getIcon() == mover) {
                 b2.setIcon(b1.getIcon());
                 b1.setIcon(mover);
+                Tunog.playPBMusic();
             } else if (b4.getIcon() == mover) {
                 b4.setIcon(b1.getIcon());
                 b1.setIcon(mover);
+                Tunog.playPBMusic();
             }
             checkPuzzle();
         }
@@ -153,12 +155,15 @@ public class Game implements ActionListener {
             if (b1.getIcon() == mover) {
                 b1.setIcon(b2.getIcon());
                 b2.setIcon(mover);
+                Tunog.playPBMusic();
             } else if (b5.getIcon() == mover) {
                 b5.setIcon(b2.getIcon());
                 b2.setIcon(mover);
+                Tunog.playPBMusic();
             } else if (b3.getIcon() == mover) {
                 b3.setIcon(b2.getIcon());
                 b2.setIcon(mover);
+                Tunog.playPBMusic();
             }
             checkPuzzle();
         }
@@ -168,9 +173,11 @@ public class Game implements ActionListener {
             if (b2.getIcon() == mover) {
                 b2.setIcon(b3.getIcon());
                 b3.setIcon(mover);
+                Tunog.playPBMusic();
             } else if (b6.getIcon() == mover) {
                 b6.setIcon(b3.getIcon());
                 b3.setIcon(mover);
+                Tunog.playPBMusic();
             }
             checkPuzzle();
         }
@@ -180,12 +187,15 @@ public class Game implements ActionListener {
             if (b1.getIcon() == mover) {
                 b1.setIcon(b4.getIcon());
                 b4.setIcon(mover);
+                Tunog.playPBMusic();
             } else if (b5.getIcon() == mover) {
                 b5.setIcon(b4.getIcon());
                 b4.setIcon(mover);
+                Tunog.playPBMusic();
             } else if (b7.getIcon() == mover) {
                 b7.setIcon(b4.getIcon());
                 b4.setIcon(mover);
+                Tunog.playPBMusic();
             }
             checkPuzzle();
         }
@@ -195,15 +205,19 @@ public class Game implements ActionListener {
             if (b2.getIcon() == mover) {
                 b2.setIcon(b5.getIcon());
                 b5.setIcon(mover);
+                Tunog.playPBMusic();
             } else if (b4.getIcon() == mover) {
                 b4.setIcon(b5.getIcon());
                 b5.setIcon(mover);
+                Tunog.playPBMusic();
             } else if (b6.getIcon() == mover) {
                 b6.setIcon(b5.getIcon());
                 b5.setIcon(mover);
+                Tunog.playPBMusic();
             } else if (b8.getIcon() == mover) {
                 b8.setIcon(b5.getIcon());
                 b5.setIcon(mover);
+                Tunog.playPBMusic();
             }
             checkPuzzle();
         }
@@ -213,13 +227,15 @@ public class Game implements ActionListener {
             if (b3.getIcon() == mover) {
                 b3.setIcon(b6.getIcon());
                 b6.setIcon(mover);
+                Tunog.playPBMusic();
             } else if (b5.getIcon() == mover) {
                 b5.setIcon(b6.getIcon());
                 b6.setIcon(mover);
+                Tunog.playPBMusic();
             } else if (b9.getIcon() == mover) {
-
                 b9.setIcon(b6.getIcon());
                 b6.setIcon(mover);
+                Tunog.playPBMusic();
             }
             checkPuzzle();
         }
@@ -229,9 +245,11 @@ public class Game implements ActionListener {
             if (b4.getIcon() == mover) {
                 b4.setIcon(b7.getIcon());
                 b7.setIcon(mover);
+                Tunog.playPBMusic();
             } else if (b8.getIcon() == mover) {
                 b8.setIcon(b7.getIcon());
                 b7.setIcon(mover);
+                Tunog.playPBMusic();
             }
             checkPuzzle();
         }
@@ -241,12 +259,15 @@ public class Game implements ActionListener {
             if (b7.getIcon() == mover) {
                 b7.setIcon(b8.getIcon());
                 b8.setIcon(mover);
+                Tunog.playPBMusic();
             } else if (b5.getIcon() == mover) {
                 b5.setIcon(b8.getIcon());
                 b8.setIcon(mover);
+                Tunog.playPBMusic();
             } else if (b9.getIcon() == mover) {
                 b9.setIcon(b8.getIcon());
                 b8.setIcon(mover);
+                Tunog.playPBMusic();
             }
             checkPuzzle();
         }
@@ -256,9 +277,11 @@ public class Game implements ActionListener {
             if (b6.getIcon() == mover) {
                 b6.setIcon(b9.getIcon());
                 b9.setIcon(mover);
+                Tunog.playPBMusic();
             } else if (b8.getIcon() == mover) {
                 b8.setIcon(b9.getIcon());
                 b9.setIcon(mover);
+                Tunog.playPBMusic();
             }
             checkPuzzle();
         }
@@ -272,44 +295,44 @@ public class Game implements ActionListener {
             //logo
             System.out.println("Puzzle Solved");
             solved = true;
-            puzzle.checkIfGameIsSolved();
-            System.out.println(solved);
+            System.out.println("checkPuzzle: "+solved);
             timer.stop();
+            puzzle.checkIfGameIsSolved();
         } else if ((b1.getIcon() == pics.p1) && (b2.getIcon() == pics.p2) && (b3.getIcon() == pics.p3)
                 && (b4.getIcon() == pics.p4) && (b5.getIcon() == pics.p5) && (b6.getIcon() == pics.p6)
                 && (b7.getIcon() == pics.p7) && (b8.getIcon() == pics.p8) && (b9.getIcon() == pics.p9)){
             //paris
             System.out.println("Puzzle Solved");
             solved = true;
-            puzzle.checkIfGameIsSolved();
             System.out.println(solved);
             timer.stop();
+            puzzle.checkIfGameIsSolved();
         } else if ((b1.getIcon() == pics.m1) && (b2.getIcon() == pics.m2) && (b3.getIcon() == pics.m3)
                 && (b4.getIcon() == pics.m4) && (b5.getIcon() == pics.m5) && (b6.getIcon() == pics.m6)
                 && (b7.getIcon() == pics.m7) && (b8.getIcon() == pics.m8) && (b9.getIcon() == pics.m9)) {
             //taj mahal
             System.out.println("Puzzle Solved");
             solved = true;
-            puzzle.checkIfGameIsSolved();
             System.out.println(solved);
             timer.stop();
+            puzzle.checkIfGameIsSolved();
         } else if ((b1.getIcon() == pics.f1) && (b2.getIcon() == pics.f2) && (b3.getIcon() == pics.f3)
                 && (b4.getIcon() == pics.f4) && (b5.getIcon() == pics.f5) && (b6.getIcon() == pics.f6)
                 && (b7.getIcon() == pics.f7) && (b8.getIcon() == pics.f8) && (b9.getIcon() == pics.f9)) {
             //fuji
             System.out.println("Puzzle Solved");
             solved = true;
-            puzzle.checkIfGameIsSolved();
             System.out.println(solved);
             timer.stop();
+            puzzle.checkIfGameIsSolved();
         } else if ((b1.getIcon() == pics.nB1) && (b2.getIcon() == pics.nB2) && (b3.getIcon() == pics.nB3)
                 && (b4.getIcon() == pics.nB4) && (b5.getIcon() == pics.nB5) && (b6.getIcon() == pics.nB6)
                 && (b7.getIcon() == pics.nB7) && (b8.getIcon() == pics.nB8) && (b9.getIcon() == pics.nB9)) {
             System.out.println("Puzzle Solved");
             solved = true;
-            puzzle.checkIfGameIsSolved();
             System.out.println(solved);
             timer.stop();
+            puzzle.checkIfGameIsSolved();
         }
     }
 
