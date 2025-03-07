@@ -13,7 +13,6 @@ public class Game implements ActionListener {
     boolean solved = false;
 
     Puzzle puzzle;
-    Mujik music = new Mujik();
 
     Game(Puzzle puzzle) {
         this.puzzle = puzzle;
@@ -49,7 +48,7 @@ public class Game implements ActionListener {
         timerLabel.setText(String.format("%02d:%02d", minutes, seconds));
         if (timerSeconds >= 120){
             timer.stop();
-            music.soundFail();
+            //sound fail here
             puzzle.hasFailed = true;
             puzzle.checkIfGameIsSolved();
         }
@@ -140,11 +139,9 @@ public class Game implements ActionListener {
         if (e.getSource() == b1) {
             System.out.println("B1 clicked");
             if (b2.getIcon() == mover) {
-                music.soundPlayButtons();
                 b2.setIcon(b1.getIcon());
                 b1.setIcon(mover);
             } else if (b4.getIcon() == mover) {
-                music.soundPlayButtons();
                 b4.setIcon(b1.getIcon());
                 b1.setIcon(mover);
             }
@@ -154,15 +151,12 @@ public class Game implements ActionListener {
         if (e.getSource() == b2) {
             System.out.println("B2 clicked");
             if (b1.getIcon() == mover) {
-                music.soundPlayButtons();
                 b1.setIcon(b2.getIcon());
                 b2.setIcon(mover);
             } else if (b5.getIcon() == mover) {
-                music.soundPlayButtons();
                 b5.setIcon(b2.getIcon());
                 b2.setIcon(mover);
             } else if (b3.getIcon() == mover) {
-                music.soundPlayButtons();
                 b3.setIcon(b2.getIcon());
                 b2.setIcon(mover);
             }
@@ -172,11 +166,9 @@ public class Game implements ActionListener {
         if (e.getSource() == b3) {
             System.out.println("B3 clicked");
             if (b2.getIcon() == mover) {
-                music.soundPlayButtons();
                 b2.setIcon(b3.getIcon());
                 b3.setIcon(mover);
             } else if (b6.getIcon() == mover) {
-                music.soundPlayButtons();
                 b6.setIcon(b3.getIcon());
                 b3.setIcon(mover);
             }
@@ -186,15 +178,12 @@ public class Game implements ActionListener {
         if (e.getSource() == b4) {
             System.out.println("B4 clicked");
             if (b1.getIcon() == mover) {
-                music.soundPlayButtons();
                 b1.setIcon(b4.getIcon());
                 b4.setIcon(mover);
             } else if (b5.getIcon() == mover) {
-                music.soundPlayButtons();
                 b5.setIcon(b4.getIcon());
                 b4.setIcon(mover);
             } else if (b7.getIcon() == mover) {
-                music.soundPlayButtons();
                 b7.setIcon(b4.getIcon());
                 b4.setIcon(mover);
             }
@@ -204,19 +193,15 @@ public class Game implements ActionListener {
         if (e.getSource() == b5) {
             System.out.println("B5 clicked");
             if (b2.getIcon() == mover) {
-                music.soundPlayButtons();
                 b2.setIcon(b5.getIcon());
                 b5.setIcon(mover);
             } else if (b4.getIcon() == mover) {
-                music.soundPlayButtons();
                 b4.setIcon(b5.getIcon());
                 b5.setIcon(mover);
             } else if (b6.getIcon() == mover) {
-                music.soundPlayButtons();
                 b6.setIcon(b5.getIcon());
                 b5.setIcon(mover);
             } else if (b8.getIcon() == mover) {
-                music.soundPlayButtons();
                 b8.setIcon(b5.getIcon());
                 b5.setIcon(mover);
             }
@@ -226,15 +211,13 @@ public class Game implements ActionListener {
         if (e.getSource() == b6) {
             System.out.println("B6 clicked");
             if (b3.getIcon() == mover) {
-                music.soundPlayButtons();
                 b3.setIcon(b6.getIcon());
                 b6.setIcon(mover);
             } else if (b5.getIcon() == mover) {
-                music.soundPlayButtons();
                 b5.setIcon(b6.getIcon());
                 b6.setIcon(mover);
             } else if (b9.getIcon() == mover) {
-                music.soundPlayButtons();
+
                 b9.setIcon(b6.getIcon());
                 b6.setIcon(mover);
             }
@@ -244,11 +227,9 @@ public class Game implements ActionListener {
         if (e.getSource() == b7) {
             System.out.println("B7 clicked");
             if (b4.getIcon() == mover) {
-                music.soundPlayButtons();
                 b4.setIcon(b7.getIcon());
                 b7.setIcon(mover);
             } else if (b8.getIcon() == mover) {
-                music.soundPlayButtons();
                 b8.setIcon(b7.getIcon());
                 b7.setIcon(mover);
             }
@@ -258,15 +239,12 @@ public class Game implements ActionListener {
         if (e.getSource() == b8) {
             System.out.println("B8 clicked");
             if (b7.getIcon() == mover) {
-                music.soundPlayButtons();
                 b7.setIcon(b8.getIcon());
                 b8.setIcon(mover);
             } else if (b5.getIcon() == mover) {
-                music.soundPlayButtons();
                 b5.setIcon(b8.getIcon());
                 b8.setIcon(mover);
             } else if (b9.getIcon() == mover) {
-                music.soundPlayButtons();
                 b9.setIcon(b8.getIcon());
                 b8.setIcon(mover);
             }
@@ -276,11 +254,9 @@ public class Game implements ActionListener {
         if (e.getSource() == b9) {
             System.out.println("B9 clicked");
             if (b6.getIcon() == mover) {
-                music.soundPlayButtons();
                 b6.setIcon(b9.getIcon());
                 b9.setIcon(mover);
             } else if (b8.getIcon() == mover) {
-                music.soundPlayButtons();
                 b8.setIcon(b9.getIcon());
                 b9.setIcon(mover);
             }
