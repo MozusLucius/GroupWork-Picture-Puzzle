@@ -8,7 +8,7 @@ public class Puzzle extends JFrame implements ActionListener{
     boolean hasFailed = false;
     //Classes call
     Game game = new Game(this);
-
+    Tunog m = new Tunog();
     String [] response = {"New Level", "Back to Levels", "Replay"};
 
     Puzzle(){
@@ -124,30 +124,33 @@ public class Puzzle extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("Puzzle order: "+game.solved);
-
         if (e.getSource() == mainM) {
+            Tunog.playBMusic();
             dispose();
             new Main();
         }
         if (e.getSource() == levelsBack){
+            Tunog.playBMusic();
             dispose();
             new Levels();
         }
 
         if (e.getSource() == game.pause){
+            Tunog.playBMusic();
             con.setVisible(false);
             this.remove(con);
             this.add(oncePaused, BorderLayout.CENTER);
             oncePaused.setVisible(true);
             this.setVisible(true);
         } else if (e.getSource() == game.resume){
+            Tunog.playBMusic();
             oncePaused.setVisible(false);
             this.remove(oncePaused);
             this.add(con, BorderLayout.CENTER);
             con.setVisible(true);
             this.setVisible(true);
         } else if (e.getSource() == game.restart){
+            Tunog.playBMusic();
             System.out.println("Puzzle Restart button clicked");
             dispose();
         }
@@ -156,12 +159,13 @@ public class Puzzle extends JFrame implements ActionListener{
     public void checkIfGameIsSolved() {
         if (game.solved) {
             Game.timer.stop();
+            Tunog.playSolvedMusic();
             int a = JOptionPane.showOptionDialog(this,"<html>You have solved the puzzle in time!<br>Play another level?</html>", "CONGRATULATIONS!!!", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, response, 0 );
-            game.solved = false;
             if(a==JOptionPane.YES_OPTION){
+                Tunog.playBMusic();
                 dispose();
                 Puzzle p = new Puzzle();
-                new Game(this);
+                game.solved = false;
                 if (game.currentLevel.getText().equals("Level: 1")){
                     p.game.Level2();
                 } else if (game.currentLevel.getText().equals("Level: 2")){
@@ -174,12 +178,14 @@ public class Puzzle extends JFrame implements ActionListener{
                     p.game.Level1();
                 }
             } else if(a==JOptionPane.NO_OPTION){
+                Tunog.playBMusic();
                 dispose();
                 new Levels();
             } else if (a==JOptionPane.CANCEL_OPTION){
+                Tunog.playBMusic();
                 dispose();
                 Puzzle p = new Puzzle();
-                new Game(this);
+                game.solved = false;
                 if (game.currentLevel.getText().equals("Level: 1")){
                     p.game.Level1();
                 } else if (game.currentLevel.getText().equals("Level: 2")){
@@ -197,6 +203,7 @@ public class Puzzle extends JFrame implements ActionListener{
         }
 
         if (hasFailed){
+            Tunog.playFailMusic();
             game.b1.setEnabled(false); game.b2.setEnabled(false); game.b3.setEnabled(false);
             game.b4.setEnabled(false); game.b5.setEnabled(false); game.b6.setEnabled(false);
             game.b7.setEnabled(false); game.b8.setEnabled(false); game.b9.setEnabled(false);
