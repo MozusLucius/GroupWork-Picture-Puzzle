@@ -93,11 +93,12 @@ public class Tunog {
             if (!muted2) {
                 volume.setValue(-80.0f); // Mute
                 muted2 = true;
-            } else {
-                volume.setValue(0.0f);
             }
+//            else {
+//                volume.setValue(0.0f);
+//            }
         }
-        muted2 = !muted2;
+
 
     }
 
@@ -105,6 +106,7 @@ public class Tunog {
         System.out.println("Button Unmute");
         if (sound2 != null) {
             FloatControl volume = (FloatControl) sound2.getControl(FloatControl.Type.MASTER_GAIN);
+            muted2 = !muted2;
             if (muted2){
                 volume.setValue(0.0f); // Full volume
             }
