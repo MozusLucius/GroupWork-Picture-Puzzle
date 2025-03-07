@@ -6,14 +6,20 @@ public class Settings extends JFrame implements ActionListener {
 
     Icon picMute = new ImageIcon("src\\Coding\\Sounds\\smallMute.png");
     Icon picNotMute = new ImageIcon("src\\Coding\\Sounds\\smallVolume.png");
-    JLabel title, bg, buttons, playB;
-    JPanel forMenu, con, forTitle, forBackground, forButtons, forPlayButtons;
-    JButton mainM, bgMute, buttonsMute, playBMute;
-    Mujik music = new Mujik();
-    BGMusic m = new BGMusic();
+    JLabel title, bg, pg, buttons, playB, fail, complete, win;
+    JPanel forMenu, con, forTitle, con1;
+    JButton mainM,
+    bgMute, bgUnmute,
+            pgMute, pgUnmute,
+            buttonsMute, buttonsUnmute,
+            pBMute, pBUnmute,
+            fMute, fUnmute,
+            cMute, cUnmute,
+            winMute, winUnmute;
+    Tunog m = new Tunog();
 
     Settings() {
-        BGMusic.resumeMusic();
+        Tunog.resumeBGMusic();
         this.setTitle("Piczzle");
         this.setSize(1460, 760);
         this.setLocation(60, 30);
@@ -21,6 +27,8 @@ public class Settings extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().setBackground(new Color(0xf5b982));
         this.setLayout(new BorderLayout());
+
+        con = new JPanel(new BorderLayout()); con.setOpaque(false);
 
         forMenu = new JPanel(new FlowLayout(FlowLayout.LEADING));
         forMenu.setOpaque(false); forMenu.setPreferredSize(new Dimension(10,55));
@@ -31,8 +39,6 @@ public class Settings extends JFrame implements ActionListener {
         mainM.setForeground(Color.BLACK);
         mainM.setFont(new Font("Lucida Console", Font.PLAIN, 17));
         mainM.addActionListener(this);
-        forMenu.add(mainM);
-
         //title
         forTitle = new JPanel(new FlowLayout()); forTitle.setOpaque(false);
         title = new JLabel("SETTINGS");
@@ -40,27 +46,106 @@ public class Settings extends JFrame implements ActionListener {
         title.setForeground(Color.BLACK);
         title.setBounds(700, 30, 200, 50);
         forTitle.add(title);
-        //Background music options
-        forBackground = new JPanel(null);
-        bg = new JLabel("Background Music"); bg.setBounds(200,4,190,30); bg.setFont(new Font("Arial", Font.BOLD, 21));
-        bgMute = new JButton(picNotMute);
-        bgMute.setBounds(0,0,40,40);
-        bgMute.addActionListener(this);
-        forBackground.add(bg);
-        forBackground.add(bgMute);
-        //Button sounds
-        forButtons = new JPanel(null);
-        buttons = new JLabel("Button Sounds"); buttons.setBounds(200,4,190,30); buttons.setFont(new Font("Arial", Font.BOLD, 21));
-        buttonsMute = new JButton(picNotMute);
-        buttonsMute.setBounds(0,0,40,40);
-        buttonsMute.addActionListener(this);
-        forButtons.add(buttons);
-        forButtons.add(buttonsMute);
-        //con
-        con = new JPanel(new GridLayout(0,1)); con.setOpaque(false);
-        con.add(forTitle);
-        con.add(forBackground);
-        con.add(forButtons);
+        forMenu.add(mainM);
+        con.add(forTitle, BorderLayout.NORTH);
+
+        con1 = new JPanel(new GridLayout(3,2)); con1.setOpaque(false);
+        JPanel column1 = new JPanel(new GridLayout(2,1)); JPanel column2 = new JPanel(new GridLayout(2,1)); JPanel column3 = new JPanel(new GridLayout(2,1));
+        JPanel column4 = new JPanel(new GridLayout(2,1)); JPanel column5 = new JPanel(new GridLayout(2,1)); JPanel column6 = new JPanel(new GridLayout(2,1));
+//        column1.setBackground(Color.BLUE); column2.setBackground(Color.RED); column3.setBackground(Color.ORANGE); column4.setBackground(Color.CYAN); column5.setBackground(Color.white); column6.setBackground(Color.GREEN);
+        column1.setOpaque(false); column2.setOpaque(false); column3.setOpaque(false); column4.setOpaque(false); column5.setOpaque(false); column6.setOpaque(false);
+        con1.add(column1); con1.add(column2); con1.add(column3); con1.add(column4); con1.add(column5); con1.add(column6);
+        con.add(con1, BorderLayout.CENTER);
+
+        //Column 1-A
+        JPanel column1A = new JPanel(new FlowLayout(FlowLayout.CENTER, 0,30)); column1A.setOpaque(false);
+        bg = new JLabel("Background Music"); bg.setFont(new Font("Arial", Font.BOLD, 21));
+        column1A.add(bg);
+        //Column 1-B
+        JPanel column1B = new JPanel(new FlowLayout(FlowLayout.CENTER, 20,0)); column1B.setOpaque(false);
+        bgMute = new JButton(picMute); bgMute.addActionListener(this); bgMute.setPreferredSize(new Dimension(40,40));
+        bgUnmute = new JButton(picNotMute); bgUnmute.addActionListener(this); bgUnmute.setPreferredSize(new Dimension(40,40));
+        column1B.add(bgMute); column1B.add(bgUnmute);
+        //Column 1 adds
+        column1.add(column1A); column1.add(column1B);
+
+        //Column 2-A
+        JPanel column2A = new JPanel(new FlowLayout(FlowLayout.CENTER, 0,30)); column2A.setOpaque(false);
+        pg = new JLabel("Playground Music"); pg.setFont(new Font("Arial", Font.BOLD, 21));
+        column2A.add(pg);
+        //Column 2-B
+        JPanel column2B = new JPanel(new FlowLayout(FlowLayout.CENTER, 20,0)); column2B.setOpaque(false);
+        pgMute = new JButton(picMute); pgMute.addActionListener(this); pgMute.setPreferredSize(new Dimension(40,40));
+        pgUnmute = new JButton(picNotMute); pgUnmute.addActionListener(this); pgUnmute.setPreferredSize(new Dimension(40,40));
+        column2B.add(pgMute); column2B.add(pgUnmute);
+        //Column 2 adds
+        column2.add(column2A); column2.add(column2B);
+
+        //Column 3-A
+        JPanel column3A = new JPanel(new FlowLayout(FlowLayout.CENTER, 0,30)); column3A.setOpaque(false);
+        buttons = new JLabel("Buttons"); buttons.setFont(new Font("Arial", Font.BOLD, 21));
+        column3A.add(buttons);
+        //Column 3-B
+        JPanel column3B = new JPanel(new FlowLayout(FlowLayout.CENTER, 20,0)); column3B.setOpaque(false);
+        buttonsMute = new JButton(picMute); buttonsMute.addActionListener(this); buttonsMute.setPreferredSize(new Dimension(40,40));
+        buttonsUnmute = new JButton(picNotMute); buttonsUnmute.addActionListener(this); buttonsUnmute.setPreferredSize(new Dimension(40,40));
+        column3B.add(buttonsMute); column3B.add(buttonsUnmute);
+        //Column 3 adds
+        column3.add(column3A); column3.add(column3B);
+
+        //Column 4-A
+        JPanel column4A = new JPanel(new FlowLayout(FlowLayout.CENTER, 0,30)); column4A.setOpaque(false);
+        playB = new JLabel("Play Button"); playB.setFont(new Font("Arial", Font.BOLD, 21));
+        column4A.add(playB);
+        //Column 4-B
+        JPanel column4B = new JPanel(new FlowLayout(FlowLayout.CENTER, 20,0)); column4B.setOpaque(false);
+        pBMute = new JButton(picMute); pBMute.addActionListener(this); pBMute.setPreferredSize(new Dimension(40,40));
+        pBUnmute = new JButton(picNotMute); pBUnmute.addActionListener(this); pBUnmute.setPreferredSize(new Dimension(40,40));
+        column4B.add(pBMute); column4B.add(pBUnmute);
+        //Column 4 adds
+        column4.add(column4A); column4.add(column4B);
+
+        //Column 5-A
+        JPanel column5A = new JPanel(new FlowLayout(FlowLayout.CENTER, 0,30)); column5A.setOpaque(false);
+        fail = new JLabel("Fail Sound"); fail.setFont(new Font("Arial", Font.BOLD, 21));
+        column5A.add(fail);
+        //Column 5-B
+        JPanel column5B = new JPanel(new FlowLayout(FlowLayout.CENTER, 20,0)); column5B.setOpaque(false);
+        fMute = new JButton(picMute); fMute.addActionListener(this); fMute.setPreferredSize(new Dimension(40,40));
+        fUnmute = new JButton(picNotMute); fUnmute.addActionListener(this); fUnmute.setPreferredSize(new Dimension(40,40));
+        column5B.add(fMute); column5B.add(fUnmute);
+        //Column 5 adds
+        column5.add(column5A); column5.add(column5B);
+
+        //Column 6-A
+        JPanel column6A = new JPanel(new FlowLayout(FlowLayout.CENTER, 0,30)); column6A.setOpaque(false);
+        complete = new JLabel("Complete Sound"); complete.setFont(new Font("Arial", Font.BOLD, 21));
+        column6A.add(complete);
+        //Column 6-B
+        JPanel column6B = new JPanel(new FlowLayout(FlowLayout.CENTER, 20,0)); column6B.setOpaque(false);
+        cMute = new JButton(picMute); cMute.addActionListener(this); cMute.setPreferredSize(new Dimension(40,40));
+        cUnmute = new JButton(picNotMute); cUnmute.addActionListener(this); cUnmute.setPreferredSize(new Dimension(40,40));
+        column6B.add(cMute); column6B.add(cUnmute);
+        //Column 6 adds
+        column6.add(column6A); column6.add(column6B);
+
+        //Last
+
+        JPanel con2 = new JPanel(new BorderLayout()); con2.setOpaque(false);
+        JPanel column7 = new JPanel(new GridLayout(2,1)); column7.setOpaque(false);
+        con2.add(column7, BorderLayout.CENTER);
+        //Column 7-A
+        JPanel column7A = new JPanel(new FlowLayout(FlowLayout.CENTER, 0,30)); column7A.setOpaque(false);
+        win = new JLabel("Win Sound"); win.setFont(new Font("Arial", Font.BOLD, 21));
+        column7A.add(win);
+        //Column 7-B
+        JPanel column7B = new JPanel(new FlowLayout(FlowLayout.CENTER, 20,0)); column7B.setOpaque(false);
+        winMute = new JButton(picMute); winMute.addActionListener(this); winMute.setPreferredSize(new Dimension(40,40));
+        winUnmute = new JButton(picNotMute); winUnmute.addActionListener(this); winUnmute.setPreferredSize(new Dimension(40,40));
+        column7B.add(winMute); column7B.add(winUnmute);
+        //Column 7 adds
+        column7.add(column7A); column7.add(column7B);
+        con.add(con2, BorderLayout.SOUTH);
 
         this.add(forMenu, BorderLayout.NORTH);
         this.add(con, BorderLayout.CENTER);
@@ -69,27 +154,26 @@ public class Settings extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed (ActionEvent e){
-
         if(e.getSource() == mainM){
-            music.setSoundButton();
+            Tunog.playBMusic(m.hard);
             dispose();
             new Main();
         }
         if(e.getSource() == bgMute){
+            Tunog.playBMusic(m.hard);
+            Tunog.stopBGMusic();
             System.out.println("bg mute");
-            music.setSoundButton();
-            if (bgMute.getIcon() == picMute){
-                BGMusic.playMusic("src\\Coding\\Sounds\\Zen.wav");
-                bgMute.setIcon(picNotMute);
-            } else if (bgMute.getIcon() == picNotMute){
-                BGMusic.stopMusic();
-                bgMute.setIcon(picMute);
-            }
+        } else if (e.getSource() == bgUnmute) {
+            Tunog.playBMusic(m.hard);
+            Tunog.playBGMusic("src\\Coding\\Musika\\Zen.wav");
         }
 
         if  (e.getSource() == buttonsMute){
-            music.setSoundButton();
-            music.soundButton.stop();
+            System.out.println("buttonsMute clicked");
+            Tunog.toggleBMute();
+        } else if (e.getSource() == buttonsUnmute) {
+            Tunog.playBMusic(m.hard);
+            Tunog.toggleBMute();
         }
     }
 
