@@ -10,7 +10,6 @@ public class Main extends JFrame implements ActionListener {
     Tunog m = new Tunog();
 
     Main(){
-
         this.setTitle("Piczzle");
         this.setSize(1460, 760);
         this.setLocation(60, 30);
@@ -61,16 +60,14 @@ public class Main extends JFrame implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e){
+        Tunog.playBMusic();
         if(e.getSource() == levels){
-            Tunog.playBMusic(m.hard);
             dispose();
             new Levels();
         } else if (e.getSource() == guide) {
-            Tunog.playBMusic(m.hard);
             dispose();
             new Guide();
         } else if (e.getSource() == settings) {
-            Tunog.playBMusic(m.hard);
             dispose();
             new Settings();
         }
@@ -78,7 +75,6 @@ public class Main extends JFrame implements ActionListener {
 
     public static void main (String[] args){
         new Main();
-
-        Tunog.playBGMusic("src\\Coding\\Sounds\\Zen.wav");
+        Tunog.playBGMusic();
     }
 }
