@@ -72,6 +72,7 @@ public class Levels extends JFrame implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e){
+        Tunog.playBMusic();
         if(e.getSource() == mainM){
             dispose();
             new Main();
