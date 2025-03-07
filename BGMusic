@@ -1,0 +1,57 @@
+import javax.sound.sampled.*;
+import java.io.File;
+
+public class BGMusic {
+    private static Clip clip;
+    private static boolean muted = false;
+
+    // Initialize and play the music if not already playing
+    public static void playMusic(String musicFilePath) {
+        if (clip == null || !clip.isRunning()) {
+            try {
+                AudioInputStream audioInput = AudioSystem.getAudioInputStream(new File("src\\Coding\\Musika\\Zen.wav"));
+                clip = AudioSystem.getClip();
+                clip.open(audioInput);
+                clip.loop(Clip.LOOP_CONTINUOUSLY); // Loop the music
+                clip.start();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    // Stop and release resources
+    public static void stopMusic() {
+        if (clip != null) {
+            clip.stop();
+            clip.close();
+        }
+    }
+
+    // Pause the music
+    public static void pauseMusic() {
+        if (clip != null && clip.isRunning()) {
+            clip.stop();
+        }
+    }
+
+    // Resume the music
+    public static void resumeMusic() {
+        if (clip != null && !clip.isRunning()) {
+            clip.start();
+        }
+    }
+
+    public static void toggleMute() {
+        if (clip != null) {
+            FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            if (!muted) {
+                volume.setValue(-80.0f); // Mute
+            } else {
+                volume.setValue(0.0f); // Full volume
+            }
+            muted = !muted;
+        }
+    }
+
+}
