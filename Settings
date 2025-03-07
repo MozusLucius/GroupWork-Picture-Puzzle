@@ -173,7 +173,7 @@ public class Settings extends JFrame implements ActionListener {
             Tunog.toggleBMute();
         } else if (e.getSource() == buttonsUnmute) {
             Tunog.playBMusic(m.hard);
-            Tunog.toggleBMute();
+            Tunog.toggleBUnmute();
         }
     }
 
