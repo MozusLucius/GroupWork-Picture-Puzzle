@@ -1,20 +1,17 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import java.io.File;
-import java.io.IOException;
-import javax.sound.sampled.*;
 
 public class Main extends JFrame implements ActionListener {
-    Icon picMute = new ImageIcon("src\\Coding\\Sounds\\smallMute.png");
-    Icon picNotMute = new ImageIcon("src\\Coding\\Sounds\\smallVolume.png");
+
     JLabel title;
     JPanel mainCon, forTitle, forLevels, forSettings, forGuide, forMute;
     JButton levels, settings, guide, mute;
-    Clip playBGM;
     Mujik music = new Mujik();
+    BGMusic m = new BGMusic();
 
     Main(){
+        BGMusic.playMusic("src\\Coding\\Sounds\\Zen.wav");
         this.setTitle("Piczzle");
         this.setSize(1460, 770);
         this.setLocation(60, 30);
@@ -57,7 +54,7 @@ public class Main extends JFrame implements ActionListener {
         //forMute
         forMute = new JPanel(new FlowLayout(FlowLayout.RIGHT)); forMute.setOpaque(false);
         forMute.setPreferredSize(new Dimension(10,49));
-        mute = new JButton(null, picNotMute); mute.setOpaque(false);
+        mute = new JButton(); mute.setOpaque(false);
         mute.setPreferredSize(new Dimension(45,45)); mute.addActionListener(this);
         forMute.add(mute);
 
@@ -69,38 +66,20 @@ public class Main extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e){
 
         if(e.getSource() == levels){
-            dispose();
+            music.setSoundButton();
+            this.dispose();
             new Levels();
-            music.soundButton();
         } else if (e.getSource() == guide) {
+            music.setSoundButton();
             dispose();
             new Guide();
-            music.soundButton();
         } else if (e.getSource() == settings) {
-            dispose();
+            music.setSoundButton();
+            this.dispose();
             new Settings();
-            music.soundButton();
-        } else if (e.getSource() == mute){
-            if (mute.getIcon() == picMute){
-                playBGM.start();
-                mute.setIcon(picNotMute);
-            } else if (mute.getIcon() == picNotMute){
-                playBGM.stop();
-                mute.setIcon(picMute);
-            }
         }
     }
-
-    public void setPlayBGM(){
-        try {
-            playBGM = AudioSystem.getClip();
-            playBGM.open(AudioSystem.getAudioInputStream(new File("src\\Coding\\Musika\\Zen.wav")));
-            playBGM.loop(Clip.LOOP_CONTINUOUSLY);
-        }   catch (LineUnavailableException|IOException|UnsupportedAudioFileException e){
-            e.printStackTrace();}
-    }
     public static void main (String[] args){
-        Main m = new Main();
-        m.setPlayBGM();
+        new Main();
     }
 }
