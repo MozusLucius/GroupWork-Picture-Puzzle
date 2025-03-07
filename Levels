@@ -6,7 +6,6 @@ public class Levels extends JFrame implements ActionListener {
     JLabel title;
     JPanel con, forMenu, forTitle, forLevel1, forLevel2, forLevel3, forLevel4, forLevel5;
     JButton level1, level2, level3, level4, level5, mainM;
-    Mujik music = new Mujik();
     Levels(){
         this.setTitle("Piczzle");
         this.setSize(1460, 760);
@@ -74,31 +73,25 @@ public class Levels extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == mainM){
-            music.soundButton();
             dispose();
             new Main();
         } else if(e.getSource() == level1){
-            music.soundButton();
             dispose();
             Puzzle p = new Puzzle();
             p.game.Level1();
         } else if (e.getSource() == level2){
-            music.soundButton();
             dispose();
             Puzzle p = new Puzzle();
             p.game.Level2();
         } else if (e.getSource() == level3){
-            music.soundButton();
             dispose();
             Puzzle p = new Puzzle();
             p.game.Level3();
         } else if (e.getSource() == level4){
-            music.soundButton();
             dispose();
             Puzzle p = new Puzzle();
             p.game.Level4();
         } else if (e.getSource() == level5){
-            music.soundButton();
             dispose();
             Puzzle p = new Puzzle();
             p.game.Level5();
