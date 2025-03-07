@@ -5,10 +5,16 @@ public class Game implements ActionListener {
 
     Pictures pics = new Pictures();
     JButton icon, b1, b2, b3, b4, b5, b6, b7, b8, b9, pause, resume, restart;
-    JLabel basisImage, currentLevel, timerLabel;
+    JLabel basisImage, currentLevel, timerLabel, timeLimit;
     Icon mover;
     //timer stuffs
     int timerSeconds = 0;
+    int limit = 0;
+    int limit1 = 100;
+    int limit2 = 80;
+    int limit3 = 60;
+    int limit4 = 40;
+    int limit5 = 20;
     public static Timer timer;
     boolean solved = false;
     Tunog m = new Tunog();
@@ -18,7 +24,7 @@ public class Game implements ActionListener {
         System.out.println("Constructor: "+solved);
         this.puzzle = puzzle;
         currentLevel = new JLabel("Level: X"); timerLabel = new JLabel("00:00"); pause = new JButton("PAUSE"); resume = new JButton("RESUME"); restart = new JButton("RESTART");
-
+        timeLimit = new JLabel("Time Limit: 00:00");
         b1 = new JButton(); b2 = new JButton(); b3 = new JButton();
         b4 = new JButton(); b5 = new JButton(); b6 = new JButton();
         b7 = new JButton(); b8 = new JButton(); b9 = new JButton();
@@ -46,7 +52,7 @@ public class Game implements ActionListener {
         int minutes = timerSeconds / 60;
         int seconds = timerSeconds % 60;
         timerLabel.setText(String.format("%02d:%02d", minutes, seconds));
-        if (timerSeconds >= 120){
+        if (timerSeconds >= limit){
             timer.stop();
             puzzle.hasFailed = true;
             puzzle.checkIfGameIsSolved();
@@ -337,7 +343,9 @@ public class Game implements ActionListener {
     }
 
     public void Level1() {
+        limit = limit1;
         currentLevel.setText("Level: 1");
+        timeLimit.setText("Time Limit: 01:40");
         b1.setIcon(pics.l3); b2.setIcon(pics.l4); b3.setIcon(pics.l1);
         b4.setIcon(pics.l8); b5.setIcon(pics.l2); b6.setIcon(pics.l7);
         b7.setIcon(pics.l6); b8.setIcon(pics.l9); b9.setIcon(pics.l5);
@@ -347,7 +355,9 @@ public class Game implements ActionListener {
     }
 
     public void Level2() {
+        limit = limit2;
         currentLevel.setText("Level: 2");
+        timeLimit.setText("Time Limit: 01:20");
         b1.setIcon(pics.p4); b2.setIcon(pics.p2); b3.setIcon(pics.p6);
         b4.setIcon(pics.p9); b5.setIcon(pics.p1); b6.setIcon(pics.p5);
         b7.setIcon(pics.p3); b8.setIcon(pics.p8); b9.setIcon(pics.p7);
@@ -357,7 +367,9 @@ public class Game implements ActionListener {
     }
 
     public void Level3() {
+        limit = limit3;
         currentLevel.setText("Level: 3");
+        timeLimit.setText("Time Limit: 01:00");
         b1.setIcon(pics.m2); b2.setIcon(pics.m1); b3.setIcon(pics.m6);
         b4.setIcon(pics.m9); b5.setIcon(pics.m4); b6.setIcon(pics.m5);
         b7.setIcon(pics.m8); b8.setIcon(pics.m3); b9.setIcon(pics.m7);
@@ -367,7 +379,9 @@ public class Game implements ActionListener {
     }
 
     public void Level4() {
+        limit = limit4;
         currentLevel.setText("Level: 4");
+        timeLimit.setText("Time Limit: 00:40");
         b1.setIcon(pics.f9); b2.setIcon(pics.f5); b3.setIcon(pics.f7);
         b4.setIcon(pics.f1); b5.setIcon(pics.f3); b6.setIcon(pics.f8);
         b7.setIcon(pics.f6); b8.setIcon(pics.f2); b9.setIcon(pics.f4);
@@ -376,7 +390,9 @@ public class Game implements ActionListener {
         icon.setIcon(b1.getIcon());
     }
     public void Level5() {
+        limit = limit5;
         currentLevel.setText("Level: 5");
+        timeLimit.setText("Time Limit: 00:20");
         b1.setIcon(pics.nB4); b2.setIcon(pics.nB7); b3.setIcon(pics.nB5);
         b4.setIcon(pics.nB2); b5.setIcon(pics.nB3); b6.setIcon(pics.nB9);
         b7.setIcon(pics.nB8); b8.setIcon(pics.nB6); b9.setIcon(pics.nB1);
