@@ -1,57 +1,208 @@
 import javax.sound.sampled.*;
 import java.io.File;
+import java.io.IOException;
 
 public class Tunog {
-    private static Clip clip;
-    private static boolean muted = false;
+    private static Clip sound1, sound2, sound3, sound4, sound5, sound6;
+    private static boolean muted1 = false;
+    private static boolean muted2 = false;
+    private static boolean muted3 = false;
+    private static boolean muted4 = false;
+    private static boolean muted5 = false;
+    private static boolean muted6 = false;
 
+    String hard = ("src\\Coding\\Musika\\Hard click.wav");
+    String playClick = ("src\\Coding\\Musika\\Switch.wav");
+    /*
+    playBGMusic         = the background music
+    stopBGMusic         = stops bg music
+    pauseBGMusic        = pauses bg music
+    resumeBGMusic       = resumes bg music
+    toggleMute          = to mute music
+
+    playPGMusic         = the bg music when player is playing
+    +mute
+
+    playBMusic          = the sound for every button except play buttons
+    muteBMusic          = to turn off/mute button sounds
+
+    playPBMusic         = the sound for play buttons
+    mutePBMusic         = to mute play buttons
+
+    playFailMusic       = the sound when time limit is reached and puzzle is unsolved
+    +mute
+    playSolvedMusic     = the sound when a puzzle is solved
+    +mute
+
+    playWinMusic        = sound to play when player beats all levels
+    +mute
+
+     */
+    //PLAY
     // Initialize and play the music if not already playing
-    public static void playMusic(String musicFilePath) {
-        if (clip == null || !clip.isRunning()) {
+    public static void playBGMusic(String musicFilePath) {
+        if (sound1 == null || !sound1.isRunning()) {
             try {
                 AudioInputStream audioInput = AudioSystem.getAudioInputStream(new File("src\\Coding\\Musika\\Zen.wav"));
-                clip = AudioSystem.getClip();
-                clip.open(audioInput);
-                clip.loop(Clip.LOOP_CONTINUOUSLY); // Loop the music
-                clip.start();
+                sound1 = AudioSystem.getClip();
+                sound1.open(audioInput);
+                sound1.loop(sound1.LOOP_CONTINUOUSLY); // Loop the music
+                sound1.start();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
-
     // Stop and release resources
-    public static void stopMusic() {
-        if (clip != null) {
-            clip.stop();
-            clip.close();
-        }
-    }
-
+    public static void stopBGMusic() { if(sound1 != null){ sound1.stop(); sound1.close(); }}
     // Pause the music
-    public static void pauseMusic() {
-        if (clip != null && clip.isRunning()) {
-            clip.stop();
-        }
-    }
-
+    public static void pauseBGMusic() { if(sound1 != null && sound1.isRunning()) { sound1.stop(); }}
     // Resume the music
-    public static void resumeMusic() {
-        if (clip != null && !clip.isRunning()) {
-            clip.start();
-        }
-    }
-
-    public static void toggleMute() {
-        if (clip != null) {
-            FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-            if (!muted) {
+    public static void resumeBGMusic() { if (sound1 != null && !sound1.isRunning()) { sound1.start();}}
+    public static void toggleBGMute() {
+        if (sound1 != null) {
+            FloatControl volume = (FloatControl) sound1.getControl(FloatControl.Type.MASTER_GAIN);
+            if (!muted1) {
                 volume.setValue(-80.0f); // Mute
             } else {
                 volume.setValue(0.0f); // Full volume
             }
-            muted = !muted;
+            muted1 = !muted1;
         }
     }
+
+    //playBMusic
+    public static void playBMusic(String musicFilePath) {
+        try {
+            AudioInputStream audioInput = AudioSystem.getAudioInputStream(new File("src\\Coding\\Musika\\Hard click.wav"));
+            sound2 = AudioSystem.getClip();
+            sound2.open(audioInput);
+            if (!muted2) {
+                // Play the button sound}
+                sound2.start();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+    public static void toggleBMute() {
+        System.out.println("Toggle Button mute");
+        if (sound2 != null) {
+            FloatControl volume = (FloatControl) sound2.getControl(FloatControl.Type.MASTER_GAIN);
+            if (!muted2) {
+                volume.setValue(-80.0f); // Mute
+                muted2 = true;
+            } else {
+                volume.setValue(0.0f);
+            }
+        }
+        muted2 = !muted2;
+
+    }
+
+    public static void toggleBUnmute() {
+        System.out.println("Button Unmute");
+        if (sound2 != null) {
+            FloatControl volume = (FloatControl) sound2.getControl(FloatControl.Type.MASTER_GAIN);
+            if (muted2){
+                volume.setValue(0.0f); // Full volume
+            }
+        }
+    }
+
+    //playPBMusic
+    public static void playPBMusic(String musicFilePath) {
+        try {
+            AudioInputStream audioInput = AudioSystem.getAudioInputStream(new File(musicFilePath));
+            sound3 = AudioSystem.getClip();
+            sound3.open(audioInput);
+            sound3.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public static void togglePBMute() {
+        if (sound3 != null) {
+            FloatControl volume = (FloatControl) sound3.getControl(FloatControl.Type.MASTER_GAIN);
+            if (!muted3) {
+                volume.setValue(-80.0f); // Mute
+            } else {
+                volume.setValue(0.0f); // Full volume
+            }
+            muted3 = !muted3;
+        }
+    }
+
+    //playFailMusic
+    public static void playFailMusic(String musicFilePath) {
+        try {
+            AudioInputStream audioInput = AudioSystem.getAudioInputStream(new File("src\\Coding\\Musika\\Fail.wav"));
+            sound4 = AudioSystem.getClip();
+            sound4.open(audioInput);
+            sound4.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public static void toggleFailMute() {
+        if (sound4 != null) {
+            FloatControl volume = (FloatControl) sound4.getControl(FloatControl.Type.MASTER_GAIN);
+            if (!muted4) {
+                volume.setValue(-80.0f); // Mute
+            } else {
+                volume.setValue(0.0f); // Full volume
+            }
+            muted4 = !muted4;
+        }
+    }
+
+    //playSolvedMusic
+    public static void playSolvedMusic(String musicFilePath) {
+        try {
+            AudioInputStream audioInput = AudioSystem.getAudioInputStream(new File("src\\Coding\\Musika\\Complete.wav"));
+            sound5 = AudioSystem.getClip();
+            sound5.open(audioInput);
+            sound5.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public static void toggleSolvedMute() {
+        if (sound5 != null) {
+            FloatControl volume = (FloatControl) sound5.getControl(FloatControl.Type.MASTER_GAIN);
+            if (!muted5) {
+                volume.setValue(-80.0f); // Mute
+            } else {
+                volume.setValue(0.0f); // Full volume
+            }
+            muted5 = !muted5;
+        }
+    }
+
+    //playWinMusic
+    public static void playWinMusic(String musicFilePath) {
+        try {
+            AudioInputStream audioInput = AudioSystem.getAudioInputStream(new File(musicFilePath));
+            sound6 = AudioSystem.getClip();
+            sound6.open(audioInput);
+            sound6.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public static void toggleWinMute() {
+        if (sound6 != null) {
+            FloatControl volume = (FloatControl) sound6.getControl(FloatControl.Type.MASTER_GAIN);
+            if (!muted6) {
+                volume.setValue(-80.0f); // Mute
+            } else {
+                volume.setValue(0.0f); // Full volume
+            }
+            muted6 = !muted6;
+        }
+    }
+
+
 
 }
