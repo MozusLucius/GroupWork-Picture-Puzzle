@@ -41,9 +41,12 @@ public class Puzzle extends JFrame implements ActionListener{
         game.currentLevel.setFont(new Font("Georgia", Font.BOLD, 45));
         game.currentLevel.setForeground(Color.BLACK);
         game.basisImage.setBounds(13,150,400,400);
+        game.timeLimit.setFont(new Font("Lucida Console", Font.BOLD, 23));
+        game.timeLimit.setForeground(Color.BLACK); game.timeLimit.setBounds(20,110,250,30);
         leftCon.add(mainM);
         leftCon.add(game.currentLevel);
         leftCon.add(game.basisImage);
+        leftCon.add(game.timeLimit);
         //Playground
         centerCon = new JPanel();
         centerCon.setOpaque(false);
