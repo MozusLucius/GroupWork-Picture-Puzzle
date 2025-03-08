@@ -10,7 +10,7 @@ public class Game implements ActionListener {
     //timer stuffs
     int timerSeconds = 0;
     int limit = 0;
-    int limit1 = 1;
+    int limit1 = 100;
     int limit2 = 50;
     int limit3 = 40;
     int limit4 = 30;
