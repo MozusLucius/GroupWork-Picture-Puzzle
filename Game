@@ -10,10 +10,10 @@ public class Game implements ActionListener {
     //timer stuffs
     int timerSeconds = 0;
     int limit = 0;
-    int limit1 = 100;
-    int limit2 = 80;
-    int limit3 = 60;
-    int limit4 = 40;
+    int limit1 = 1;
+    int limit2 = 50;
+    int limit3 = 40;
+    int limit4 = 30;
     int limit5 = 20;
     public static Timer timer;
     boolean solved = false;
@@ -338,14 +338,15 @@ public class Game implements ActionListener {
             solved = true;
             System.out.println(solved);
             timer.stop();
-            puzzle.checkIfGameIsSolved();
+//            puzzle.checkIfGameIsSolved();
+        puzzle.ifGameWin();
         }
     }
 
     public void Level1() {
         limit = limit1;
         currentLevel.setText("Level: 1");
-        timeLimit.setText("Time Limit: 01:40");
+        timeLimit.setText("Time Limit: 01:00");
         b1.setIcon(pics.l3); b2.setIcon(pics.l4); b3.setIcon(pics.l1);
         b4.setIcon(pics.l8); b5.setIcon(pics.l2); b6.setIcon(pics.l7);
         b7.setIcon(pics.l6); b8.setIcon(pics.l9); b9.setIcon(pics.l5);
@@ -357,7 +358,7 @@ public class Game implements ActionListener {
     public void Level2() {
         limit = limit2;
         currentLevel.setText("Level: 2");
-        timeLimit.setText("Time Limit: 01:20");
+        timeLimit.setText("Time Limit: 00:50");
         b1.setIcon(pics.p4); b2.setIcon(pics.p2); b3.setIcon(pics.p6);
         b4.setIcon(pics.p9); b5.setIcon(pics.p1); b6.setIcon(pics.p5);
         b7.setIcon(pics.p3); b8.setIcon(pics.p8); b9.setIcon(pics.p7);
@@ -369,7 +370,7 @@ public class Game implements ActionListener {
     public void Level3() {
         limit = limit3;
         currentLevel.setText("Level: 3");
-        timeLimit.setText("Time Limit: 01:00");
+        timeLimit.setText("Time Limit: 00:40");
         b1.setIcon(pics.m2); b2.setIcon(pics.m1); b3.setIcon(pics.m6);
         b4.setIcon(pics.m9); b5.setIcon(pics.m4); b6.setIcon(pics.m5);
         b7.setIcon(pics.m8); b8.setIcon(pics.m3); b9.setIcon(pics.m7);
@@ -381,7 +382,7 @@ public class Game implements ActionListener {
     public void Level4() {
         limit = limit4;
         currentLevel.setText("Level: 4");
-        timeLimit.setText("Time Limit: 00:40");
+        timeLimit.setText("Time Limit: 00:30");
         b1.setIcon(pics.f9); b2.setIcon(pics.f5); b3.setIcon(pics.f7);
         b4.setIcon(pics.f1); b5.setIcon(pics.f3); b6.setIcon(pics.f8);
         b7.setIcon(pics.f6); b8.setIcon(pics.f2); b9.setIcon(pics.f4);
