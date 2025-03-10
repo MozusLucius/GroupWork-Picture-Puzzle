@@ -9,7 +9,7 @@ public class Levels extends JFrame implements ActionListener {
     Levels(){
         this.setTitle("Piczzle");
         this.setSize(1460, 760);
-        this.setLocation(30, 10);
+        this.setLocation(190, 90);
         this.setResizable(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().setBackground(new Color(0xf5b982));
