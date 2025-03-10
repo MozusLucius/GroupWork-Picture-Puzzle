@@ -10,15 +10,15 @@ public class Puzzle extends JFrame implements ActionListener {
     //Classes call
     Game game = new Game(this);
     Tunog m = new Tunog();
-    String [] response1 = {"Next Level", "Replay"};
-    String [] response2 = {"Replay", "Back to Main Menu"};
-    String [] response3 = {"Yes", "Replay this Level"};
+    String [] response1 = {"Next Level", "Replay", "Back to Levels"};
+    String [] response2 = {"Replay", "Back to Levels"};
+    String [] response3 = {"Yes", "Replay this Level", "Back to Levels"};
 
     Puzzle(){
 
         this.setTitle("Piczzle");
         this.setSize(1460, 760);
-        this.setLocation(30, 10);
+        this.setLocation(190, 90);
         this.setResizable(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().setBackground(new Color(0xf5b982));
@@ -166,7 +166,7 @@ public class Puzzle extends JFrame implements ActionListener {
         if (game.solved) {
             Game.timer.stop();
             Tunog.playSolvedMusic();
-            int a = JOptionPane.showOptionDialog(this,"<html>You have solved the puzzle in time!<br>Play another level?</html>", "CONGRATULATIONS!!!", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, response1, 0);
+            int a = JOptionPane.showOptionDialog(this,"<html>You have solved the puzzle in time!<br>Play another level?</html>", "CONGRATULATIONS!!!", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, response1, 0);
             if(a==JOptionPane.YES_OPTION){
                 Tunog.playBMusic();
                 dispose();
@@ -181,7 +181,7 @@ public class Puzzle extends JFrame implements ActionListener {
                 } else if (game.currentLevel.getText().equals("Level: 4")){
                     p.game.Level5();
                 } else if (game.currentLevel.getText().equals("Level: 5")){
-                    p.game.Level1();
+                    p.game.Level6();
                 }
             } else if(a==JOptionPane.NO_OPTION){
                 Tunog.playBMusic();
@@ -199,9 +199,11 @@ public class Puzzle extends JFrame implements ActionListener {
                 } else if (game.currentLevel.getText().equals("Level: 5")){
                     p.game.Level5();
                 }
+            } else if (a==JOptionPane.CANCEL_OPTION){
+                Tunog.playBMusic();
+                dispose();
+                new Levels();
             }
-
-
         }
 
         if (hasFailed){
@@ -228,12 +230,14 @@ public class Puzzle extends JFrame implements ActionListener {
                     p.game.Level4();
                 } else if (game.currentLevel.getText().equals("Level: 5")){
                     p.game.Level5();
+                } else if (game.currentLevel.getText().equals("Level: 6")){
+                    p.game.Level6();
                 }
             } else if(b==JOptionPane.NO_OPTION){
                 Tunog.playBMusic();
                 Tunog.playBGMusic();
                 dispose();
-                new Main();
+                new Levels();
             }
         }//end of if hasFailed
     }//end of checkIfGameIsSolved
@@ -242,7 +246,7 @@ public class Puzzle extends JFrame implements ActionListener {
         System.out.println("Game won");
         Tunog.pauseBGMusic();
         Tunog.playWinMusic();
-        int c = JOptionPane.showOptionDialog(this,"<html>BANZAI! You've beaten the game.<br>Would you like to start again?</html>", "B A N Z A I ! ! !", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, response3, 0);
+        int c = JOptionPane.showOptionDialog(this,"<html>BANZAI! You've beaten the game.<br>Would you like to start again?</html>", "B A N Z A I ! ! !", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, response3, 0);
         if(c==JOptionPane.YES_OPTION){
             Tunog.playBMusic();
             Tunog.stopWinMusic();
@@ -258,7 +262,13 @@ public class Puzzle extends JFrame implements ActionListener {
             dispose();
             Puzzle p = new Puzzle();
             game.solved = false;
-            p.game.Level5();
+            p.game.Level6();
+        } else if(c==JOptionPane.CANCEL_OPTION){
+            Tunog.playBMusic();
+            Tunog.stopWinMusic();
+            Tunog.resumeBGMusic();
+            dispose();
+            new Levels();
         }
     }
 
