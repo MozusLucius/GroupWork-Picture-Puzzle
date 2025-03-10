@@ -4,12 +4,12 @@ import javax.swing.*;
 
 public class Settings extends JFrame implements ActionListener {
 
-    Icon picMute = new ImageIcon("src\\Coding\\Sounds\\smallMute.png");
-    Icon picNotMute = new ImageIcon("src\\Coding\\Sounds\\smallVolume.png");
+    Icon picMute = new ImageIcon("src\\Coding\\Musika\\Sounds\\smallMute.png");
+    Icon picNotMute = new ImageIcon("src\\Coding\\Musika\\Sounds\\smallVolume.png");
     JLabel title, bg, pg, buttons, playB, fail, complete, win;
     JPanel forMenu, con, forTitle, con1;
     JButton mainM,
-    bgMute, bgUnmute,
+            bgMute, bgUnmute,
             pgMute, pgUnmute,
             buttonsMute, buttonsUnmute,
             pBMute, pBUnmute,
@@ -22,7 +22,7 @@ public class Settings extends JFrame implements ActionListener {
 //        Tunog.resumeBGMusic();
         this.setTitle("Piczzle");
         this.setSize(1460, 760);
-        this.setLocation(60, 30);
+        this.setLocation(190, 90);
         this.setResizable(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().setBackground(new Color(0xf5b982));
@@ -63,8 +63,8 @@ public class Settings extends JFrame implements ActionListener {
         column1A.add(bg);
         //Column 1-B
         JPanel column1B = new JPanel(new FlowLayout(FlowLayout.CENTER, 20,0)); column1B.setOpaque(false);
-        bgMute = new JButton(picMute); bgMute.addActionListener(this); bgMute.setPreferredSize(new Dimension(40,40));
-        bgUnmute = new JButton(picNotMute); bgUnmute.addActionListener(this); bgUnmute.setPreferredSize(new Dimension(40,40));
+        bgMute = new JButton(picMute); bgMute.addActionListener(this); bgMute.setPreferredSize(new Dimension(50,50));
+        bgUnmute = new JButton(picNotMute); bgUnmute.addActionListener(this); bgUnmute.setPreferredSize(new Dimension(50,50));
         column1B.add(bgMute); column1B.add(bgUnmute);
         //Column 1 adds
         column1.add(column1A); column1.add(column1B);
@@ -75,8 +75,8 @@ public class Settings extends JFrame implements ActionListener {
         column2A.add(pg);
         //Column 2-B
         JPanel column2B = new JPanel(new FlowLayout(FlowLayout.CENTER, 20,0)); column2B.setOpaque(false);
-        pgMute = new JButton(picMute); pgMute.addActionListener(this); pgMute.setPreferredSize(new Dimension(40,40));
-        pgUnmute = new JButton(picNotMute); pgUnmute.addActionListener(this); pgUnmute.setPreferredSize(new Dimension(40,40));
+        pgMute = new JButton(picMute); pgMute.addActionListener(this); pgMute.setPreferredSize(new Dimension(50,50));
+        pgUnmute = new JButton(picNotMute); pgUnmute.addActionListener(this); pgUnmute.setPreferredSize(new Dimension(50,50));
         column2B.add(pgMute); column2B.add(pgUnmute);
         //Column 2 adds
         column2.add(column2A); column2.add(column2B);
@@ -87,8 +87,8 @@ public class Settings extends JFrame implements ActionListener {
         column3A.add(buttons);
         //Column 3-B
         JPanel column3B = new JPanel(new FlowLayout(FlowLayout.CENTER, 20,0)); column3B.setOpaque(false);
-        buttonsMute = new JButton(picMute); buttonsMute.addActionListener(this); buttonsMute.setPreferredSize(new Dimension(40,40));
-        buttonsUnmute = new JButton(picNotMute); buttonsUnmute.addActionListener(this); buttonsUnmute.setPreferredSize(new Dimension(40,40));
+        buttonsMute = new JButton(picMute); buttonsMute.addActionListener(this); buttonsMute.setPreferredSize(new Dimension(50,50));
+        buttonsUnmute = new JButton(picNotMute); buttonsUnmute.addActionListener(this); buttonsUnmute.setPreferredSize(new Dimension(50,50));
         column3B.add(buttonsMute); column3B.add(buttonsUnmute);
         //Column 3 adds
         column3.add(column3A); column3.add(column3B);
@@ -99,8 +99,8 @@ public class Settings extends JFrame implements ActionListener {
         column4A.add(playB);
         //Column 4-B
         JPanel column4B = new JPanel(new FlowLayout(FlowLayout.CENTER, 20,0)); column4B.setOpaque(false);
-        pBMute = new JButton(picMute); pBMute.addActionListener(this); pBMute.setPreferredSize(new Dimension(40,40));
-        pBUnmute = new JButton(picNotMute); pBUnmute.addActionListener(this); pBUnmute.setPreferredSize(new Dimension(40,40));
+        pBMute = new JButton(picMute); pBMute.addActionListener(this); pBMute.setPreferredSize(new Dimension(50,50));
+        pBUnmute = new JButton(picNotMute); pBUnmute.addActionListener(this); pBUnmute.setPreferredSize(new Dimension(50,50));
         column4B.add(pBMute); column4B.add(pBUnmute);
         //Column 4 adds
         column4.add(column4A); column4.add(column4B);
@@ -111,8 +111,8 @@ public class Settings extends JFrame implements ActionListener {
         column5A.add(fail);
         //Column 5-B
         JPanel column5B = new JPanel(new FlowLayout(FlowLayout.CENTER, 20,0)); column5B.setOpaque(false);
-        fMute = new JButton(picMute); fMute.addActionListener(this); fMute.setPreferredSize(new Dimension(40,40));
-        fUnmute = new JButton(picNotMute); fUnmute.addActionListener(this); fUnmute.setPreferredSize(new Dimension(40,40));
+        fMute = new JButton(picMute); fMute.addActionListener(this); fMute.setPreferredSize(new Dimension(50,50));
+        fUnmute = new JButton(picNotMute); fUnmute.addActionListener(this); fUnmute.setPreferredSize(new Dimension(50,50));
         column5B.add(fMute); column5B.add(fUnmute);
         //Column 5 adds
         column5.add(column5A); column5.add(column5B);
@@ -123,14 +123,13 @@ public class Settings extends JFrame implements ActionListener {
         column6A.add(complete);
         //Column 6-B
         JPanel column6B = new JPanel(new FlowLayout(FlowLayout.CENTER, 20,0)); column6B.setOpaque(false);
-        cMute = new JButton(picMute); cMute.addActionListener(this); cMute.setPreferredSize(new Dimension(40,40));
-        cUnmute = new JButton(picNotMute); cUnmute.addActionListener(this); cUnmute.setPreferredSize(new Dimension(40,40));
+        cMute = new JButton(picMute); cMute.addActionListener(this); cMute.setPreferredSize(new Dimension(50,50));
+        cUnmute = new JButton(picNotMute); cUnmute.addActionListener(this); cUnmute.setPreferredSize(new Dimension(50,50));
         column6B.add(cMute); column6B.add(cUnmute);
         //Column 6 adds
         column6.add(column6A); column6.add(column6B);
 
         //Last
-
         JPanel con2 = new JPanel(new BorderLayout()); con2.setOpaque(false);
         JPanel column7 = new JPanel(new GridLayout(2,1)); column7.setOpaque(false);
         con2.add(column7, BorderLayout.CENTER);
@@ -140,8 +139,8 @@ public class Settings extends JFrame implements ActionListener {
         column7A.add(win);
         //Column 7-B
         JPanel column7B = new JPanel(new FlowLayout(FlowLayout.CENTER, 20,0)); column7B.setOpaque(false);
-        winMute = new JButton(picMute); winMute.addActionListener(this); winMute.setPreferredSize(new Dimension(40,40));
-        winUnmute = new JButton(picNotMute); winUnmute.addActionListener(this); winUnmute.setPreferredSize(new Dimension(40,40));
+        winMute = new JButton(picMute); winMute.addActionListener(this); winMute.setPreferredSize(new Dimension(50,50));
+        winUnmute = new JButton(picNotMute); winUnmute.addActionListener(this); winUnmute.setPreferredSize(new Dimension(50,50));
         column7B.add(winMute); column7B.add(winUnmute);
         //Column 7 adds
         column7.add(column7A); column7.add(column7B);
@@ -160,19 +159,18 @@ public class Settings extends JFrame implements ActionListener {
             new Main();
         }
         //BGMusic
-        if(e.getSource() == bgMute){
-            Tunog.stopBGMusic();
-            System.out.println("bg mute");
-        } else if (e.getSource() == bgUnmute) {
-            Tunog.playBGMusic();
+        if(e.getSource() == bgMute) {
+            Tunog.toggleBGMute();
+        } else if (e.getSource() == bgUnmute){
+            Tunog.toggleBGUnmute();
         }
 
         //PlayBGMusic
         if  (e.getSource() == pgMute){
             System.out.println("buttonsMute clicked");
-            Tunog.stopPGMusic();
+            Tunog.togglePGMute();
         } else if (e.getSource() == pgUnmute) {
-            Tunog.playPGMusic();
+            Tunog.togglePGUnmute();
         }
 
         //button sounds mute
