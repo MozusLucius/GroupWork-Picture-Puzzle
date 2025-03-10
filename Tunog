@@ -12,7 +12,9 @@ public class Tunog {
     private static boolean muted6 = false; //solved
     private static boolean muted7 = false; //win
 
-//    String hard = ("src\\Coding\\Musika\\Hard click.wav");
+    static boolean isMute = false;
+    static FloatControl fc;
+    //    String hard = ("src\\Coding\\Musika\\Hard click.wav");
 //    String playClick = ("src\\Coding\\Musika\\Switch.wav");
     /*
     playBGMusic         = the background music
@@ -74,12 +76,13 @@ public class Tunog {
     public static void toggleBGMute() {
         if (sound1 != null) {
             FloatControl volume = (FloatControl) sound1.getControl(FloatControl.Type.MASTER_GAIN);
-            if (!muted1) {
-                volume.setValue(-80.0f); // Mute
-            } else {
-                volume.setValue(0.0f); // Full volume
-            }
-            muted1 = !muted1;
+            if (!muted1){ volume.setValue(-80.0f); muted1 = true; }
+        }
+    }
+    public static void toggleBGUnmute() {
+        if (sound1 != null) {
+            FloatControl volume = (FloatControl) sound1.getControl(FloatControl.Type.MASTER_GAIN);
+            if (muted1){ volume.setValue(0.0f); muted1 = false; }
         }
     }
 
@@ -107,12 +110,13 @@ public class Tunog {
     public static void togglePGMute() {
         if (sound2 != null) {
             FloatControl volume = (FloatControl) sound2.getControl(FloatControl.Type.MASTER_GAIN);
-            if (!muted2) {
-                volume.setValue(-80.0f); // Mute
-            } else {
-                volume.setValue(0.0f); // Full volume
-            }
-            muted2 = !muted2;
+            if (!muted2){ volume.setValue(-80.0f); muted2 = true; }
+        }
+    }
+    public static void togglePGUnmute() {
+        if (sound2 != null) {
+            FloatControl volume = (FloatControl) sound2.getControl(FloatControl.Type.MASTER_GAIN);
+            if (muted2){ volume.setValue(0.0f); muted2 = false; }
         }
     }
 
@@ -179,10 +183,15 @@ public class Tunog {
         }
     }
     public static void toggleFailMute() {
-        if (sound5 != null) {
-            FloatControl volume = (FloatControl) sound5.getControl(FloatControl.Type.MASTER_GAIN);
-            if (!muted5) { volume.setValue(-80.0f); muted5 = true; }
+//        if (sound5 != null) {
+//            FloatControl volume = (FloatControl) sound5.getControl(FloatControl.Type.MASTER_GAIN);
+//            if (!muted5) { volume.setValue(-80.0f); muted5 = true; }
+//        }
+        if(!isMute){
+            fc.setValue(fc.getMinimum());
+            isMute = true;
         }
+
     }
     public static void toggleFailUnmute() {
         if (sound5 != null) {
