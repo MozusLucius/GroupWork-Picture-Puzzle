@@ -10,11 +10,12 @@ public class Game implements ActionListener {
     //timer stuffs
     int timerSeconds = 0;
     int limit = 0;
-    int limit1 = 100;
+    int limit1 = 1;
     int limit2 = 50;
     int limit3 = 40;
     int limit4 = 30;
     int limit5 = 20;
+    int limit6 = 15;
     public static Timer timer;
     boolean solved = false;
     Tunog m = new Tunog();
@@ -83,16 +84,18 @@ public class Game implements ActionListener {
         } else if(e.getSource() == restart){
             System.out.println("Game Restart button clicked");
             Puzzle p = new Puzzle();
-            if (basisImage.getIcon() == pics.logo){
+            if (basisImage.getIcon() == pics.humss){
                 p.game.Level1();
-            } else if (basisImage.getIcon() == pics.paris){
+            } else if (basisImage.getIcon() == pics.stem){
                 p.game.Level2();
-            } else if (basisImage.getIcon() == pics.mahal){
+            } else if (basisImage.getIcon() == pics.abm){
                 p.game.Level3();
-            } else if (basisImage.getIcon() == pics.fuji){
+            } else if (basisImage.getIcon() == pics.he){
                 p.game.Level4();
-            } else if (basisImage.getIcon() == pics.nB){
+            } else if (basisImage.getIcon() == pics.ict){
                 p.game.Level5();
+            } else if (basisImage.getIcon() == pics.logo){
+                p.game.Level6();
             }
         }
 
@@ -295,51 +298,58 @@ public class Game implements ActionListener {
     }
 
     public void checkPuzzle() {
-        if ((b1.getIcon() == pics.l1) && (b2.getIcon() == pics.l2) && (b3.getIcon() == pics.l3)
-                && (b4.getIcon() == pics.l4) && (b5.getIcon() == pics.l5) && (b6.getIcon() == pics.l6)
-                && (b7.getIcon() == pics.l7) && (b8.getIcon() == pics.l8) && (b9.getIcon() == pics.l9)){
-            //logo
+        if ((b1.getIcon() == pics.humss1) && (b2.getIcon() == pics.humss2) && (b3.getIcon() == pics.humss3)
+                && (b4.getIcon() == pics.humss4) && (b5.getIcon() == pics.humss5) && (b6.getIcon() == pics.humss6)
+                && (b7.getIcon() == pics.humss7) && (b8.getIcon() == pics.humss8) && (b9.getIcon() == pics.humss9)){
+            //level 1
             System.out.println("Puzzle Solved");
             solved = true;
             System.out.println("checkPuzzle: "+solved);
             timer.stop();
             puzzle.checkIfGameIsSolved();
-        } else if ((b1.getIcon() == pics.p1) && (b2.getIcon() == pics.p2) && (b3.getIcon() == pics.p3)
-                && (b4.getIcon() == pics.p4) && (b5.getIcon() == pics.p5) && (b6.getIcon() == pics.p6)
-                && (b7.getIcon() == pics.p7) && (b8.getIcon() == pics.p8) && (b9.getIcon() == pics.p9)){
+        } else if ((b1.getIcon() == pics.stem1) && (b2.getIcon() == pics.stem2) && (b3.getIcon() == pics.stem3)
+                && (b4.getIcon() == pics.stem4) && (b5.getIcon() == pics.stem5) && (b6.getIcon() == pics.stem6)
+                && (b7.getIcon() == pics.stem7) && (b8.getIcon() == pics.stem8) && (b9.getIcon() == pics.stem9)){
             //paris
             System.out.println("Puzzle Solved");
             solved = true;
             System.out.println(solved);
             timer.stop();
             puzzle.checkIfGameIsSolved();
-        } else if ((b1.getIcon() == pics.m1) && (b2.getIcon() == pics.m2) && (b3.getIcon() == pics.m3)
-                && (b4.getIcon() == pics.m4) && (b5.getIcon() == pics.m5) && (b6.getIcon() == pics.m6)
-                && (b7.getIcon() == pics.m7) && (b8.getIcon() == pics.m8) && (b9.getIcon() == pics.m9)) {
+        } else if ((b1.getIcon() == pics.abm1) && (b2.getIcon() == pics.abm2) && (b3.getIcon() == pics.abm3)
+                && (b4.getIcon() == pics.abm4) && (b5.getIcon() == pics.abm5) && (b6.getIcon() == pics.abm6)
+                && (b7.getIcon() == pics.abm7) && (b8.getIcon() == pics.abm8) && (b9.getIcon() == pics.abm9)) {
             //taj mahal
             System.out.println("Puzzle Solved");
             solved = true;
             System.out.println(solved);
             timer.stop();
             puzzle.checkIfGameIsSolved();
-        } else if ((b1.getIcon() == pics.f1) && (b2.getIcon() == pics.f2) && (b3.getIcon() == pics.f3)
-                && (b4.getIcon() == pics.f4) && (b5.getIcon() == pics.f5) && (b6.getIcon() == pics.f6)
-                && (b7.getIcon() == pics.f7) && (b8.getIcon() == pics.f8) && (b9.getIcon() == pics.f9)) {
+        } else if ((b1.getIcon() == pics.he1) && (b2.getIcon() == pics.he2) && (b3.getIcon() == pics.he3)
+                && (b4.getIcon() == pics.he4) && (b5.getIcon() == pics.he5) && (b6.getIcon() == pics.he6)
+                && (b7.getIcon() == pics.he7) && (b8.getIcon() == pics.he8) && (b9.getIcon() == pics.he9)) {
             //fuji
             System.out.println("Puzzle Solved");
             solved = true;
             System.out.println(solved);
             timer.stop();
             puzzle.checkIfGameIsSolved();
-        } else if ((b1.getIcon() == pics.nB1) && (b2.getIcon() == pics.nB2) && (b3.getIcon() == pics.nB3)
-                && (b4.getIcon() == pics.nB4) && (b5.getIcon() == pics.nB5) && (b6.getIcon() == pics.nB6)
-                && (b7.getIcon() == pics.nB7) && (b8.getIcon() == pics.nB8) && (b9.getIcon() == pics.nB9)) {
+        } else if ((b1.getIcon() == pics.ict1) && (b2.getIcon() == pics.ict2) && (b3.getIcon() == pics.ict3)
+                && (b4.getIcon() == pics.ict4) && (b5.getIcon() == pics.ict5) && (b6.getIcon() == pics.ict6)
+                && (b7.getIcon() == pics.ict7) && (b8.getIcon() == pics.ict8) && (b9.getIcon() == pics.ict9)) {
             System.out.println("Puzzle Solved");
             solved = true;
             System.out.println(solved);
             timer.stop();
-//            puzzle.checkIfGameIsSolved();
-        puzzle.ifGameWin();
+            puzzle.checkIfGameIsSolved();
+        } else if ((b1.getIcon() == pics.l1) && (b2.getIcon() == pics.l2) && (b3.getIcon() == pics.l3)
+                && (b4.getIcon() == pics.l4) && (b5.getIcon() == pics.l5) && (b6.getIcon() == pics.l6)
+                && (b7.getIcon() == pics.l7) && (b8.getIcon() == pics.l8) && (b9.getIcon() == pics.l9)) {
+            System.out.println("Puzzle Solved");
+            solved = true;
+            System.out.println(solved);
+            timer.stop();
+            puzzle.ifGameWin();
         }
     }
 
@@ -347,10 +357,10 @@ public class Game implements ActionListener {
         limit = limit1;
         currentLevel.setText("Level: 1");
         timeLimit.setText("Time Limit: 01:00");
-        b1.setIcon(pics.l3); b2.setIcon(pics.l4); b3.setIcon(pics.l1);
-        b4.setIcon(pics.l8); b5.setIcon(pics.l2); b6.setIcon(pics.l7);
-        b7.setIcon(pics.l6); b8.setIcon(pics.l9); b9.setIcon(pics.l5);
-        basisImage.setIcon(pics.logo);
+        b1.setIcon(pics.humss3); b2.setIcon(pics.humss4); b3.setIcon(pics.humss1);
+        b4.setIcon(pics.humss8); b5.setIcon(pics.humss2); b6.setIcon(pics.humss7);
+        b7.setIcon(pics.humss6); b8.setIcon(pics.humss9); b9.setIcon(pics.humss5);
+        basisImage.setIcon(pics.humss);
         mover = b1.getIcon();
         icon.setIcon(b1.getIcon());
     }
@@ -359,10 +369,10 @@ public class Game implements ActionListener {
         limit = limit2;
         currentLevel.setText("Level: 2");
         timeLimit.setText("Time Limit: 00:50");
-        b1.setIcon(pics.p4); b2.setIcon(pics.p2); b3.setIcon(pics.p6);
-        b4.setIcon(pics.p9); b5.setIcon(pics.p1); b6.setIcon(pics.p5);
-        b7.setIcon(pics.p3); b8.setIcon(pics.p8); b9.setIcon(pics.p7);
-        basisImage.setIcon(pics.paris);
+        b1.setIcon(pics.stem4); b2.setIcon(pics.stem2); b3.setIcon(pics.stem6);
+        b4.setIcon(pics.stem9); b5.setIcon(pics.stem1); b6.setIcon(pics.stem5);
+        b7.setIcon(pics.stem3); b8.setIcon(pics.stem8); b9.setIcon(pics.stem7);
+        basisImage.setIcon(pics.stem);
         mover = b1.getIcon();
         icon.setIcon(b1.getIcon());
     }
@@ -371,10 +381,10 @@ public class Game implements ActionListener {
         limit = limit3;
         currentLevel.setText("Level: 3");
         timeLimit.setText("Time Limit: 00:40");
-        b1.setIcon(pics.m2); b2.setIcon(pics.m1); b3.setIcon(pics.m6);
-        b4.setIcon(pics.m9); b5.setIcon(pics.m4); b6.setIcon(pics.m5);
-        b7.setIcon(pics.m8); b8.setIcon(pics.m3); b9.setIcon(pics.m7);
-        basisImage.setIcon(pics.mahal);
+        b1.setIcon(pics.abm2); b2.setIcon(pics.abm1); b3.setIcon(pics.abm6);
+        b4.setIcon(pics.abm9); b5.setIcon(pics.abm4); b6.setIcon(pics.abm5);
+        b7.setIcon(pics.abm8); b8.setIcon(pics.abm3); b9.setIcon(pics.abm7);
+        basisImage.setIcon(pics.abm);
         mover = b1.getIcon();
         icon.setIcon(b1.getIcon());
     }
@@ -383,10 +393,10 @@ public class Game implements ActionListener {
         limit = limit4;
         currentLevel.setText("Level: 4");
         timeLimit.setText("Time Limit: 00:30");
-        b1.setIcon(pics.f9); b2.setIcon(pics.f5); b3.setIcon(pics.f7);
-        b4.setIcon(pics.f1); b5.setIcon(pics.f3); b6.setIcon(pics.f8);
-        b7.setIcon(pics.f6); b8.setIcon(pics.f2); b9.setIcon(pics.f4);
-        basisImage.setIcon(pics.fuji);
+        b1.setIcon(pics.he9); b2.setIcon(pics.he5); b3.setIcon(pics.he7);
+        b4.setIcon(pics.he1); b5.setIcon(pics.he3); b6.setIcon(pics.he8);
+        b7.setIcon(pics.he6); b8.setIcon(pics.he2); b9.setIcon(pics.he4);
+        basisImage.setIcon(pics.he);
         mover = b1.getIcon();
         icon.setIcon(b1.getIcon());
     }
@@ -394,10 +404,22 @@ public class Game implements ActionListener {
         limit = limit5;
         currentLevel.setText("Level: 5");
         timeLimit.setText("Time Limit: 00:20");
-        b1.setIcon(pics.nB4); b2.setIcon(pics.nB7); b3.setIcon(pics.nB5);
-        b4.setIcon(pics.nB2); b5.setIcon(pics.nB3); b6.setIcon(pics.nB9);
-        b7.setIcon(pics.nB8); b8.setIcon(pics.nB6); b9.setIcon(pics.nB1);
-        basisImage.setIcon(pics.nB);
+        b1.setIcon(pics.ict4); b2.setIcon(pics.ict7); b3.setIcon(pics.ict5);
+        b4.setIcon(pics.ict2); b5.setIcon(pics.ict3); b6.setIcon(pics.ict9);
+        b7.setIcon(pics.ict8); b8.setIcon(pics.ict6); b9.setIcon(pics.ict1);
+        basisImage.setIcon(pics.ict);
+        mover = b1.getIcon();
+        icon.setIcon(b1.getIcon());
+    }
+
+    public void Level6() {
+        limit = limit6;
+        currentLevel.setText("Level: 6");
+        timeLimit.setText("Time Limit: 00:10");
+        b1.setIcon(pics.l4); b2.setIcon(pics.l7); b3.setIcon(pics.l5);
+        b4.setIcon(pics.l2); b5.setIcon(pics.l3); b6.setIcon(pics.l9);
+        b7.setIcon(pics.l8); b8.setIcon(pics.l6); b9.setIcon(pics.l1);
+        basisImage.setIcon(pics.logo);
         mover = b1.getIcon();
         icon.setIcon(b1.getIcon());
     }
