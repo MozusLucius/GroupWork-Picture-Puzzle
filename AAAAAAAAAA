@@ -112,3 +112,115 @@ public class Levels extends JFrame implements ActionListener {
         new Levels();
     }
 }
+
+
+
+
+public class Levels extends JFrame implements ActionListener {
+    public Levels() {
+        // Create a JLabel with the background image
+        JLabel background = new JLabel(new ImageIcon("src\\Coding\\digi.jpeg"));
+        background.setLayout(new BorderLayout()); // Set layout to add components
+
+        // Add components to the background JLabel
+        JLabel title = new JLabel("Select a Level", SwingConstants.CENTER);
+        title.setFont(new Font("Arial", Font.BOLD, 36));
+        title.setForeground(Color.WHITE);
+
+        JPanel mainCon = new JPanel(new GridLayout(5, 1));
+        mainCon.setOpaque(false); // Make transparent
+        mainCon.add(title);
+
+        background.add(mainCon, BorderLayout.CENTER);
+
+        // Add background to the frame
+        setContentPane(background);
+
+        // Frame settings
+        setTitle("Level Selection");
+        setSize(800, 600);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        // Action handler implementation here
+    }
+
+    public static void main(String[] args) {
+        new Levels();
+    }
+}
+
+
+
+
+
+
+
+
+public class Levels extends JFrame implements ActionListener {
+    public Levels() {
+        // Set your custom background panel
+        BackgroundPanel background = new BackgroundPanel("src\\Coding\\digi.jpeg");
+        setContentPane(background); // Set this panel as the content pane
+        background.setLayout(new BorderLayout());
+
+        // Add other panels or components
+        JPanel mainCon = new JPanel(new GridLayout(5, 1));
+        mainCon.setOpaque(false); // Make sure panels added to it are transparent
+
+        JLabel title = new JLabel("Select a Level", SwingConstants.CENTER);
+        title.setFont(new Font("Arial", Font.BOLD, 36));
+        title.setForeground(Color.WHITE); // Make text readable on the background
+
+        mainCon.add(title); // Add title to layout
+
+        background.add(mainCon, BorderLayout.CENTER);
+
+        // Frame settings
+        setTitle("Level Selection");
+        setSize(800, 600);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        // Action handler implementation here
+    }
+
+    public static void main(String[] args) {
+        new Levels();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+class BackgroundPanel extends JPanel {
+    private Image backgroundImage;
+
+    // Constructor to load the background image
+    public BackgroundPanel(String imagePath) {
+        backgroundImage = new ImageIcon(imagePath).getImage();
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        // Draw the background image, scaled to fill the panel
+        g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+    }
+}
+
