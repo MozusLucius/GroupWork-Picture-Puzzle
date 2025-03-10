@@ -414,7 +414,7 @@ public class Game implements ActionListener {
 
     public void Level6() {
         limit = limit6;
-        currentLevel.setText("Level: 6");
+        currentLevel.setText("<html><i>SECRET LEVEL...</i></html>");
         timeLimit.setText("Time Limit: 00:10");
         b1.setIcon(pics.l4); b2.setIcon(pics.l7); b3.setIcon(pics.l5);
         b4.setIcon(pics.l2); b5.setIcon(pics.l3); b6.setIcon(pics.l9);
