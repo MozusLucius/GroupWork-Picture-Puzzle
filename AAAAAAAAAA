@@ -1,0 +1,114 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class Levels extends JFrame implements ActionListener {
+    JLabel title, forBack;
+    JPanel backCon, mainCon, con, forMenu, forTitle, forLevel1, forLevel2, forLevel3, forLevel4, forLevel5;
+    JButton level1, level2, level3, level4, level5, mainM;
+    Icon digi = new ImageIcon("src\\Coding\\digi.jpeg");
+    Levels(){
+        this.setTitle("Piczzle");
+        this.setSize(1460, 760);
+        this.setLocation(190, 90);
+        this.setResizable(true);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //this.getContentPane();
+        //this.setOpacity(0.9f);
+        this.getContentPane().setBackground(new Color(0xf5b982));
+        this.setLayout(new BorderLayout(0, 0) );
+
+        backCon = new JPanel(new BorderLayout()); backCon.setOpaque(false);
+        forBack = new JLabel(null, digi, JLabel.CENTER);
+        backCon.add(forBack, BorderLayout.CENTER);
+
+        mainCon = new JPanel(new BorderLayout()); mainCon.setOpaque(false);
+        con = new JPanel();
+        con.setOpaque(false);
+        con.setLayout(new GridLayout(0, 1, 0, 0));
+
+        title = new JLabel("SELECT A LEVEL");
+        title.setFont(new Font("Book Antiqua", Font.BOLD, 70));
+        title.setForeground(Color.BLACK);
+        title.setBounds(700,30,200,50);
+
+        forMenu = new JPanel(new FlowLayout(FlowLayout.LEADING));
+        forMenu.setOpaque(false);
+        mainM = new JButton("<html><center>Main<br>Menu</center></html>");
+        mainM.setPreferredSize(new Dimension(80,50));
+        mainM.setFocusable(false);
+        mainM.setBackground(new Color(0xf5e8a6));
+        mainM.setForeground(Color.BLACK);
+        mainM.setFont(new Font("Lucida Console", Font.PLAIN, 18));
+        mainM.addActionListener(this);
+        forMenu.add(mainM);
+
+        //all buttons
+        level1 = new JButton("LEVEL 1");
+        level1.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30)); level1.setFocusable(false);
+        level1.setPreferredSize(new Dimension(250,100)); level1.addActionListener(this);
+        level2 = new JButton("LEVEL 2");
+        level2.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30)); level2.setFocusable(false);
+        level2.setPreferredSize(new Dimension(250,100)); level2.addActionListener(this);
+        level3 = new JButton("LEVEL 3");
+        level3.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30)); level3.setFocusable(false);
+        level3.setPreferredSize(new Dimension(250,100)); level3.addActionListener(this);
+        level4 = new JButton("LEVEL 4");
+        level4.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30)); level4.setFocusable(false);
+        level4.setPreferredSize(new Dimension(250,100)); level4.addActionListener(this);
+        level5 = new JButton("LEVEL 5");
+        level5.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30)); level5.setFocusable(false);
+        level5.setPreferredSize(new Dimension(250,100)); level5.addActionListener(this);
+
+        //all panels to ensure a centered layout for the window
+        forTitle = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        forLevel1 = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
+        forLevel2 = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
+        forLevel3 = new JPanel(new FlowLayout(FlowLayout.CENTER,0,0));
+        forLevel4 = new JPanel(new FlowLayout(FlowLayout.CENTER,0,0));
+        forLevel5 = new JPanel(new FlowLayout(FlowLayout.CENTER,0,0));
+        forTitle.setOpaque(false); forLevel1.setOpaque(false); forLevel2.setOpaque(false); forLevel3.setOpaque(false); forLevel4.setOpaque(false); forLevel5.setOpaque(false);
+        forTitle.add(title); forLevel1.add(level1); forLevel2.add(level2); forLevel3.add(level3); forLevel4.add(level4); forLevel5.add(level5);
+
+
+        mainCon.add(forMenu, BorderLayout.NORTH);
+        mainCon.add(con, BorderLayout.CENTER);
+        con.add(forTitle); con.add(forLevel1);
+        con.add(forLevel2); con.add(forLevel3);
+        con.add(forLevel4); con.add(forLevel5);
+        this.add(backCon, BorderLayout.CENTER);
+        this.add(mainCon, BorderLayout.CENTER);
+        this.setVisible(true);
+    }
+    @Override
+    public void actionPerformed(ActionEvent e){
+        Tunog.playBMusic();
+        if(e.getSource() == mainM){
+            dispose();
+            new Main();
+        } else if(e.getSource() == level1){
+            dispose();
+            Puzzle p = new Puzzle();
+            p.game.Level1();
+        } else if (e.getSource() == level2){
+            dispose();
+            Puzzle p = new Puzzle();
+            p.game.Level2();
+        } else if (e.getSource() == level3){
+            dispose();
+            Puzzle p = new Puzzle();
+            p.game.Level3();
+        } else if (e.getSource() == level4){
+            dispose();
+            Puzzle p = new Puzzle();
+            p.game.Level4();
+        } else if (e.getSource() == level5){
+            dispose();
+            Puzzle p = new Puzzle();
+            p.game.Level5();
+        }
+    }
+    public static void main (String[] args){
+        new Levels();
+    }
+}
