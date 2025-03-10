@@ -12,15 +12,15 @@ public class Main extends JFrame implements ActionListener {
     Main(){
         this.setTitle("Piczzle");
         this.setSize(1460, 760);
-        this.setLocation(60, 30);
+        this.setLocation(190, 90);
         this.setResizable(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().setBackground(new Color(0xf5b982));
         this.setLayout(new GridLayout(0, 1, 0, 0));
 
         title = new JLabel("<html><center>WELCOME TO<br>PICZZLE!</center></html>");
-        title.setFont(new Font("Book Antiqua", Font.BOLD, 80));
-        title.setForeground(Color.BLACK);
+        title.setFont(new Font("Rosewood Std Regular", Font.BOLD, 80));
+        title.setForeground(Color.BLACK); //Book Antiqua
         title.setBounds(700,30,200,50);
         //all buttons
         levels = new JButton("LEVELS");
