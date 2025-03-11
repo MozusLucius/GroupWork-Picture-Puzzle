@@ -3,7 +3,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class Tunog {
-    private static Clip sound1, sound2, sound3, sound4, sound5, sound6, sound7;
+    private static Clip sound1, sound2, sound3, sound4, sound5, sound6, sound7, sound8;
     private static boolean muted1 = false; //bgm
     private static boolean muted2 = false; //play bgm
     private static boolean muted3 = false; //buttons
@@ -11,6 +11,7 @@ public class Tunog {
     private static boolean muted5 = false; //fail
     private static boolean muted6 = false; //solved
     private static boolean muted7 = false; //win
+    private static boolean muted8 = false;
 
     static boolean isMute = false;
     static FloatControl fc;
@@ -44,6 +45,12 @@ public class Tunog {
     playSolvedMusic     = the sound when a puzzle is solved
     toggleSolvedMute         = to turn off/mute solved sound
     toggleSolvedUnmute       = to turn back on the muted solved sound
+
+    playBossMusic        = sound to play when player beats all levels
+    stopBossMusic         = stops win music
+    pauseBossMusic        = pauses win music
+    resumeBossMusic       = resumes win music
+    toggleBossMute        = to mute winmusic
 
     playWinMusic        = sound to play when player beats all levels
     stopWinMusic         = stops win music
@@ -239,6 +246,45 @@ public class Tunog {
         }
     }
 
+
+    public static void playBossMusic() {
+        if (sound8 == null || !sound8.isRunning()) {
+            try {
+                AudioInputStream audioInput = AudioSystem.getAudioInputStream(new File("src\\Coding\\Musika\\Mingol.wav"));
+                sound8 = AudioSystem.getClip();
+                sound8.open(audioInput);
+                sound8.loop(sound8.LOOP_CONTINUOUSLY); // Loop the music
+                if (!muted8) {
+                    // Play the button sound
+                    sound8.start();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    // Stop and release resources
+    public static void stopBossMusic() { if(sound8 != null){ sound8.stop(); sound8.close(); }}
+    // Pause the music
+    public static void pauseBossMusic() { if(sound8 != null && sound8.isRunning()) { sound8.stop(); }}
+    // Resume the music
+    public static void resumeBossMusic() { if (sound8 != null && !sound8.isRunning()) { sound8.start();}}
+    public static void toggleBossMute() {
+        if (sound8 != null) {
+            System.out.println("Boss music mute: "+ muted8);
+            FloatControl volume = (FloatControl) sound8.getControl(FloatControl.Type.MASTER_GAIN);
+            if (!muted8){ volume.setValue(-80.0f); muted8 = true; }
+        }
+    }
+    public static void toggleBossUnmute() {
+        System.out.println("Boss music mute: "+ muted8);
+        if (sound8 != null) {
+            FloatControl volume = (FloatControl) sound8.getControl(FloatControl.Type.MASTER_GAIN);
+            if (muted8){ volume.setValue(0.0f); muted8 = false; }
+        }
+    }
+
+
     //playWinMusic
     public static void playWinMusic() {
         try {
@@ -254,7 +300,7 @@ public class Tunog {
         }
     }
     // Stop and release resources
-    public static void stopWinMusic() { if(sound7 != null){ sound7.stop(); sound7.close(); }}
+    public static void stopWinMusic() {System.out.println("Entered stopWinMusic"); if(sound7 != null){ sound7.stop(); sound7.close(); }}
     // Pause the music
     public static void pauseWinMusic() { if(sound7 != null && sound7.isRunning()) { sound7.stop(); }}
     // Resume the music
