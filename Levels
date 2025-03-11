@@ -3,25 +3,37 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class Levels extends JFrame implements ActionListener {
-    JLabel title;
-    JPanel con, forMenu, forTitle, forLevel1, forLevel2, forLevel3, forLevel4, forLevel5;
+    JLabel title, forBack;
+    JPanel mainCon, con, forMenu, forTitle, forLevel1, forLevel2, forLevel3, forLevel4, forLevel5;
     JButton level1, level2, level3, level4, level5, mainM;
-    Levels(){
-        this.setTitle("Piczzle");
-        this.setSize(1460, 760);
-        this.setLocation(190, 90);
-        this.setResizable(true);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.getContentPane().setBackground(new Color(0xf5b982));
-        this.setLayout(new BorderLayout());
+    boolean nabuo2 = false;
+    boolean nabuo3 = false;
+    boolean nabuo4 = false;
+    boolean nabuo5 = false;
+    int solves = 0;
 
+    Levels(){
+        forBack = new JLabel(new ImageIcon("src\\Coding\\digi.jpg"));
+        forBack.setLayout(new BorderLayout(0,0));
+
+        setTitle("Piczzle");
+        ImageIcon piku = new ImageIcon("src\\Coding\\piku.png");
+        this.setIconImage(piku.getImage());
+        setSize(1460, 760);
+        setLocation(190, 90);
+        setResizable(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        getContentPane().setBackground(new Color(0xf5b982));
+        setLayout(new BorderLayout(0, 0) );
+
+        mainCon = new JPanel(new BorderLayout()); mainCon.setOpaque(false);
         con = new JPanel();
         con.setOpaque(false);
         con.setLayout(new GridLayout(0, 1, 0, 0));
 
         title = new JLabel("SELECT A LEVEL");
         title.setFont(new Font("Book Antiqua", Font.BOLD, 70));
-        title.setForeground(Color.BLACK);
+        title.setForeground(Color.WHITE);
         title.setBounds(700,30,200,50);
 
         forMenu = new JPanel(new FlowLayout(FlowLayout.LEADING));
@@ -37,20 +49,20 @@ public class Levels extends JFrame implements ActionListener {
 
         //all buttons
         level1 = new JButton("LEVEL 1");
-        level1.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30)); level1.setFocusable(false);
-        level1.setPreferredSize(new Dimension(250,100)); level1.addActionListener(this);
+        level1.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30)); level1.setFocusable(false); level1.setBackground(Color.BLACK);
+        level1.setPreferredSize(new Dimension(250,100)); level1.addActionListener(this); level1.setForeground(Color.LIGHT_GRAY);
         level2 = new JButton("LEVEL 2");
-        level2.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30)); level2.setFocusable(false);
-        level2.setPreferredSize(new Dimension(250,100)); level2.addActionListener(this);
+        level2.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30)); level2.setFocusable(false); level2.setEnabled(false); level2.setBackground(Color.BLACK);
+        level2.setPreferredSize(new Dimension(250,100)); level2.addActionListener(this); level2.setForeground(Color.LIGHT_GRAY);
         level3 = new JButton("LEVEL 3");
-        level3.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30)); level3.setFocusable(false);
-        level3.setPreferredSize(new Dimension(250,100)); level3.addActionListener(this);
+        level3.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30)); level3.setFocusable(false); level3.setEnabled(false); level3.setBackground(Color.BLACK);
+        level3.setPreferredSize(new Dimension(250,100)); level3.addActionListener(this); level3.setForeground(Color.LIGHT_GRAY);
         level4 = new JButton("LEVEL 4");
-        level4.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30)); level4.setFocusable(false);
-        level4.setPreferredSize(new Dimension(250,100)); level4.addActionListener(this);
+        level4.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30)); level4.setFocusable(false); level4.setEnabled(false); level4.setBackground(Color.BLACK);
+        level4.setPreferredSize(new Dimension(250,100)); level4.addActionListener(this); level4.setForeground(Color.LIGHT_GRAY);
         level5 = new JButton("LEVEL 5");
-        level5.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30)); level5.setFocusable(false);
-        level5.setPreferredSize(new Dimension(250,100)); level5.addActionListener(this);
+        level5.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30)); level5.setFocusable(false); level5.setEnabled(false); level5.setBackground(Color.BLACK);
+        level5.setPreferredSize(new Dimension(250,100)); level5.addActionListener(this); level5.setForeground(Color.LIGHT_GRAY);
 
         //all panels to ensure a centered layout for the window
         forTitle = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -62,14 +74,27 @@ public class Levels extends JFrame implements ActionListener {
         forTitle.setOpaque(false); forLevel1.setOpaque(false); forLevel2.setOpaque(false); forLevel3.setOpaque(false); forLevel4.setOpaque(false); forLevel5.setOpaque(false);
         forTitle.add(title); forLevel1.add(level1); forLevel2.add(level2); forLevel3.add(level3); forLevel4.add(level4); forLevel5.add(level5);
 
-        this.add(forMenu, BorderLayout.NORTH);
-        this.add(con, BorderLayout.CENTER);
+        mainCon.add(forMenu, BorderLayout.NORTH);
+        mainCon.add(con, BorderLayout.CENTER);
         con.add(forTitle); con.add(forLevel1);
         con.add(forLevel2); con.add(forLevel3);
         con.add(forLevel4); con.add(forLevel5);
 
-        this.setVisible(true);
+        forBack.add(mainCon);
+        setContentPane(forBack);
+        setVisible(true);
+        //buttons disabled conditions
+        if (nabuo2){
+            level2.setEnabled(true);
+        } else if (nabuo3){
+            level3.setEnabled(true);
+        } else if (nabuo4){
+            level4.setEnabled(true);
+        } else if (nabuo5){
+            level5.setEnabled(true);
+        }
     }
+
     @Override
     public void actionPerformed(ActionEvent e){
         Tunog.playBMusic();
@@ -78,23 +103,23 @@ public class Levels extends JFrame implements ActionListener {
             new Main();
         } else if(e.getSource() == level1){
             dispose();
-            Puzzle p = new Puzzle();
+            Puzzle p = new Puzzle(this);
             p.game.Level1();
         } else if (e.getSource() == level2){
             dispose();
-            Puzzle p = new Puzzle();
+            Puzzle p = new Puzzle(this);
             p.game.Level2();
         } else if (e.getSource() == level3){
             dispose();
-            Puzzle p = new Puzzle();
+            Puzzle p = new Puzzle(this);
             p.game.Level3();
         } else if (e.getSource() == level4){
             dispose();
-            Puzzle p = new Puzzle();
+            Puzzle p = new Puzzle(this);
             p.game.Level4();
         } else if (e.getSource() == level5){
             dispose();
-            Puzzle p = new Puzzle();
+            Puzzle p = new Puzzle(this);
             p.game.Level5();
         }
     }
