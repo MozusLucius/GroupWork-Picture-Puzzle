@@ -6,8 +6,8 @@ public class Settings extends JFrame implements ActionListener {
 
     Icon picMute = new ImageIcon("src\\Coding\\Musika\\Sounds\\smallMute.png");
     Icon picNotMute = new ImageIcon("src\\Coding\\Musika\\Sounds\\smallVolume.png");
-    JLabel title, bg, pg, buttons, playB, fail, complete, win;
-    JPanel forMenu, con, forTitle, con1;
+    JLabel title, bg, pg, buttons, playB, fail, complete, win, forBack;
+    JPanel mainCon, forMenu, con, forTitle, con1;
     JButton mainM,
             bgMute, bgUnmute,
             pgMute, pgUnmute,
@@ -19,15 +19,19 @@ public class Settings extends JFrame implements ActionListener {
     Tunog m = new Tunog();
 
     Settings() {
-//        Tunog.resumeBGMusic();
+        forBack = new JLabel(new ImageIcon("src\\Coding\\uwu.gif"));
+        forBack.setLayout(new BorderLayout(-100,-100));
+
         this.setTitle("Piczzle");
+        ImageIcon piku = new ImageIcon("src\\Coding\\piku.png");
+        this.setIconImage(piku.getImage());
         this.setSize(1460, 760);
         this.setLocation(190, 90);
         this.setResizable(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().setBackground(new Color(0xf5b982));
         this.setLayout(new BorderLayout());
-
+        mainCon = new JPanel(new BorderLayout(0,0)); mainCon.setOpaque(false);
         con = new JPanel(new BorderLayout()); con.setOpaque(false);
 
         forMenu = new JPanel(new FlowLayout(FlowLayout.LEADING));
@@ -146,8 +150,11 @@ public class Settings extends JFrame implements ActionListener {
         column7.add(column7A); column7.add(column7B);
         con.add(con2, BorderLayout.SOUTH);
 
-        this.add(forMenu, BorderLayout.NORTH);
-        this.add(con, BorderLayout.CENTER);
+        mainCon.add(forMenu, BorderLayout.NORTH);
+        mainCon.add(con, BorderLayout.CENTER);
+
+        forBack.add(mainCon);
+        setContentPane(forBack);
         this.setVisible(true);
     }
 
