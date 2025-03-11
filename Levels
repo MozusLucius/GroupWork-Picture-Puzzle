@@ -6,19 +6,20 @@ public class Levels extends JFrame implements ActionListener {
     JLabel title, forBack;
     JPanel mainCon, con, forMenu, forTitle, forLevel1, forLevel2, forLevel3, forLevel4, forLevel5;
     JButton level1, level2, level3, level4, level5, mainM;
-    boolean nabuo2 = false;
-    boolean nabuo3 = false;
-    boolean nabuo4 = false;
-    boolean nabuo5 = false;
-    int solves = 0;
+    static boolean unlock2 = false;
+    static boolean unlock3 = false;
+    static boolean unlock4 = false;
+    static boolean unlock5 = false;
+    Game game = new Game(null, this);
 
     Levels(){
         forBack = new JLabel(new ImageIcon("src\\Coding\\digi.jpg"));
         forBack.setLayout(new BorderLayout(0,0));
 
         setTitle("Piczzle");
-        ImageIcon piku = new ImageIcon("src\\Coding\\piku.png");
-        this.setIconImage(piku.getImage());
+        ImageIcon piku = new ImageIcon("src\\Coding\\xocolat atelier.png");
+        setIconImage(piku.getImage());
+        setExtendedState(MAXIMIZED_BOTH);
         setSize(1460, 760);
         setLocation(190, 90);
         setResizable(true);
@@ -83,42 +84,45 @@ public class Levels extends JFrame implements ActionListener {
         forBack.add(mainCon);
         setContentPane(forBack);
         setVisible(true);
-        //buttons disabled conditions
-        if (nabuo2){
-            level2.setEnabled(true);
-        } else if (nabuo3){
-            level3.setEnabled(true);
-        } else if (nabuo4){
-            level4.setEnabled(true);
-        } else if (nabuo5){
-            level5.setEnabled(true);
-        }
+        levelUnlocked();
+    }
+
+    public void levelUnlocked(){
+//        if (solves >= 2){level2.setEnabled(true);}
+//        if (solves >= 3){level3.setEnabled(true);}
+//        if (solves >= 4){level4.setEnabled(true);}
+//        if (solves >= 5){level5.setEnabled(true);}
+        if (unlock2) level2.setEnabled(true);
+        if (unlock3) level3.setEnabled(true);
+        if (unlock4) level4.setEnabled(true);
+        if (unlock5) level5.setEnabled(true);
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e){
         Tunog.playBMusic();
         if(e.getSource() == mainM){
-            dispose();
+            this.setVisible(false);
             new Main();
         } else if(e.getSource() == level1){
-            dispose();
+            this.setVisible(false);
             Puzzle p = new Puzzle(this);
             p.game.Level1();
         } else if (e.getSource() == level2){
-            dispose();
+            this.setVisible(false);
             Puzzle p = new Puzzle(this);
             p.game.Level2();
         } else if (e.getSource() == level3){
-            dispose();
+            this.setVisible(false);
             Puzzle p = new Puzzle(this);
             p.game.Level3();
         } else if (e.getSource() == level4){
-            dispose();
+            this.setVisible(false);
             Puzzle p = new Puzzle(this);
             p.game.Level4();
         } else if (e.getSource() == level5){
-            dispose();
+            this.setVisible(false);
             Puzzle p = new Puzzle(this);
             p.game.Level5();
         }
