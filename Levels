@@ -10,7 +10,6 @@ public class Levels extends JFrame implements ActionListener {
     static boolean unlock3 = false;
     static boolean unlock4 = false;
     static boolean unlock5 = false;
-    Game game = new Game(null, this);
 
     Levels(){
         forBack = new JLabel(new ImageIcon("src\\Coding\\digi.jpg"));
