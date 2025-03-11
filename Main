@@ -8,7 +8,6 @@ public class Main extends JFrame implements ActionListener {
     JPanel forTitle, forLevels, forSettings, forGuide;
     JButton levels, settings, guide;
     Tunog m = new Tunog();
-
     Main(){
         this.setTitle("Piczzle");
         ImageIcon piku = new ImageIcon("src\\Coding\\piku.png");
