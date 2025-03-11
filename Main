@@ -11,6 +11,8 @@ public class Main extends JFrame implements ActionListener {
 
     Main(){
         this.setTitle("Piczzle");
+        ImageIcon piku = new ImageIcon("src\\Coding\\piku.png");
+        this.setIconImage(piku.getImage());
         this.setSize(1460, 760);
         this.setLocation(190, 90);
         this.setResizable(true);
