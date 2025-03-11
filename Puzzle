@@ -13,10 +13,13 @@ public class Puzzle extends JFrame implements ActionListener {
     String [] response1 = {"Next Level", "Replay", "Back to Levels"};
     String [] response2 = {"Replay", "Back to Levels"};
     String [] response3 = {"Yes", "Replay this Level", "Back to Levels"};
+    Levels levels;
 
-    Puzzle(){
-
+    Puzzle(Levels levels){
+        this.levels = levels;
         this.setTitle("Piczzle");
+        ImageIcon piku = new ImageIcon("src\\Coding\\piku.png");
+        this.setIconImage(piku.getImage());
         this.setSize(1460, 760);
         this.setLocation(190, 90);
         this.setResizable(true);
@@ -170,7 +173,7 @@ public class Puzzle extends JFrame implements ActionListener {
             if(a==JOptionPane.YES_OPTION){
                 Tunog.playBMusic();
                 dispose();
-                Puzzle p = new Puzzle();
+                Puzzle p = new Puzzle(null);
                 game.solved = false;
                 if (game.currentLevel.getText().equals("Level: 1")){
                     p.game.Level2();
@@ -186,7 +189,7 @@ public class Puzzle extends JFrame implements ActionListener {
             } else if(a==JOptionPane.NO_OPTION){
                 Tunog.playBMusic();
                 dispose();
-                Puzzle p = new Puzzle();
+                Puzzle p = new Puzzle(null);
                 game.solved = false;
                 if (game.currentLevel.getText().equals("Level: 1")){
                     p.game.Level1();
@@ -203,6 +206,23 @@ public class Puzzle extends JFrame implements ActionListener {
                 Tunog.playBMusic();
                 dispose();
                 new Levels();
+                if (game.currentLevel.getText().equals("Level: 2")){
+                    levels.nabuo2 = true;
+                    levels.solves = 1;
+                    System.out.println(levels.nabuo2);
+                } else if (game.currentLevel.getText().equals("Level: 3")){
+                    levels.nabuo2 = true;
+                    levels.nabuo3 = true;
+                } else if (game.currentLevel.getText().equals("Level: 4")){
+                    levels.nabuo2 = true;
+                    levels.nabuo3 = true;
+                    levels.nabuo4 = true;
+                } else if (game.currentLevel.getText().equals("Level: 5")){
+                    levels.nabuo2 = true;
+                    levels.nabuo3 = true;
+                    levels.nabuo4 = true;
+                    levels.nabuo5 = true;
+                }
             }
         }
 
@@ -218,7 +238,7 @@ public class Puzzle extends JFrame implements ActionListener {
                 Tunog.playBMusic();
                 Tunog.resumeBGMusic();
                 dispose();
-                Puzzle p = new Puzzle();
+                Puzzle p = new Puzzle(null);
                 game.solved = false;
                 if (game.currentLevel.getText().equals("Level: 1")){
                     p.game.Level1();
@@ -252,7 +272,7 @@ public class Puzzle extends JFrame implements ActionListener {
             Tunog.stopWinMusic();
             Tunog.playBGMusic();
             dispose();
-            Puzzle p = new Puzzle();
+            Puzzle p = new Puzzle(null);
             game.solved = false;
             p.game.Level1();
         } else if(c==JOptionPane.NO_OPTION){
@@ -260,7 +280,7 @@ public class Puzzle extends JFrame implements ActionListener {
             Tunog.stopWinMusic();
             Tunog.resumeBGMusic();
             dispose();
-            Puzzle p = new Puzzle();
+            Puzzle p = new Puzzle(null);
             game.solved = false;
             p.game.Level6();
         } else if(c==JOptionPane.CANCEL_OPTION){
@@ -273,6 +293,6 @@ public class Puzzle extends JFrame implements ActionListener {
     }
 
     public static void main (String[] args){
-        new Puzzle();
+        new Puzzle(null);
     }
 }
