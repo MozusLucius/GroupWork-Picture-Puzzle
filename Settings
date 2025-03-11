@@ -19,8 +19,8 @@ public class Settings extends JFrame implements ActionListener {
     Tunog m = new Tunog();
 
     Settings() {
-        forBack = new JLabel(new ImageIcon("src\\Coding\\uwu.gif"));
-        forBack.setLayout(new BorderLayout(-100,-100));
+        forBack = new JLabel(new ImageIcon("src\\Coding\\SETTINGS (1).gif"));
+        forBack.setLayout(new BorderLayout(0,0));
 
         this.setTitle("Piczzle");
         ImageIcon piku = new ImageIcon("src\\Coding\\piku.png");
@@ -28,6 +28,7 @@ public class Settings extends JFrame implements ActionListener {
         this.setSize(1460, 760);
         this.setLocation(190, 90);
         this.setResizable(true);
+        this.setExtendedState(MAXIMIZED_BOTH);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().setBackground(new Color(0xf5b982));
         this.setLayout(new BorderLayout());
@@ -176,8 +177,10 @@ public class Settings extends JFrame implements ActionListener {
         if  (e.getSource() == pgMute){
             System.out.println("buttonsMute clicked");
             Tunog.togglePGMute();
+            Tunog.toggleBossMute();
         } else if (e.getSource() == pgUnmute) {
             Tunog.togglePGUnmute();
+            Tunog.toggleBossUnmute();
         }
 
         //button sounds mute
