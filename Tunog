@@ -61,7 +61,10 @@ public class Tunog {
                 sound1 = AudioSystem.getClip();
                 sound1.open(audioInput);
                 sound1.loop(sound1.LOOP_CONTINUOUSLY); // Loop the music
-                sound1.start();
+                if (!muted1) {
+                    // Play the button sound
+                    sound1.start();
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -75,11 +78,13 @@ public class Tunog {
     public static void resumeBGMusic() { if (sound1 != null && !sound1.isRunning()) { sound1.start();}}
     public static void toggleBGMute() {
         if (sound1 != null) {
+            System.out.println("BG music mute: "+ muted1);
             FloatControl volume = (FloatControl) sound1.getControl(FloatControl.Type.MASTER_GAIN);
             if (!muted1){ volume.setValue(-80.0f); muted1 = true; }
         }
     }
     public static void toggleBGUnmute() {
+        System.out.println("BG music mute: "+ muted1);
         if (sound1 != null) {
             FloatControl volume = (FloatControl) sound1.getControl(FloatControl.Type.MASTER_GAIN);
             if (muted1){ volume.setValue(0.0f); muted1 = false; }
@@ -95,7 +100,10 @@ public class Tunog {
                 sound2 = AudioSystem.getClip();
                 sound2.open(audioInput);
                 sound2.loop(sound2.LOOP_CONTINUOUSLY); // Loop the music
-                sound2.start();
+                if (!muted2) {
+                    // Play the button sound
+                    sound2.start();
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -153,7 +161,10 @@ public class Tunog {
             AudioInputStream audioInput = AudioSystem.getAudioInputStream(new File("src\\Coding\\Musika\\Switch.wav"));
             sound4 = AudioSystem.getClip();
             sound4.open(audioInput);
-            sound4.start();
+            if (!muted4) {
+                // Play the button sound
+                sound4.start();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -173,27 +184,28 @@ public class Tunog {
 
     //playFailMusic
     public static void playFailMusic() {
+        System.out.println("play Fail music: "+ muted5);
         try {
             AudioInputStream audioInput = AudioSystem.getAudioInputStream(new File("src\\Coding\\Musika\\Fail.wav"));
             sound5 = AudioSystem.getClip();
             sound5.open(audioInput);
-            sound5.start();
+            if (!muted5) {
+                // Play the button sound
+                sound5.start();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
     public static void toggleFailMute() {
-//        if (sound5 != null) {
-//            FloatControl volume = (FloatControl) sound5.getControl(FloatControl.Type.MASTER_GAIN);
-//            if (!muted5) { volume.setValue(-80.0f); muted5 = true; }
-//        }
-        if(!isMute){
-            fc.setValue(fc.getMinimum());
-            isMute = true;
+        System.out.println("Fail music mute: "+ muted5);
+        if (sound5 != null) {
+            FloatControl volume = (FloatControl) sound5.getControl(FloatControl.Type.MASTER_GAIN);
+            if (!muted5) { volume.setValue(-80.0f); muted5 = true; }
         }
-
     }
     public static void toggleFailUnmute() {
+        System.out.println("Fail music Unmute: "+ muted5);
         if (sound5 != null) {
             FloatControl volume = (FloatControl) sound5.getControl(FloatControl.Type.MASTER_GAIN);
             if (muted5){ volume.setValue(0.0f); muted5 = false; }
@@ -206,7 +218,10 @@ public class Tunog {
             AudioInputStream audioInput = AudioSystem.getAudioInputStream(new File("src\\Coding\\Musika\\Complete.wav"));
             sound6 = AudioSystem.getClip();
             sound6.open(audioInput);
-            sound6.start();
+            if (!muted6) {
+                // Play the button sound
+                sound6.start();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -230,7 +245,10 @@ public class Tunog {
             AudioInputStream audioInput = AudioSystem.getAudioInputStream(new File("src\\Coding\\Musika\\Driftveil.wav"));
             sound7 = AudioSystem.getClip();
             sound7.open(audioInput);
-            sound7.start();
+            if (!muted7) {
+                // Play the button sound
+                sound7.start();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
