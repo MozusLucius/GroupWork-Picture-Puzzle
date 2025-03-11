@@ -10,7 +10,7 @@ public class Game implements ActionListener {
     //timer stuffs
     int timerSeconds = 0;
     int limit = 0;
-    int limit1 = 1;
+    int limit1 = 100;
     int limit2 = 50;
     int limit3 = 40;
     int limit4 = 30;
@@ -83,7 +83,7 @@ public class Game implements ActionListener {
             }
         } else if(e.getSource() == restart){
             System.out.println("Game Restart button clicked");
-            Puzzle p = new Puzzle();
+            Puzzle p = new Puzzle(null);
             if (basisImage.getIcon() == pics.humss){
                 p.game.Level1();
             } else if (basisImage.getIcon() == pics.stem){
@@ -103,41 +103,31 @@ public class Game implements ActionListener {
         //icon button's functions
         if (e.getSource() == icon) {
             Tunog.playPBMusic();
-            System.out.println("Icons grabbed");
             if (icon.getIcon().equals(b9.getIcon())) {
-                System.out.println("Icon to b1's");
                 mover = b1.getIcon();
                 icon.setIcon(mover);
             } else if (icon.getIcon().equals(b1.getIcon())){
-                System.out.println("Icon to b2's");
                 mover = b2.getIcon();
                 icon.setIcon(mover);
             } else if (icon.getIcon().equals(b2.getIcon())) {
-                System.out.println("Icon to b3's");
                 mover = b3.getIcon();
                 icon.setIcon(mover);
             } else if (icon.getIcon().equals(b3.getIcon())) {
-                System.out.println("Icon to b4's");
                 mover = b4.getIcon();
                 icon.setIcon(mover);
             } else if (icon.getIcon().equals(b4.getIcon())) {
-                System.out.println("Icon to b5's");
                 mover = b5.getIcon();
                 icon.setIcon(mover);
             } else if (icon.getIcon().equals(b5.getIcon())) {
-                System.out.println("Icon to b6's");
                 mover = b6.getIcon();
                 icon.setIcon(mover);
             } else if (icon.getIcon().equals(b6.getIcon())) {
-                System.out.println("Icon to b7's");
                 mover = b7.getIcon();
                 icon.setIcon(mover);
             } else if (icon.getIcon().equals(b7.getIcon())) {
-                System.out.println("Icon to b8's");
                 mover = b8.getIcon();
                 icon.setIcon(mover);
             } else if (icon.getIcon().equals(b8.getIcon())) {
-                System.out.println("Icon to b9's");
                 mover = b9.getIcon();
                 icon.setIcon(mover);
             }
@@ -146,7 +136,6 @@ public class Game implements ActionListener {
         //Puzzle Buttons
         //first button
         if (e.getSource() == b1) {
-            System.out.println("B1 clicked");
             if (b2.getIcon() == mover) {
                 b2.setIcon(b1.getIcon());
                 b1.setIcon(mover);
@@ -160,7 +149,6 @@ public class Game implements ActionListener {
         }
         //second button
         if (e.getSource() == b2) {
-            System.out.println("B2 clicked");
             if (b1.getIcon() == mover) {
                 b1.setIcon(b2.getIcon());
                 b2.setIcon(mover);
@@ -178,7 +166,6 @@ public class Game implements ActionListener {
         }
         //third button
         if (e.getSource() == b3) {
-            System.out.println("B3 clicked");
             if (b2.getIcon() == mover) {
                 b2.setIcon(b3.getIcon());
                 b3.setIcon(mover);
@@ -192,7 +179,6 @@ public class Game implements ActionListener {
         }
         //fourth button
         if (e.getSource() == b4) {
-            System.out.println("B4 clicked");
             if (b1.getIcon() == mover) {
                 b1.setIcon(b4.getIcon());
                 b4.setIcon(mover);
@@ -210,7 +196,6 @@ public class Game implements ActionListener {
         }
         //fifth button
         if (e.getSource() == b5) {
-            System.out.println("B5 clicked");
             if (b2.getIcon() == mover) {
                 b2.setIcon(b5.getIcon());
                 b5.setIcon(mover);
@@ -232,7 +217,6 @@ public class Game implements ActionListener {
         }
         //sixth button
         if (e.getSource() == b6) {
-            System.out.println("B6 clicked");
             if (b3.getIcon() == mover) {
                 b3.setIcon(b6.getIcon());
                 b6.setIcon(mover);
@@ -250,7 +234,6 @@ public class Game implements ActionListener {
         }
         //seventh button
         if (e.getSource() == b7) {
-            System.out.println("B7 clicked");
             if (b4.getIcon() == mover) {
                 b4.setIcon(b7.getIcon());
                 b7.setIcon(mover);
@@ -264,7 +247,6 @@ public class Game implements ActionListener {
         }
         //eighth button
         if (e.getSource() == b8) {
-            System.out.println("B8 clicked");
             if (b7.getIcon() == mover) {
                 b7.setIcon(b8.getIcon());
                 b8.setIcon(mover);
@@ -282,7 +264,6 @@ public class Game implements ActionListener {
         }
         //ninth button
         if (e.getSource() == b9) {
-            System.out.println("B9 clicked");
             if (b6.getIcon() == mover) {
                 b6.setIcon(b9.getIcon());
                 b9.setIcon(mover);
