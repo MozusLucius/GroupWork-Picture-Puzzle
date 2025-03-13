@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 
 public class Game implements ActionListener {
@@ -10,7 +11,7 @@ public class Game implements ActionListener {
     //timer stuffs
     int timerSeconds = 0;
     int limit = 0;
-    int limit1 = 100;
+    int limit1 = 60;
     int limit2 = 50;
     int limit3 = 40;
     int limit4 = 30;
@@ -18,8 +19,9 @@ public class Game implements ActionListener {
     int limit6 = 15;
     public static Timer timer;
     boolean solved = false;
+    //class calls
     Tunog m = new Tunog();
-    private Puzzle puzzle;
+    Puzzle puzzle;
 
     Game(Puzzle puzzle) {
         System.out.println("Constructor: "+solved);
@@ -83,7 +85,7 @@ public class Game implements ActionListener {
             }
         } else if(e.getSource() == restart){
             System.out.println("Game Restart button clicked");
-            Puzzle p = new Puzzle(null);
+            Puzzle p = new Puzzle(puzzle.levels);
             if (basisImage.getIcon() == pics.humss){
                 p.game.Level1();
             } else if (basisImage.getIcon() == pics.stem){
@@ -395,8 +397,10 @@ public class Game implements ActionListener {
 
     public void Level6() {
         limit = limit6;
-        currentLevel.setText("<html><i>SECRET LEVEL...</i></html>");
-        timeLimit.setText("Time Limit: 00:10");
+        currentLevel.setText("<html><i>BOSS LEVEL...</i></html>");
+        currentLevel.setBounds(120,10,420,50);
+        currentLevel.setFont(new Font("Pristina", Font.BOLD, 45));
+        timeLimit.setText("Time Limit: 00:15");
         b1.setIcon(pics.l4); b2.setIcon(pics.l7); b3.setIcon(pics.l5);
         b4.setIcon(pics.l2); b5.setIcon(pics.l3); b6.setIcon(pics.l9);
         b7.setIcon(pics.l8); b8.setIcon(pics.l6); b9.setIcon(pics.l1);
