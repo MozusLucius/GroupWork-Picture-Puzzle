@@ -12,11 +12,11 @@ public class Levels extends JFrame implements ActionListener {
     static boolean unlock5 = false;
 
     Levels(){
-        forBack = new JLabel(new ImageIcon("src\\Coding\\digi.jpg"));
+        forBack = new JLabel(new ImageIcon("src\\Coding\\GIF\\Stay Tuned.gif"));
         forBack.setLayout(new BorderLayout(0,0));
 
         setTitle("Piczzle");
-        ImageIcon piku = new ImageIcon("src\\Coding\\xocolat atelier.png");
+        ImageIcon piku = new ImageIcon("src\\Coding\\piku.png");
         setIconImage(piku.getImage());
         setExtendedState(MAXIMIZED_BOTH);
         setSize(1460, 760);
@@ -31,7 +31,7 @@ public class Levels extends JFrame implements ActionListener {
         con.setOpaque(false);
         con.setLayout(new GridLayout(0, 1, 0, 0));
 
-        title = new JLabel("SELECT A LEVEL");
+        title = new JLabel(" ");
         title.setFont(new Font("Book Antiqua", Font.BOLD, 70));
         title.setForeground(Color.WHITE);
         title.setBounds(700,30,200,50);
@@ -61,7 +61,7 @@ public class Levels extends JFrame implements ActionListener {
         level4.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30)); level4.setFocusable(false); level4.setEnabled(false); level4.setBackground(Color.BLACK);
         level4.setPreferredSize(new Dimension(250,100)); level4.addActionListener(this); level4.setForeground(Color.LIGHT_GRAY);
         level5 = new JButton("LEVEL 5");
-        level5.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30)); level5.setFocusable(false); level5.setEnabled(false); level5.setBackground(Color.BLACK);
+        level5.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30)); level5.setFocusable(false); level5.setEnabled(true); level5.setBackground(Color.BLACK);
         level5.setPreferredSize(new Dimension(250,100)); level5.addActionListener(this); level5.setForeground(Color.LIGHT_GRAY);
 
         //all panels to ensure a centered layout for the window
@@ -87,15 +87,10 @@ public class Levels extends JFrame implements ActionListener {
     }
 
     public void levelUnlocked(){
-//        if (solves >= 2){level2.setEnabled(true);}
-//        if (solves >= 3){level3.setEnabled(true);}
-//        if (solves >= 4){level4.setEnabled(true);}
-//        if (solves >= 5){level5.setEnabled(true);}
         if (unlock2) level2.setEnabled(true);
         if (unlock3) level3.setEnabled(true);
         if (unlock4) level4.setEnabled(true);
         if (unlock5) level5.setEnabled(true);
-
     }
 
     @Override
