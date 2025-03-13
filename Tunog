@@ -11,12 +11,10 @@ public class Tunog {
     private static boolean muted5 = false; //fail
     private static boolean muted6 = false; //solved
     private static boolean muted7 = false; //win
-    private static boolean muted8 = false;
+    private static boolean muted8 = false; //boss
 
     static boolean isMute = false;
     static FloatControl fc;
-    //    String hard = ("src\\Coding\\Musika\\Hard click.wav");
-//    String playClick = ("src\\Coding\\Musika\\Switch.wav");
     /*
     playBGMusic         = the background music
     stopBGMusic         = stops bg music
@@ -150,15 +148,16 @@ public class Tunog {
         }
     }
     public static void toggleBMute() {
+        System.out.println("Entered toggleBMute: "+ muted3);
         if (sound3 != null) {
             FloatControl volume = (FloatControl) sound3.getControl(FloatControl.Type.MASTER_GAIN);
-            if (!muted3) { volume.setValue(-80.0f); muted3 = true; }
+            if (!muted3) { volume.setValue(-80.0f); muted3 = true; System.out.println("Button mute: "+ muted3);}
         }
     }
     public static void toggleBUnmute() {
         if (sound3 != null) {
             FloatControl volume = (FloatControl) sound3.getControl(FloatControl.Type.MASTER_GAIN);
-            if (muted3){ volume.setValue(0.0f); muted3 = false; }
+            if (muted3){ volume.setValue(0.0f); muted3 = false; System.out.println("Button mute: "+ muted3);}
         }
     }
 
@@ -287,16 +286,19 @@ public class Tunog {
 
     //playWinMusic
     public static void playWinMusic() {
-        try {
-            AudioInputStream audioInput = AudioSystem.getAudioInputStream(new File("src\\Coding\\Musika\\Driftveil.wav"));
-            sound7 = AudioSystem.getClip();
-            sound7.open(audioInput);
-            if (!muted7) {
-                // Play the button sound
-                sound7.start();
+        if (sound7 == null || !sound7.isRunning()) {
+            try {
+                AudioInputStream audioInput = AudioSystem.getAudioInputStream(new File("src\\Coding\\Musika\\Driftveil.wav"));
+                sound7 = AudioSystem.getClip();
+                sound7.open(audioInput);
+                sound7.loop(Clip.LOOP_CONTINUOUSLY);
+                if (!muted7) {
+                    // Play the button sound
+                    sound7.start();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
     // Stop and release resources
@@ -306,15 +308,32 @@ public class Tunog {
     // Resume the music
     public static void resumeWinMusic() { if (sound7 != null && !sound7.isRunning()) { sound7.start();}}
     public static void toggleWinMute() {
+        System.out.println("Entered toggleWinMute: "+ muted7);
         if (sound7 != null) {
             FloatControl volume = (FloatControl) sound7.getControl(FloatControl.Type.MASTER_GAIN);
-            if (!muted7) {
-                volume.setValue(-80.0f); // Mute
-            } else {
-                volume.setValue(0.0f); // Full volume
-            }
-            muted7 = !muted7;
+            if (!muted7){ volume.setValue(-80.0f); muted7 = true; System.out.println("Win music mute: "+ muted7);}
         }
     }
+    public static void toggleWinUnmute() {
+        if (sound7 != null) {
+            FloatControl volume = (FloatControl) sound7.getControl(FloatControl.Type.MASTER_GAIN);
+            if (muted7) {
+                volume.setValue(0.0f);
+                muted7 = false;
+                System.out.println("Win music unmute: " + muted7);
+            }
+        }
+    }
+//    public static void toggleWinMute() {
+//        if (sound7 != null) {
+//            FloatControl volume = (FloatControl) sound7.getControl(FloatControl.Type.MASTER_GAIN);
+//            if (!muted7) {
+//                volume.setValue(-80.0f); // Mute
+//            } else {
+//                volume.setValue(0.0f); // Full volume
+//            }
+//            muted7 = !muted7;
+//        }
+//    }
 
 }
