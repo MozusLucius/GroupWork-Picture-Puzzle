@@ -4,13 +4,17 @@ import javax.swing.*;
 
 public class Main extends JFrame implements ActionListener {
 
-    JLabel title;
-    JPanel forTitle, forLevels, forSettings, forGuide;
+    JLabel title, forBack;
+    JPanel con, forTitle, forLevels, forSettings, forGuide;
     JButton levels, settings, guide;
     Tunog m = new Tunog();
     Main(){
+        forBack = new JLabel(new ImageIcon("src\\Coding\\GIF\\piczzle.gif"));
+        forBack.setLayout(new BorderLayout());
+
         this.setTitle("Piczzle");
         ImageIcon piku = new ImageIcon("src\\Coding\\piku.png");
+        setExtendedState(MAXIMIZED_BOTH);
         this.setIconImage(piku.getImage());
         this.setSize(1460, 760);
         this.setLocation(190, 90);
@@ -19,16 +23,16 @@ public class Main extends JFrame implements ActionListener {
         this.getContentPane().setBackground(new Color(0xf5b982));
         this.setLayout(new GridLayout(0, 1, 0, 0));
 
-        title = new JLabel("<html><center>WELCOME TO<br>PICZZLE!</center></html>");
+        con = new JPanel(new GridLayout(0,1)); con.setOpaque(false);
+
+        title = new JLabel(" ");
         title.setFont(new Font("Rosewood Std Regular", Font.BOLD, 80));
         title.setForeground(Color.BLACK); //Book Antiqua
-        title.setBounds(700,30,200,50);
+        //title.setBounds(700,30,200,50);
         //all buttons
         levels = new JButton("LEVELS");
-        levels.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30));
-        levels.setFocusable(false);
-        levels.setPreferredSize(new Dimension(250,100));
-        levels.addActionListener(this);
+        levels.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30)); levels.setFocusable(false);
+        levels.setPreferredSize(new Dimension(250,100)); levels.addActionListener(this);
         guide = new JButton("<html><center>HOW TO<br>PLAY</center</html>");
         guide.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30));
         guide.setFocusable(false);
@@ -41,9 +45,9 @@ public class Main extends JFrame implements ActionListener {
         settings.addActionListener(this);
         //all panels to ensure a centered layout for the window
         forTitle = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        forLevels = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 45));
-        forGuide = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 20));
-        forSettings = new JPanel(new FlowLayout(FlowLayout.CENTER,0,0));
+        forLevels = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 70));
+        forGuide = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 55));
+        forSettings = new JPanel(new FlowLayout(FlowLayout.CENTER,0,35));
         forTitle.setOpaque(false);
         forLevels.setOpaque(false);
         forSettings.setOpaque(false);
@@ -53,10 +57,12 @@ public class Main extends JFrame implements ActionListener {
         forGuide.add(guide);
         forSettings.add(settings);
 
-        this.add(forTitle);
-        this.add(forLevels);
-        this.add(forGuide);
-        this.add(forSettings);
+        con.add(forTitle);
+        con.add(forLevels);
+        con.add(forGuide);
+        con.add(forSettings);
+        forBack.add(con);
+        setContentPane(forBack);
         this.setVisible(true);
     }
     @Override
