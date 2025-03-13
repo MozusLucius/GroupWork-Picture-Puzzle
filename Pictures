@@ -6,59 +6,71 @@ public class Pictures {
     JOptionPane to direct to levels
     Guide class improve
     */
-    Icon logo = new ImageIcon("src/Coding/logo/Clogo.jpg");
-    Icon l1 = new ImageIcon("src/Coding/logo/logo1.jpg");
-    Icon l2 = new ImageIcon("src/Coding/logo/logo2.jpg");
-    Icon l3 = new ImageIcon("src/Coding/logo/logo3.jpg");
-    Icon l4 = new ImageIcon("src/Coding/logo/logo4.jpg");
-    Icon l5 = new ImageIcon("src/Coding/logo/logo5.jpg");
-    Icon l6 = new ImageIcon("src/Coding/logo/logo6.jpg");
-    Icon l7 = new ImageIcon("src/Coding/logo/logo7.jpg");
-    Icon l8 = new ImageIcon("src/Coding/logo/logo8.jpg");
-    Icon l9 = new ImageIcon("src/Coding/logo/logo9.jpg");
 
-    Icon paris = new ImageIcon("src/Coding/Paris/paris.jpg");
-    Icon p1 = new ImageIcon("src/Coding/Paris/p1.jpg");
-    Icon p2 = new ImageIcon("src/Coding/Paris/p2.jpg");
-    Icon p3 = new ImageIcon("src/Coding/Paris/p3.jpg");
-    Icon p4 = new ImageIcon("src/Coding/Paris/p4.jpg");
-    Icon p5 = new ImageIcon("src/Coding/Paris/p5.jpg");
-    Icon p6 = new ImageIcon("src/Coding/Paris/p6.jpg");
-    Icon p7 = new ImageIcon("src/Coding/Paris/p7.jpg");
-    Icon p8 = new ImageIcon("src/Coding/Paris/p8.jpg");
-    Icon p9 = new ImageIcon("src/Coding/Paris/p9.jpg");
+    Icon humss = new ImageIcon("src/Coding/HUMSS/humss.png");
+    Icon humss1 = new ImageIcon("src/Coding/HUMSS/humss1.png");
+    Icon humss2 = new ImageIcon("src/Coding/HUMSS/humss2.png");
+    Icon humss3 = new ImageIcon("src/Coding/HUMSS/humss3.png");
+    Icon humss4 = new ImageIcon("src/Coding/HUMSS/humss4.png");
+    Icon humss5 = new ImageIcon("src/Coding/HUMSS/humss5.png");
+    Icon humss6 = new ImageIcon("src/Coding/HUMSS/humss6.png");
+    Icon humss7 = new ImageIcon("src/Coding/HUMSS/humss7.png");
+    Icon humss8 = new ImageIcon("src/Coding/HUMSS/humss8.png");
+    Icon humss9 = new ImageIcon("src/Coding/HUMSS/humss9.png");
 
-    Icon mahal = new ImageIcon("src/Coding/Taj Mahal/mahal.jpg");
-    Icon m1 = new ImageIcon("src/Coding/Taj Mahal/m1.jpg");
-    Icon m2 = new ImageIcon("src/Coding/Taj Mahal/m2.jpg");
-    Icon m3 = new ImageIcon("src/Coding/Taj Mahal/m3.jpg");
-    Icon m4 = new ImageIcon("src/Coding/Taj Mahal/m4.jpg");
-    Icon m5 = new ImageIcon("src/Coding/Taj Mahal/m5.jpg");
-    Icon m6 = new ImageIcon("src/Coding/Taj Mahal/m6.jpg");
-    Icon m7 = new ImageIcon("src/Coding/Taj Mahal/m7.jpg");
-    Icon m8 = new ImageIcon("src/Coding/Taj Mahal/m8.jpg");
-    Icon m9 = new ImageIcon("src/Coding/Taj Mahal/m9.jpg");
+    Icon stem = new ImageIcon("src/Coding/STEM/stem.png");
+    Icon stem1 = new ImageIcon("src/Coding/STEM/stem1.png");
+    Icon stem2 = new ImageIcon("src/Coding/STEM/stem2.png");
+    Icon stem3 = new ImageIcon("src/Coding/STEM/stem3.png");
+    Icon stem4 = new ImageIcon("src/Coding/STEM/stem4.png");
+    Icon stem5 = new ImageIcon("src/Coding/STEM/stem5.png");
+    Icon stem6 = new ImageIcon("src/Coding/STEM/stem6.png");
+    Icon stem7 = new ImageIcon("src/Coding/STEM/stem7.png");
+    Icon stem8 = new ImageIcon("src/Coding/STEM/stem8.png");
+    Icon stem9 = new ImageIcon("src/Coding/STEM/stem9.png");
 
-    Icon fuji = new ImageIcon("src/Coding/Fuji/fuji.jpg");
-    Icon f1 = new ImageIcon("src/Coding/Fuji/f1.jpg");
-    Icon f2 = new ImageIcon("src/Coding/Fuji/f2.jpg");
-    Icon f3 = new ImageIcon("src/Coding/Fuji/f3.jpg");
-    Icon f4 = new ImageIcon("src/Coding/Fuji/f4.jpg");
-    Icon f5 = new ImageIcon("src/Coding/Fuji/f5.jpg");
-    Icon f6 = new ImageIcon("src/Coding/Fuji/f6.jpg");
-    Icon f7 = new ImageIcon("src/Coding/Fuji/f7.jpg");
-    Icon f8 = new ImageIcon("src/Coding/Fuji/f8.jpg");
-    Icon f9 = new ImageIcon("src/Coding/Fuji/f9.jpg");
+    Icon abm = new ImageIcon("src/Coding/ABM/abm.png");
+    Icon abm1 = new ImageIcon("src/Coding/ABM/abm1.png");
+    Icon abm2 = new ImageIcon("src/Coding/ABM/abm2.png");
+    Icon abm3 = new ImageIcon("src/Coding/ABM/abm3.png");
+    Icon abm4 = new ImageIcon("src/Coding/ABM/abm4.png");
+    Icon abm5 = new ImageIcon("src/Coding/ABM/abm5.png");
+    Icon abm6 = new ImageIcon("src/Coding/ABM/abm6.png");
+    Icon abm7 = new ImageIcon("src/Coding/ABM/abm7.png");
+    Icon abm8 = new ImageIcon("src/Coding/ABM/abm8.png");
+    Icon abm9 = new ImageIcon("src/Coding/ABM/abm9.png");
 
-    Icon nB = new ImageIcon("src/Coding/natureB/CnatureB.jpg");
-    Icon nB1 = new ImageIcon("src/Coding/natureB/nB1.jpg");
-    Icon nB2 = new ImageIcon("src/Coding/natureB/nB2.jpg");
-    Icon nB3 = new ImageIcon("src/Coding/natureB/nB3.jpg");
-    Icon nB4 = new ImageIcon("src/Coding/natureB/nB4.jpg");
-    Icon nB5 = new ImageIcon("src/Coding/natureB/nB5.jpg");
-    Icon nB6 = new ImageIcon("src/Coding/natureB/nB6.jpg");
-    Icon nB7 = new ImageIcon("src/Coding/natureB/nB7.jpg");
-    Icon nB8 = new ImageIcon("src/Coding/natureB/nB8.jpg");
-    Icon nB9 = new ImageIcon("src/Coding/natureB/nB9.jpg");
+    Icon he = new ImageIcon("src/Coding/HE/he.png");
+    Icon he1 = new ImageIcon("src/Coding/HE/he1.png");
+    Icon he2 = new ImageIcon("src/Coding/HE/he2.png");
+    Icon he3 = new ImageIcon("src/Coding/HE/he3.png");
+    Icon he4 = new ImageIcon("src/Coding/HE/he4.png");
+    Icon he5 = new ImageIcon("src/Coding/HE/he5.png");
+    Icon he6 = new ImageIcon("src/Coding/HE/he6.png");
+    Icon he7 = new ImageIcon("src/Coding/HE/he7.png");
+    Icon he8 = new ImageIcon("src/Coding/HE/he8.png");
+    Icon he9 = new ImageIcon("src/Coding/HE/he9.png");
+
+    Icon ict = new ImageIcon("src/Coding/ICT/ict.png");
+    Icon ict1 = new ImageIcon("src/Coding/ICT/ict1.png");
+    Icon ict2 = new ImageIcon("src/Coding/ICT/ict2.png");
+    Icon ict3 = new ImageIcon("src/Coding/ICT/ict3.png");
+    Icon ict4 = new ImageIcon("src/Coding/ICT/ict4.png");
+    Icon ict5 = new ImageIcon("src/Coding/ICT/ict5.png");
+    Icon ict6 = new ImageIcon("src/Coding/ICT/ict6.png");
+    Icon ict7 = new ImageIcon("src/Coding/ICT/ict7.png");
+    Icon ict8 = new ImageIcon("src/Coding/ICT/ict8.png");
+    Icon ict9 = new ImageIcon("src/Coding/ICT/ict9.png");
+
+    Icon logo = new ImageIcon("src/Coding/LOGO/logo.png");
+    Icon l1 = new ImageIcon("src/Coding/LOGO/logo1.png");
+    Icon l2 = new ImageIcon("src/Coding/LOGO/logo2.png");
+    Icon l3 = new ImageIcon("src/Coding/LOGO/logo3.png");
+    Icon l4 = new ImageIcon("src/Coding/LOGO/logo4.png");
+    Icon l5 = new ImageIcon("src/Coding/LOGO/logo5.png");
+    Icon l6 = new ImageIcon("src/Coding/LOGO/logo6.png");
+    Icon l7 = new ImageIcon("src/Coding/LOGO/logo7.png");
+    Icon l8 = new ImageIcon("src/Coding/LOGO/logo8.png");
+    Icon l9 = new ImageIcon("src/Coding/LOGO/logo9.png");
 
 }
