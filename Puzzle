@@ -3,17 +3,12 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class Puzzle extends JFrame implements ActionListener {
-    JPanel  con, leftCon, centerCon, pgC, forIcon, oncePaused, forPauseTitle, forPause, forRestart, forLevels;
-    JButton mainM, levelsBack;
-    JLabel title, iconLabel;
+    JPanel  con, leftCon, centerCon, pgC, forIcon, oncePaused, forPauseTitle, forPause, forRestart, forLevels, onceWon, forWon, forToothLabel;
+    JButton backL, levelsBack, wonLevels;
+    JLabel forBack, leftBG, title, iconLabel, wonTitle, wonLabel, forToothless;
     boolean hasFailed = false;
-    boolean level1Completed = false;
-    boolean level2Completed = false;
-    boolean level3Completed = false;
-    boolean level4Completed = false;
-    boolean level5Completed = false;
     //Classes call
-    Game game = new Game(this, null);
+    Game game = new Game(this);
     Tunog m = new Tunog();
     String [] response1 = {"Next Level", "Replay", "Back to Levels"};
     String [] response2 = {"Replay", "Back to Levels"};
@@ -21,9 +16,13 @@ public class Puzzle extends JFrame implements ActionListener {
     Levels levels;
 
     Puzzle(Levels levels){
+        forBack = new JLabel(new ImageIcon(""));
+        leftBG = new JLabel(new ImageIcon(""));
+        Icon toothless = new ImageIcon("");
+        
         this.levels = levels;
         this.setTitle("Piczzle");
-        ImageIcon piku = new ImageIcon("src\\Coding\\xocolat atelier.png");
+        ImageIcon piku = new ImageIcon("src\\Coding\\piku.png");
         this.setIconImage(piku.getImage());
         this.setExtendedState(MAXIMIZED_BOTH);
         this.setSize(1460, 760);
@@ -40,22 +39,22 @@ public class Puzzle extends JFrame implements ActionListener {
         //all components in the left
         leftCon = new JPanel();
         leftCon.setBackground(new Color(0xa6784c));
-        leftCon.setPreferredSize(new Dimension(430,430));
+        leftCon.setPreferredSize(new Dimension(480,430));
         leftCon.setLayout(null);
-        mainM = new JButton("<html><center>Main<br>Menu</center></html>");
-        mainM.setBounds(0,0,90,55);
-        mainM.setFocusable(false);
-        mainM.setBackground(new Color(0xf5e8a6));
-        mainM.setForeground(Color.BLACK);
-        mainM.setFont(new Font("Lucida Console", Font.PLAIN, 18));
-        mainM.addActionListener(this);
-        game.currentLevel.setBounds(130,2,280,70);
-        game.currentLevel.setFont(new Font("Georgia", Font.BOLD, 45));
+        backL = new JButton("<html><center>Main<br>Menu</center></html>");
+        backL.setBounds(0,0,90,55);
+        backL.setFocusable(false);
+        backL.setBackground(new Color(0xf5e8a6));
+        backL.setForeground(Color.BLACK);
+        backL.setFont(new Font("Lucida Console", Font.PLAIN, 18));
+        backL.addActionListener(this);
+        game.currentLevel.setBounds(150,10,300,55);
+        game.currentLevel.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 46));
         game.currentLevel.setForeground(Color.BLACK);
-        game.basisImage.setBounds(13,150,400,400);
-        game.timeLimit.setFont(new Font("Lucida Console", Font.BOLD, 23));
-        game.timeLimit.setForeground(Color.BLACK); game.timeLimit.setBounds(20,110,250,30);
-        leftCon.add(mainM);
+        game.basisImage.setBounds(13,200,450,450);
+        game.timeLimit.setFont(new Font("Lucida Console", Font.BOLD, 27));
+        game.timeLimit.setForeground(Color.BLACK); game.timeLimit.setBounds(20,160,290,40);
+        leftCon.add(backL);
         leftCon.add(game.currentLevel);
         leftCon.add(game.basisImage);
         leftCon.add(game.timeLimit);
@@ -64,30 +63,33 @@ public class Puzzle extends JFrame implements ActionListener {
         centerCon.setOpaque(false);
         centerCon.setLayout(null);
         game.pause.setFont(new Font("Lucida Console", Font.BOLD, 19));
-        game.pause.setBounds(542,74,98,30);
+        game.pause.setBounds(822,74,98,30);
         game.pause.setFocusable(false);
         game.pause.setBackground(new Color(0xfcacac));
         game.pause.addActionListener(this);
-        game.timerLabel.setBounds(140,65,100,50);
+        game.timerLabel.setBounds(170,65,100,50);
         game.timerLabel.setFont(new Font("Lucida Console", Font.BOLD, 30));
         game.timerLabel.setBackground(Color.BLACK);
         pgC = new JPanel();
-        pgC.setBounds(140,110,500,500);
+        pgC.setBounds(170,110,750,750);
         pgC.setBackground(Color.BLACK);
         pgC.setLayout(new GridLayout(3,3));
         pgC.add(game.b1); pgC.add(game.b2); pgC.add(game.b3);
         pgC.add(game.b4); pgC.add(game.b5); pgC.add(game.b6);
         pgC.add(game.b7); pgC.add(game.b8); pgC.add(game.b9);
+        game.b1.addActionListener(this); game.b2.addActionListener(this); game.b3.addActionListener(this);
+        game.b4.addActionListener(this); game.b5.addActionListener(this); game.b6.addActionListener(this);
+        game.b7.addActionListener(this); game.b8.addActionListener(this); game.b9.addActionListener(this);
 
         forIcon = new JPanel(null);
         forIcon.setBackground(new Color(0xbab5a8));
-        forIcon.setBounds(680,250,187,227);
+        forIcon.setBounds(960,250,270,310);
 //        g.icon.setBounds(700,270,167,167);
-        game.icon.setBounds(10,10,167,167);
+        game.icon.setBounds(10,10,250,250);
         iconLabel = new JLabel("Icon");
         iconLabel.setForeground(Color.BLACK);
         iconLabel.setFont(new Font("Georgia", Font.BOLD, 24));
-        iconLabel.setBounds(65,187,60,20);
+        iconLabel.setBounds(105,275,60,20);
         forIcon.add(game.icon); forIcon.add(iconLabel);
 
         //all centerCon objects add
@@ -128,9 +130,8 @@ public class Puzzle extends JFrame implements ActionListener {
         oncePaused.add(forRestart);
         oncePaused.add(forLevels);
 
-        game.b1.addActionListener(this); game.b2.addActionListener(this); game.b3.addActionListener(this);
-        game.b4.addActionListener(this); game.b5.addActionListener(this); game.b6.addActionListener(this);
-        game.b7.addActionListener(this); game.b8.addActionListener(this); game.b9.addActionListener(this);
+        //Win Panel (Lol)
+
 
         this.add(oncePaused, BorderLayout.CENTER);
         this.add(con, BorderLayout.CENTER);
@@ -139,7 +140,7 @@ public class Puzzle extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == mainM) {
+        if (e.getSource() == backL) {
             Tunog.playBMusic();
             dispose();
             new Main();
@@ -174,97 +175,90 @@ public class Puzzle extends JFrame implements ActionListener {
     public void checkIfGameIsSolved() {
         if (game.solved) {
             Game.timer.stop();
+            Tunog.pauseBGMusic();
             Tunog.playSolvedMusic();
             int a = JOptionPane.showOptionDialog(this,"<html>You have solved the puzzle in time!<br>Play another level?</html>", "CONGRATULATIONS!!!", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, response1, 0);
             if(a==JOptionPane.YES_OPTION){
+                //Next Level
                 Tunog.playBMusic();
                 dispose();
                 Puzzle p = new Puzzle(this.levels);
+                Tunog.resumeBGMusic();
                 game.solved = false;
                 if (game.currentLevel.getText().equals("Level: 1")){
-                    levels.unlock2 = true;
+                    Levels.unlock2 = true;
                     levels.levelUnlocked();
                     p.game.Level2();
-                    System.out.println("Level2 solved: " + levels.unlock2);
                 } else if (game.currentLevel.getText().equals("Level: 2")){
-                    levels.unlock3 = true; // Mark Level 2 as unlocked
+                    Levels.unlock3 = true; // Mark Level 2 as unlocked
                     levels.levelUnlocked();
                     p.game.Level3();
-                    System.out.println("Level2 solved: " + levels.unlock2);
-                    System.out.println("Level3 solved: " + levels.unlock3);
                 } else if (game.currentLevel.getText().equals("Level: 3")){
-                    levels.unlock4 = true;
+                    Levels.unlock4 = true;
                     levels.levelUnlocked();
                     p.game.Level4();
-                    System.out.println("Level2 solved: " + levels.unlock2);
-                    System.out.println("Level3 solved: " + levels.unlock3);
-                    System.out.println("Level4 solved: " + levels.unlock4);
                 } else if (game.currentLevel.getText().equals("Level: 4")){
-                    levels.unlock5 = true;
+                    Levels.unlock5 = true;
                     levels.levelUnlocked();
                     p.game.Level5();
-                    System.out.println("Level2 solved: " + levels.unlock2);
-                    System.out.println("Level3 solved: " + levels.unlock3);
-                    System.out.println("Level4 solved: " + levels.unlock4);
-                    System.out.println("Level5 solved: " + levels.unlock5);
                 } else if (game.currentLevel.getText().equals("Level: 5")){
+                    Tunog.stopBGMusic();
+                    Tunog.playBossMusic();
                     p.game.Level6();
                 }
             } else if(a==JOptionPane.NO_OPTION){
+                //Replay
                 Tunog.playBMusic();
                 dispose();
                 Puzzle p = new Puzzle(this.levels);
                 game.solved = false;
                 if (game.currentLevel.getText().equals("Level: 1")){
-                    levels.unlock2 = false;
                     levels.levelUnlocked();
                     p.game.Level1();
                 } else if (game.currentLevel.getText().equals("Level: 2")){
-                    levels.unlock2 = false;
                     levels.levelUnlocked();
                     p.game.Level2();
                 } else if (game.currentLevel.getText().equals("Level: 3")){
-                    levels.unlock3 = false;
                     levels.levelUnlocked();
                     p.game.Level3();
                 } else if (game.currentLevel.getText().equals("Level: 4")){
-                    levels.unlock4 = false;
                     levels.levelUnlocked();
                     p.game.Level4();
                 } else if (game.currentLevel.getText().equals("Level: 5")){
-                    levels.unlock5 = false;
                     levels.levelUnlocked();
                     p.game.Level5();
                 }
             } else if (a==JOptionPane.CANCEL_OPTION){
+                //Back to Levels
                 Tunog.playBMusic();
                 dispose();
                 levels.setVisible(true);
                 if (game.currentLevel.getText().equals("Level: 1")){
-                    levels.unlock2 = true;
+                    Levels.unlock2 = true;
                     levels.levelUnlocked();
                 } else if (game.currentLevel.getText().equals("Level: 2")) {
-                    levels.unlock3 = true;
+                    Levels.unlock3 = true;
                     levels.levelUnlocked();
                 } else if (game.currentLevel.getText().equals("Level: 3")){
-                    levels.unlock4 = true;
+                    Levels.unlock4 = true;
                     levels.levelUnlocked();
                 } else if (game.currentLevel.getText().equals("Level: 4")){
-                    levels.unlock5 = true;
+                    Levels.unlock5 = true;
                     levels.levelUnlocked();
                 }
             }
         }
 
         if (hasFailed){
-            Tunog.playFailMusic();
             Tunog.pauseBGMusic();
+            Tunog.playFailMusic();
             game.b1.setEnabled(false); game.b2.setEnabled(false); game.b3.setEnabled(false);
             game.b4.setEnabled(false); game.b5.setEnabled(false); game.b6.setEnabled(false);
             game.b7.setEnabled(false); game.b8.setEnabled(false); game.b9.setEnabled(false);
             game.icon.setEnabled(false);
             int b = JOptionPane.showOptionDialog(this, "<html>You didn't solve the puzzle in time.<br>Better luck next try.</html>", "TIME'S UP!!!⏰", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE, null, response2, 0);
             if(b==JOptionPane.YES_OPTION){
+                //Replay
                 Tunog.playBMusic();
                 Tunog.resumeBGMusic();
                 dispose();
@@ -284,6 +278,7 @@ public class Puzzle extends JFrame implements ActionListener {
                     p.game.Level6();
                 }
             } else if(b==JOptionPane.NO_OPTION){
+                //Back to Levels
                 Tunog.playBMusic();
                 Tunog.playBGMusic();
                 dispose();
@@ -294,10 +289,11 @@ public class Puzzle extends JFrame implements ActionListener {
 
     public void ifGameWin(){
         System.out.println("Game won");
-        Tunog.pauseBossMusic();
+        Tunog.stopBossMusic();
         Tunog.playWinMusic();
         int c = JOptionPane.showOptionDialog(this,"<html>BANZAI! You've beaten the game.<br>Would you like to start again?</html>", "B A N Z A I ! ! !", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, response3, 0);
         if(c==JOptionPane.YES_OPTION){
+            //Back to Level1 / Yes
             Tunog.playBMusic();
             Tunog.stopWinMusic();
             Tunog.playBGMusic();
@@ -306,6 +302,7 @@ public class Puzzle extends JFrame implements ActionListener {
             game.solved = false;
             p.game.Level1();
         } else if(c==JOptionPane.NO_OPTION){
+            //Replay
             Tunog.playBMusic();
             Tunog.stopWinMusic();
             Tunog.resumeBGMusic();
@@ -314,13 +311,17 @@ public class Puzzle extends JFrame implements ActionListener {
             game.solved = false;
             p.game.Level6();
         } else if(c==JOptionPane.CANCEL_OPTION){
+            //Back to Levels
             Tunog.playBMusic();
             Tunog.stopWinMusic();
-            Tunog.resumeBGMusic();
+            Tunog.playBGMusic();
             dispose();
             new Levels();
         } else {//X option
             Tunog.stopWinMusic();
         }
+    }
+    public static void main (String[] args){
+        new Puzzle(null);
     }
 }
