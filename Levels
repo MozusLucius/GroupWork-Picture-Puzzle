@@ -61,7 +61,7 @@ public class Levels extends JFrame implements ActionListener {
         level4.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30)); level4.setFocusable(false); level4.setEnabled(false); level4.setBackground(Color.BLACK);
         level4.setPreferredSize(new Dimension(250,100)); level4.addActionListener(this); level4.setForeground(Color.LIGHT_GRAY);
         level5 = new JButton("LEVEL 5");
-        level5.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30)); level5.setFocusable(false); level5.setEnabled(true); level5.setBackground(Color.BLACK);
+        level5.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30)); level5.setFocusable(false); level5.setEnabled(false); level5.setBackground(Color.BLACK);
         level5.setPreferredSize(new Dimension(250,100)); level5.addActionListener(this); level5.setForeground(Color.LIGHT_GRAY);
 
         //all panels to ensure a centered layout for the window
