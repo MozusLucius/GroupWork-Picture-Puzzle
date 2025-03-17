@@ -280,56 +280,6 @@ public class Game implements ActionListener {
 
     }
 
-//    public void checkPuzzle() {
-//        if ((b1.getIcon() == pics.humss1) && (b2.getIcon() == pics.humss2) && (b3.getIcon() == pics.humss3)
-//                && (b4.getIcon() == pics.humss4) && (b5.getIcon() == pics.humss5) && (b6.getIcon() == pics.humss6)
-//                && (b7.getIcon() == pics.humss7) && (b8.getIcon() == pics.humss8) && (b9.getIcon() == pics.humss9)){
-//            //level 1
-//            System.out.println("Puzzle Solved");
-//            solved = true;
-//            timer.stop();
-//            puzzle.ifGameSolved();
-//        } else if ((b1.getIcon() == pics.stem1) && (b2.getIcon() == pics.stem2) && (b3.getIcon() == pics.stem3)
-//                && (b4.getIcon() == pics.stem4) && (b5.getIcon() == pics.stem5) && (b6.getIcon() == pics.stem6)
-//                && (b7.getIcon() == pics.stem7) && (b8.getIcon() == pics.stem8) && (b9.getIcon() == pics.stem9)){
-//            //level 2
-//            System.out.println("Puzzle Solved");
-//            solved = true;
-//            timer.stop();
-//            puzzle.ifGameSolved();
-//        } else if ((b1.getIcon() == pics.abm1) && (b2.getIcon() == pics.abm2) && (b3.getIcon() == pics.abm3)
-//                && (b4.getIcon() == pics.abm4) && (b5.getIcon() == pics.abm5) && (b6.getIcon() == pics.abm6)
-//                && (b7.getIcon() == pics.abm7) && (b8.getIcon() == pics.abm8) && (b9.getIcon() == pics.abm9)) {
-//            //level 3
-//            System.out.println("Puzzle Solved");
-//            solved = true;
-//            timer.stop();
-//            puzzle.ifGameSolved();
-//        } else if ((b1.getIcon() == pics.he1) && (b2.getIcon() == pics.he2) && (b3.getIcon() == pics.he3)
-//                && (b4.getIcon() == pics.he4) && (b5.getIcon() == pics.he5) && (b6.getIcon() == pics.he6)
-//                && (b7.getIcon() == pics.he7) && (b8.getIcon() == pics.he8) && (b9.getIcon() == pics.he9)) {
-//            //level 4
-//            System.out.println("Puzzle Solved");
-//            solved = true;
-//            timer.stop();
-//            puzzle.ifGameSolved();
-//        } else if ((b1.getIcon() == pics.ict1) && (b2.getIcon() == pics.ict2) && (b3.getIcon() == pics.ict3)
-//                && (b4.getIcon() == pics.ict4) && (b5.getIcon() == pics.ict5) && (b6.getIcon() == pics.ict6)
-//                && (b7.getIcon() == pics.ict7) && (b8.getIcon() == pics.ict8) && (b9.getIcon() == pics.ict9)) {
-//            System.out.println("Puzzle Solved");
-//            solved = true;
-//            timer.stop();
-//            puzzle.ifGameSolved();
-//        } else if ((b1.getIcon() == pics.l1) && (b2.getIcon() == pics.l2) && (b3.getIcon() == pics.l3)
-//                && (b4.getIcon() == pics.l4) && (b5.getIcon() == pics.l5) && (b6.getIcon() == pics.l6)
-//                && (b7.getIcon() == pics.l7) && (b8.getIcon() == pics.l8) && (b9.getIcon() == pics.l9)) {
-//            System.out.println("Puzzle Solved");
-//            solved = true;
-//            timer.stop();
-//            puzzle.ifGameWin();
-//        }
-//    }
-
     public void Level1() {
         limit = limit1;
         currentLevel.setText("Level: 1");
@@ -441,7 +391,7 @@ public class Game implements ActionListener {
             correctOrder = correctLevel6;
         }
 
-        boolean isSolved = true;   // ANO BANG PROBLEMA MO @&#$?&!
+        boolean isSolved = true;
         for (int i = 0; i < buttons.length; i++) {
             System.out.println("entered for loop");
             if (buttons[i] != correctOrder[i]) {
@@ -468,5 +418,5 @@ public class Game implements ActionListener {
                 puzzle.ifGameWin();
             }
         }
-    }
+    }//checkPuzzle end
 }
