@@ -24,7 +24,7 @@ public class Game implements ActionListener {
     Puzzle puzzle;
 
     Game(Puzzle puzzle) {
-        System.out.println("Constructor: "+solved);
+        System.out.println("Constructor: Game");
         this.puzzle = puzzle;
         currentLevel = new JLabel("Level: X"); timerLabel = new JLabel("00:00"); pause = new JButton("PAUSE"); resume = new JButton("RESUME"); restart = new JButton("RESTART");
         timeLimit = new JLabel("Time Limit: 00:00");
@@ -49,7 +49,6 @@ public class Game implements ActionListener {
             updateTimerLabel();
         });
         timer.start();
-
     }
 
     public void updateTimerLabel(){
@@ -59,7 +58,7 @@ public class Game implements ActionListener {
         if (timerSeconds >= limit){
             timer.stop();
             puzzle.hasFailed = true;
-            puzzle.checkIfGameIsSolved();
+            puzzle.ifGameSolved();
         }
     }
 
@@ -81,7 +80,7 @@ public class Game implements ActionListener {
         } else if (e.getSource() == resume){
             if(solved){
                 timer.stop();
-            } else if (!solved){
+            } else {
                 timer.start();
             }
         } else if(e.getSource() == restart){
@@ -281,61 +280,55 @@ public class Game implements ActionListener {
 
     }
 
-    public void checkPuzzle() {
-        if ((b1.getIcon() == pics.humss1) && (b2.getIcon() == pics.humss2) && (b3.getIcon() == pics.humss3)
-                && (b4.getIcon() == pics.humss4) && (b5.getIcon() == pics.humss5) && (b6.getIcon() == pics.humss6)
-                && (b7.getIcon() == pics.humss7) && (b8.getIcon() == pics.humss8) && (b9.getIcon() == pics.humss9)){
-            //level 1
-            System.out.println("Puzzle Solved");
-            solved = true;
-            System.out.println("checkPuzzle: "+solved);
-            timer.stop();
-            puzzle.checkIfGameIsSolved();
-        } else if ((b1.getIcon() == pics.stem1) && (b2.getIcon() == pics.stem2) && (b3.getIcon() == pics.stem3)
-                && (b4.getIcon() == pics.stem4) && (b5.getIcon() == pics.stem5) && (b6.getIcon() == pics.stem6)
-                && (b7.getIcon() == pics.stem7) && (b8.getIcon() == pics.stem8) && (b9.getIcon() == pics.stem9)){
-            //paris
-            System.out.println("Puzzle Solved");
-            solved = true;
-            System.out.println(solved);
-            timer.stop();
-            puzzle.checkIfGameIsSolved();
-        } else if ((b1.getIcon() == pics.abm1) && (b2.getIcon() == pics.abm2) && (b3.getIcon() == pics.abm3)
-                && (b4.getIcon() == pics.abm4) && (b5.getIcon() == pics.abm5) && (b6.getIcon() == pics.abm6)
-                && (b7.getIcon() == pics.abm7) && (b8.getIcon() == pics.abm8) && (b9.getIcon() == pics.abm9)) {
-            //taj mahal
-            System.out.println("Puzzle Solved");
-            solved = true;
-            System.out.println(solved);
-            timer.stop();
-            puzzle.checkIfGameIsSolved();
-        } else if ((b1.getIcon() == pics.he1) && (b2.getIcon() == pics.he2) && (b3.getIcon() == pics.he3)
-                && (b4.getIcon() == pics.he4) && (b5.getIcon() == pics.he5) && (b6.getIcon() == pics.he6)
-                && (b7.getIcon() == pics.he7) && (b8.getIcon() == pics.he8) && (b9.getIcon() == pics.he9)) {
-            //fuji
-            System.out.println("Puzzle Solved");
-            solved = true;
-            System.out.println(solved);
-            timer.stop();
-            puzzle.checkIfGameIsSolved();
-        } else if ((b1.getIcon() == pics.ict1) && (b2.getIcon() == pics.ict2) && (b3.getIcon() == pics.ict3)
-                && (b4.getIcon() == pics.ict4) && (b5.getIcon() == pics.ict5) && (b6.getIcon() == pics.ict6)
-                && (b7.getIcon() == pics.ict7) && (b8.getIcon() == pics.ict8) && (b9.getIcon() == pics.ict9)) {
-            System.out.println("Puzzle Solved");
-            solved = true;
-            System.out.println(solved);
-            timer.stop();
-            puzzle.checkIfGameIsSolved();
-        } else if ((b1.getIcon() == pics.l1) && (b2.getIcon() == pics.l2) && (b3.getIcon() == pics.l3)
-                && (b4.getIcon() == pics.l4) && (b5.getIcon() == pics.l5) && (b6.getIcon() == pics.l6)
-                && (b7.getIcon() == pics.l7) && (b8.getIcon() == pics.l8) && (b9.getIcon() == pics.l9)) {
-            System.out.println("Puzzle Solved");
-            solved = true;
-            System.out.println(solved);
-            timer.stop();
-            puzzle.ifGameWin();
-        }
-    }
+//    public void checkPuzzle() {
+//        if ((b1.getIcon() == pics.humss1) && (b2.getIcon() == pics.humss2) && (b3.getIcon() == pics.humss3)
+//                && (b4.getIcon() == pics.humss4) && (b5.getIcon() == pics.humss5) && (b6.getIcon() == pics.humss6)
+//                && (b7.getIcon() == pics.humss7) && (b8.getIcon() == pics.humss8) && (b9.getIcon() == pics.humss9)){
+//            //level 1
+//            System.out.println("Puzzle Solved");
+//            solved = true;
+//            timer.stop();
+//            puzzle.ifGameSolved();
+//        } else if ((b1.getIcon() == pics.stem1) && (b2.getIcon() == pics.stem2) && (b3.getIcon() == pics.stem3)
+//                && (b4.getIcon() == pics.stem4) && (b5.getIcon() == pics.stem5) && (b6.getIcon() == pics.stem6)
+//                && (b7.getIcon() == pics.stem7) && (b8.getIcon() == pics.stem8) && (b9.getIcon() == pics.stem9)){
+//            //level 2
+//            System.out.println("Puzzle Solved");
+//            solved = true;
+//            timer.stop();
+//            puzzle.ifGameSolved();
+//        } else if ((b1.getIcon() == pics.abm1) && (b2.getIcon() == pics.abm2) && (b3.getIcon() == pics.abm3)
+//                && (b4.getIcon() == pics.abm4) && (b5.getIcon() == pics.abm5) && (b6.getIcon() == pics.abm6)
+//                && (b7.getIcon() == pics.abm7) && (b8.getIcon() == pics.abm8) && (b9.getIcon() == pics.abm9)) {
+//            //level 3
+//            System.out.println("Puzzle Solved");
+//            solved = true;
+//            timer.stop();
+//            puzzle.ifGameSolved();
+//        } else if ((b1.getIcon() == pics.he1) && (b2.getIcon() == pics.he2) && (b3.getIcon() == pics.he3)
+//                && (b4.getIcon() == pics.he4) && (b5.getIcon() == pics.he5) && (b6.getIcon() == pics.he6)
+//                && (b7.getIcon() == pics.he7) && (b8.getIcon() == pics.he8) && (b9.getIcon() == pics.he9)) {
+//            //level 4
+//            System.out.println("Puzzle Solved");
+//            solved = true;
+//            timer.stop();
+//            puzzle.ifGameSolved();
+//        } else if ((b1.getIcon() == pics.ict1) && (b2.getIcon() == pics.ict2) && (b3.getIcon() == pics.ict3)
+//                && (b4.getIcon() == pics.ict4) && (b5.getIcon() == pics.ict5) && (b6.getIcon() == pics.ict6)
+//                && (b7.getIcon() == pics.ict7) && (b8.getIcon() == pics.ict8) && (b9.getIcon() == pics.ict9)) {
+//            System.out.println("Puzzle Solved");
+//            solved = true;
+//            timer.stop();
+//            puzzle.ifGameSolved();
+//        } else if ((b1.getIcon() == pics.l1) && (b2.getIcon() == pics.l2) && (b3.getIcon() == pics.l3)
+//                && (b4.getIcon() == pics.l4) && (b5.getIcon() == pics.l5) && (b6.getIcon() == pics.l6)
+//                && (b7.getIcon() == pics.l7) && (b8.getIcon() == pics.l8) && (b9.getIcon() == pics.l9)) {
+//            System.out.println("Puzzle Solved");
+//            solved = true;
+//            timer.stop();
+//            puzzle.ifGameWin();
+//        }
+//    }
 
     public void Level1() {
         limit = limit1;
@@ -346,6 +339,7 @@ public class Game implements ActionListener {
         b7.setIcon(pics.humss6); b8.setIcon(pics.humss9); b9.setIcon(pics.humss5);
         basisImage.setIcon(pics.humss);
         mover = b1.getIcon();
+        timer.start();
         icon.setIcon(b1.getIcon());
     }
 
@@ -409,5 +403,70 @@ public class Game implements ActionListener {
         basisImage.setIcon(pics.logo);
         mover = b1.getIcon();
         icon.setIcon(b1.getIcon());
+    }
+
+    public void checkPuzzle() {
+        System.out.println("solving");
+        Icon[] buttons = {
+                b1.getIcon(), b2.getIcon(), b3.getIcon(),
+                b4.getIcon(), b5.getIcon(), b6.getIcon(),
+                b7.getIcon(), b8.getIcon(), b9.getIcon()};
+        Icon[] correctOrder = null;
+
+        Icon[] correctLevel1 = {pics.humss1, pics.humss2, pics.humss3, pics.humss4, pics.humss5, pics.humss6, pics.humss7, pics.humss8, pics.humss9};
+        Icon[] correctLevel2 = {pics.stem1, pics.stem2, pics.stem3, pics.stem4, pics.stem5, pics.stem6, pics.stem7, pics.stem8, pics.stem9};
+        Icon[] correctLevel3 = {pics.abm1, pics.abm2, pics.abm3, pics.abm4, pics.abm5, pics.abm6, pics.abm7, pics.abm8, pics.abm9};
+        Icon[] correctLevel4 = {pics.he1, pics.he2, pics.he3, pics.he4, pics.he5, pics.he6, pics.he7, pics.he8, pics.he9};
+        Icon[] correctLevel5 = {pics.ict1, pics.ict2, pics.ict3, pics.ict4, pics.ict5, pics.ict6, pics.ict7, pics.ict8, pics.ict9};
+        Icon[] correctLevel6 = {pics.l1, pics.l2, pics.l3, pics.l4, pics.l5, pics.l6, pics.l7, pics.l8, pics.l9};
+
+        Icon currentPic = basisImage.getIcon();
+        if (currentPic == pics.humss) {
+            System.out.println("Curent Picture checked is for 1st Level");
+            correctOrder = correctLevel1;
+        } else if (currentPic == pics.stem) {
+            System.out.println("Curent Picture checked is for 2nd Level");
+            correctOrder = correctLevel2;
+        } else if (currentPic == pics.abm) {
+            System.out.println("Curent Picture checked is for 3rd Level");
+            correctOrder = correctLevel3;
+        } else if (currentPic == pics.he) {
+            System.out.println("Curent Picture checked is for 4th Level");
+            correctOrder = correctLevel4;
+        } else if (currentPic == pics.ict) {
+            System.out.println("Curent Picture checked is for 5th Level");
+            correctOrder = correctLevel5;
+        } else if (currentPic == pics.logo) {
+            System.out.println("Curent Picture checked is for Boss Level");
+            correctOrder = correctLevel6;
+        }
+
+        boolean isSolved = true;   // ANO BANG PROBLEMA MO @&#$?&!
+        for (int i = 0; i < buttons.length; i++) {
+            System.out.println("entered for loop");
+            if (buttons[i] != correctOrder[i]) {
+                isSolved = false;
+                System.out.println(i);
+                System.out.println(isSolved);
+                break;
+            }
+        }
+        if (isSolved) {
+            timer.stop();
+            solved = true;
+            if (basisImage.getIcon() == pics.humss){
+                puzzle.ifGameSolved();
+            } else if (basisImage.getIcon() == pics.stem){
+                puzzle.ifGameSolved();
+            } else if (basisImage.getIcon() == pics.abm){
+                puzzle.ifGameSolved();
+            } else if (basisImage.getIcon() == pics.he){
+                puzzle.ifGameSolved();
+            } else if (basisImage.getIcon() == pics.ict){
+                puzzle.ifGameSolved();
+            } else if (basisImage.getIcon() == pics.logo){
+                puzzle.ifGameWin();
+            }
+        }
     }
 }
