@@ -73,4 +73,16 @@ public class Pictures {
     Icon l8 = new ImageIcon("src/Coding/LOGO/logo8.png");
     Icon l9 = new ImageIcon("src/Coding/LOGO/logo9.png");
 
+    Icon picLevels = new ImageIcon("src\\Coding\\Buttons\\Leeee.png");
+    Icon picHow = new ImageIcon("src/Coding/Buttons/HowToo.png");
+    Icon picSettings = new ImageIcon("src/Coding/Buttons/Seeett.png");
+    Icon picCredits = new ImageIcon("src/Coding/Buttons/itloggg.png");
+
+    Icon picLevel1 = new ImageIcon("src\\Coding\\Buttons\\Level1.png");
+    Icon picLevel2 = new ImageIcon("src\\Coding\\Buttons\\Level2.png");
+    Icon picLevel3 = new ImageIcon("src\\Coding\\Buttons\\Level3.png");
+    Icon picLevel4 = new ImageIcon("src\\Coding\\Buttons\\Level4.png");
+    Icon picLevel5 = new ImageIcon("src\\Coding\\Buttons\\Level5.png");
+    Icon picLocked = new ImageIcon("src\\Coding\\Buttons\\Locked.png");
+
 }
