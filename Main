@@ -4,10 +4,11 @@ import javax.swing.*;
 
 public class Main extends JFrame implements ActionListener {
 
-    JLabel title, forBack;
+    JLabel forBack;
     JPanel con, forTitle, forLevels, forSettings, forGuide;
-    JButton levels, settings, guide;
+    JButton levels, settings, guide, credits;
     Tunog m = new Tunog();
+    Pictures pics = new Pictures();
     Main(){
         forBack = new JLabel(new ImageIcon("src\\Coding\\GIF\\piczzle.gif"));
         forBack.setLayout(new BorderLayout());
@@ -24,38 +25,30 @@ public class Main extends JFrame implements ActionListener {
         this.setLayout(new GridLayout(0, 1, 0, 0));
 
         con = new JPanel(new GridLayout(0,1)); con.setOpaque(false);
-
-        title = new JLabel(" ");
-        title.setFont(new Font("Rosewood Std Regular", Font.BOLD, 80));
-        title.setForeground(Color.BLACK); //Book Antiqua
-        //title.setBounds(700,30,200,50);
+        credits = new JButton(pics.picCredits); credits.setFont(new Font("Berlin Sans FB Demi", Font.BOLD, 30));
+        credits.setPreferredSize(new Dimension(60,60));
+        credits.setBorderPainted(false); credits.setContentAreaFilled(false); credits.setFocusPainted(false);
+        credits.addActionListener(this);
         //all buttons
-        levels = new JButton("LEVELS");
-        levels.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30)); levels.setFocusable(false);
-        levels.setPreferredSize(new Dimension(250,100)); levels.addActionListener(this);
-        guide = new JButton("<html><center>HOW TO<br>PLAY</center</html>");
-        guide.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30));
-        guide.setFocusable(false);
-        guide.setPreferredSize(new Dimension(250,100));
+        levels = new JButton(pics.picLevels);
+        levels.setPreferredSize(new Dimension(386,125));
+        levels.setBorderPainted(false); levels.setContentAreaFilled(false); levels.setFocusPainted(false);
+        levels.addActionListener(this);
+        guide = new JButton(pics.picHow);
+        guide.setPreferredSize(new Dimension(386,125));
+        guide.setBorderPainted(false); guide.setContentAreaFilled(false); guide.setFocusPainted(false);
         guide.addActionListener(this);
-        settings = new JButton("SETTINGS");
-        settings.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30));
-        settings.setFocusable(false);
-        settings.setPreferredSize(new Dimension(250,100));
+        settings = new JButton(pics.picSettings);
+        settings.setPreferredSize(new Dimension(386,125));
+        settings.setBorderPainted(false); settings.setContentAreaFilled(false); settings.setFocusPainted(false);
         settings.addActionListener(this);
         //all panels to ensure a centered layout for the window
-        forTitle = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        forTitle = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         forLevels = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 70));
         forGuide = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 55));
         forSettings = new JPanel(new FlowLayout(FlowLayout.CENTER,0,35));
-        forTitle.setOpaque(false);
-        forLevels.setOpaque(false);
-        forSettings.setOpaque(false);
-        forGuide.setOpaque(false);
-        forTitle.add(title);
-        forLevels.add(levels);
-        forGuide.add(guide);
-        forSettings.add(settings);
+        forTitle.setOpaque(false); forLevels.setOpaque(false); forSettings.setOpaque(false); forGuide.setOpaque(false);
+        forTitle.add(credits); forLevels.add(levels); forGuide.add(guide); forSettings.add(settings);
 
         con.add(forTitle);
         con.add(forLevels);
@@ -69,14 +62,16 @@ public class Main extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e){
         Tunog.playBMusic();
         if(e.getSource() == levels){
-            dispose();
             new Levels();
+            dispose();
         } else if (e.getSource() == guide) {
-            dispose();
             new Guide();
-        } else if (e.getSource() == settings) {
             dispose();
+        } else if (e.getSource() == settings) {
             new Settings();
+            dispose();
+        } else if (e.getSource() == credits){
+            forBack.setVisible(false);
         }
     }
 
