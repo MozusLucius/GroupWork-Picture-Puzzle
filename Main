@@ -4,10 +4,9 @@ import javax.swing.*;
 
 public class Main extends JFrame implements ActionListener {
 
-    JLabel forBack;
-    JPanel con, forTitle, forLevels, forSettings, forGuide;
+    JLabel forBack, forCredits;
+    JPanel con, forTitle, forTitle2, forLevels, forSettings, forGuide;
     JButton levels, settings, guide, credits;
-    Tunog m = new Tunog();
     Pictures pics = new Pictures();
     Main(){
         forBack = new JLabel(new ImageIcon("src\\Coding\\GIF\\piczzle.gif"));
@@ -22,7 +21,7 @@ public class Main extends JFrame implements ActionListener {
         this.setResizable(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().setBackground(new Color(0xf5b982));
-        this.setLayout(new GridLayout(0, 1, 0, 0));
+        this.setLayout(new BorderLayout());
 
         con = new JPanel(new GridLayout(0,1)); con.setOpaque(false);
         credits = new JButton(pics.picCredits); credits.setFont(new Font("Berlin Sans FB Demi", Font.BOLD, 30));
@@ -50,6 +49,12 @@ public class Main extends JFrame implements ActionListener {
         forTitle.setOpaque(false); forLevels.setOpaque(false); forSettings.setOpaque(false); forGuide.setOpaque(false);
         forTitle.add(credits); forLevels.add(levels); forGuide.add(guide); forSettings.add(settings);
 
+        //credits
+        forCredits = new JLabel(new ImageIcon("src/Coding/toothless.gif"));
+        forCredits.setLayout(new BorderLayout());
+        forTitle2 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        forCredits.add(forTitle2, BorderLayout.NORTH);
+
         con.add(forTitle);
         con.add(forLevels);
         con.add(forGuide);
@@ -70,13 +75,28 @@ public class Main extends JFrame implements ActionListener {
         } else if (e.getSource() == settings) {
             new Settings();
             dispose();
-        } else if (e.getSource() == credits){
-            forBack.setVisible(false);
+        }
+        if (e.getSource() == credits){
+            if (forBack.isVisible()) {
+                forBack.setVisible(false);
+                remove(forBack);
+                setContentPane(forCredits);
+                forTitle2.add(credits);
+                forCredits.setVisible(true);
+                setVisible(true);
+            } else if (forCredits.isVisible()) {
+                forCredits.setVisible(false);
+                remove(forCredits);
+                setContentPane(forBack);
+                forTitle.add(credits);
+                forBack.setVisible(true);
+                setVisible(true);
+            }
         }
     }
 
     public static void main (String[] args){
         new Main();
-        Tunog.playBGMusic();
+        //Tunog.playBGMusic();
     }
 }
