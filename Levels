@@ -10,6 +10,7 @@ public class Levels extends JFrame implements ActionListener {
     static boolean unlock3 = false;
     static boolean unlock4 = false;
     static boolean unlock5 = false;
+    Pictures pics = new Pictures();
 
     Levels(){
         forBack = new JLabel(new ImageIcon("src\\Coding\\GIF\\Stay Tuned.gif"));
@@ -48,21 +49,27 @@ public class Levels extends JFrame implements ActionListener {
         forMenu.add(mainM);
 
         //all buttons
-        level1 = new JButton("LEVEL 1");
+        level1 = new JButton(pics.picLevel1);
         level1.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30)); level1.setFocusable(false); level1.setBackground(Color.BLACK);
-        level1.setPreferredSize(new Dimension(250,100)); level1.addActionListener(this); level1.setForeground(Color.LIGHT_GRAY);
-        level2 = new JButton("LEVEL 2");
-        level2.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30)); level2.setFocusable(false); level2.setEnabled(false); level2.setBackground(Color.BLACK);
-        level2.setPreferredSize(new Dimension(250,100)); level2.addActionListener(this); level2.setForeground(Color.LIGHT_GRAY);
-        level3 = new JButton("LEVEL 3");
-        level3.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30)); level3.setFocusable(false); level3.setEnabled(false); level3.setBackground(Color.BLACK);
-        level3.setPreferredSize(new Dimension(250,100)); level3.addActionListener(this); level3.setForeground(Color.LIGHT_GRAY);
-        level4 = new JButton("LEVEL 4");
-        level4.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30)); level4.setFocusable(false); level4.setEnabled(false); level4.setBackground(Color.BLACK);
-        level4.setPreferredSize(new Dimension(250,100)); level4.addActionListener(this); level4.setForeground(Color.LIGHT_GRAY);
-        level5 = new JButton("LEVEL 5");
-        level5.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30)); level5.setFocusable(false); level5.setEnabled(false); level5.setBackground(Color.BLACK);
-        level5.setPreferredSize(new Dimension(250,100)); level5.addActionListener(this); level5.setForeground(Color.LIGHT_GRAY);
+        level1.setPreferredSize(new Dimension(500,121)); level1.addActionListener(this); level1.setForeground(Color.LIGHT_GRAY);
+        level1.setBorderPainted(false); level1.setContentAreaFilled(false); level1.setFocusPainted(false);
+        level2 = new JButton(pics.picLocked);
+        level2.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30)); level2.setFocusable(false); level2.setBackground(Color.BLACK);
+        level2.setPreferredSize(new Dimension(500,121)); level2.setForeground(Color.LIGHT_GRAY); //level2.addActionListener(this);
+        level2.setBorderPainted(false); level2.setContentAreaFilled(false); level2.setFocusPainted(false);
+        level3 = new JButton(pics.picLocked);
+        level3.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30)); level3.setFocusable(false); level3.setBackground(Color.BLACK);
+        level3.setPreferredSize(new Dimension(500,121)); level3.setForeground(Color.LIGHT_GRAY); //level3.addActionListener(this);
+        level3.setBorderPainted(false); level3.setContentAreaFilled(false); level3.setFocusPainted(false);
+        level4 = new JButton(pics.picLocked);
+        level4.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30)); level4.setFocusable(false); level4.setBackground(Color.BLACK);
+        level4.setPreferredSize(new Dimension(500,121)); level4.setForeground(Color.LIGHT_GRAY); //level4.addActionListener(this);
+        level4.setBorderPainted(false); level4.setContentAreaFilled(false); level4.setFocusPainted(false);
+        level5 = new JButton(pics.picLocked);
+        level5.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30)); level5.setFocusable(false); level5.setBackground(Color.BLACK);
+        level5.setPreferredSize(new Dimension(500,121)); level5.setForeground(Color.LIGHT_GRAY); //level5.addActionListener(this);
+        level5.setBorderPainted(false); level5.setContentAreaFilled(false); level5.setFocusPainted(false);
+
 
         //all panels to ensure a centered layout for the window
         forTitle = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -87,10 +94,10 @@ public class Levels extends JFrame implements ActionListener {
     }
 
     public void levelUnlocked(){
-        if (unlock2) level2.setEnabled(true);
-        if (unlock3) level3.setEnabled(true);
-        if (unlock4) level4.setEnabled(true);
-        if (unlock5) level5.setEnabled(true);
+        if (unlock2) {level2.addActionListener(this); level2.setIcon(pics.picLevel2);}
+        if (unlock3) {level3.addActionListener(this); level3.setIcon(pics.picLevel3);}
+        if (unlock4) {level4.addActionListener(this); level4.setIcon(pics.picLevel4);}
+        if (unlock5) {level5.addActionListener(this); level5.setIcon(pics.picLevel5);}
     }
 
     @Override
@@ -100,31 +107,35 @@ public class Levels extends JFrame implements ActionListener {
             dispose();
             new Main();
         } else if(e.getSource() == level1){
-            dispose();
             Tunog.stopBGMusic();
             Puzzle p = new Puzzle(this);
-            //playground music
+            Tunog.playPGMusic();
             p.game.Level1();
+            dispose();
         } else if (e.getSource() == level2){
-            dispose();
+            Tunog.stopBGMusic();
             Puzzle p = new Puzzle(this);
-            //playground music
+            Tunog.playPGMusic();
             p.game.Level2();
+            dispose();
         } else if (e.getSource() == level3){
-            dispose();
+            Tunog.stopBGMusic();
             Puzzle p = new Puzzle(this);
-            //playground music
+            Tunog.playPGMusic();
             p.game.Level3();
+            dispose();
         } else if (e.getSource() == level4){
-            dispose();
+            Tunog.stopBGMusic();
             Puzzle p = new Puzzle(this);
-            //playground music
+            Tunog.playPGMusic();
             p.game.Level4();
-        } else if (e.getSource() == level5){
             dispose();
+        } else if (e.getSource() == level5){
+            Tunog.stopBGMusic();
             Puzzle p = new Puzzle(this);
-            //playground music
+            Tunog.playPGMusic();
             p.game.Level5();
+            dispose();
         }
     }
     public static void main (String[] args){
