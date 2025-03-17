@@ -3,7 +3,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class Levels extends JFrame implements ActionListener {
-    JLabel title, forBack;
+    JLabel forBack;
     JPanel mainCon, con, forMenu, forTitle, forLevel1, forLevel2, forLevel3, forLevel4, forLevel5;
     JButton level1, level2, level3, level4, level5, mainM;
     static boolean unlock2 = false;
@@ -32,19 +32,11 @@ public class Levels extends JFrame implements ActionListener {
         con.setOpaque(false);
         con.setLayout(new GridLayout(0, 1, 0, 0));
 
-        title = new JLabel(" ");
-        title.setFont(new Font("Book Antiqua", Font.BOLD, 70));
-        title.setForeground(Color.WHITE);
-        title.setBounds(700,30,200,50);
-
         forMenu = new JPanel(new FlowLayout(FlowLayout.LEADING));
         forMenu.setOpaque(false);
-        mainM = new JButton("<html><center>Main<br>Menu</center></html>");
-        mainM.setPreferredSize(new Dimension(80,50));
-        mainM.setFocusable(false);
-        mainM.setBackground(new Color(0xf5e8a6));
-        mainM.setForeground(Color.BLACK);
-        mainM.setFont(new Font("Lucida Console", Font.PLAIN, 18));
+        mainM = new JButton(new ImageIcon("src/Coding/Buttons/back.png"));
+        mainM.setPreferredSize(new Dimension(80,51));
+        mainM.setBorderPainted(false); mainM.setContentAreaFilled(false); mainM.setFocusPainted(false);
         mainM.addActionListener(this);
         forMenu.add(mainM);
 
@@ -69,7 +61,7 @@ public class Levels extends JFrame implements ActionListener {
         level5.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 30)); level5.setFocusable(false); level5.setBackground(Color.BLACK);
         level5.setPreferredSize(new Dimension(500,121)); level5.setForeground(Color.LIGHT_GRAY); //level5.addActionListener(this);
         level5.setBorderPainted(false); level5.setContentAreaFilled(false); level5.setFocusPainted(false);
-
+        //level5.addActionListener(this); level5.setIcon(pics.picLevel5);
 
         //all panels to ensure a centered layout for the window
         forTitle = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -79,7 +71,7 @@ public class Levels extends JFrame implements ActionListener {
         forLevel4 = new JPanel(new FlowLayout(FlowLayout.CENTER,0,0));
         forLevel5 = new JPanel(new FlowLayout(FlowLayout.CENTER,0,0));
         forTitle.setOpaque(false); forLevel1.setOpaque(false); forLevel2.setOpaque(false); forLevel3.setOpaque(false); forLevel4.setOpaque(false); forLevel5.setOpaque(false);
-        forTitle.add(title); forLevel1.add(level1); forLevel2.add(level2); forLevel3.add(level3); forLevel4.add(level4); forLevel5.add(level5);
+        forLevel1.add(level1); forLevel2.add(level2); forLevel3.add(level3); forLevel4.add(level4); forLevel5.add(level5);
 
         mainCon.add(forMenu, BorderLayout.NORTH);
         mainCon.add(con, BorderLayout.CENTER);
