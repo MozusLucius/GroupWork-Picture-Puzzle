@@ -12,13 +12,11 @@ public class Puzzle extends JFrame implements ActionListener {
     Tunog m = new Tunog();
     String [] response1 = {"Next Level", "Replay", "Back to Levels"};
     String [] response2 = {"Replay", "Back to Levels"};
-    String [] response3 = {"Yes", "Replay this Level", "Back to Levels"};
     Levels levels;
 
     Puzzle(Levels levels){
         forBack = new JLabel(new ImageIcon(""));
         leftBG = new JLabel(new ImageIcon(""));
-        Icon toothless = new ImageIcon("");
 
         this.levels = levels;
         this.setTitle("Piczzle");
@@ -78,9 +76,9 @@ public class Puzzle extends JFrame implements ActionListener {
         pgC.add(game.b1); pgC.add(game.b2); pgC.add(game.b3);
         pgC.add(game.b4); pgC.add(game.b5); pgC.add(game.b6);
         pgC.add(game.b7); pgC.add(game.b8); pgC.add(game.b9);
-        game.b1.addActionListener(this); game.b2.addActionListener(this); game.b3.addActionListener(this);
-        game.b4.addActionListener(this); game.b5.addActionListener(this); game.b6.addActionListener(this);
-        game.b7.addActionListener(this); game.b8.addActionListener(this); game.b9.addActionListener(this);
+//        game.b1.addActionListener(this); game.b2.addActionListener(this); game.b3.addActionListener(this);
+//        game.b4.addActionListener(this); game.b5.addActionListener(this); game.b6.addActionListener(this);
+//        game.b7.addActionListener(this); game.b8.addActionListener(this); game.b9.addActionListener(this);
 
         forIcon = new JPanel(null);
         forIcon.setBackground(new Color(0xbab5a8));
@@ -156,57 +154,40 @@ public class Puzzle extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == backL) {
-            Tunog.playBMusic();
+        Tunog.playBMusic();
+        if ((e.getSource() == backL) || (e.getSource() == levelsBack) || (e.getSource() == wonLevels)) {
+            Game.timer.stop();
             Tunog.stopPGMusic();
             Tunog.stopWinMusic();
             Tunog.stopBossMusic();
             Tunog.playBGMusic();
-            dispose();
             new Levels();
-        }
-        if (e.getSource() == levelsBack){
-            Tunog.playBMusic();
-            Tunog.stopPGMusic();
-            Tunog.stopWinMusic();
-            Tunog.stopBossMusic();
-            Tunog.playBGMusic();
-            dispose();
-            new Levels();
+            this.dispose();
         }
 
         if (e.getSource() == game.pause){
-            Tunog.playBMusic();
             con.setVisible(false);
             this.remove(con);
             this.add(oncePaused, BorderLayout.CENTER);
             oncePaused.setVisible(true);
             this.setVisible(true);
+            Tunog.pausePGMusic();
         } else if (e.getSource() == game.resume){
-            Tunog.playBMusic();
             oncePaused.setVisible(false);
             this.remove(oncePaused);
             this.add(con, BorderLayout.CENTER);
             con.setVisible(true);
             this.setVisible(true);
+            Tunog.resumePGMusic();
         } else if (e.getSource() == game.restart){
-            Tunog.playBMusic();
-            //resume PG Music
+            Tunog.resumePGMusic();
             System.out.println("Puzzle Restart button clicked");
             dispose();
         }
 
-        if (e.getSource() == wonLevels){
-            Tunog.playBMusic();
-            Tunog.stopPGMusic();
-            Tunog.stopWinMusic();
-            Tunog.stopBossMusic();
-            Tunog.playBGMusic();
-            dispose();
-            new Levels();
-        } else if (e.getSource() == displayBoss){
+        if (e.getSource() == displayBoss){
             onceWon.setVisible(false);
-            this.add(con, BorderLayout.CENTER);
+            //this.add(con, BorderLayout.CENTER);
             con.setVisible(true);
             this.setVisible(true);
         } else if (e.getSource() == displayBoss2) {
@@ -216,46 +197,54 @@ public class Puzzle extends JFrame implements ActionListener {
         }
     }
 
-    public void checkIfGameIsSolved() {
+    public void ifGameSolved() {
         if (game.solved) {
-            Game.timer.stop();
-            ////pause playground music
+            Tunog.pausePGMusic();
             Tunog.playSolvedMusic();
+            //if conditions to unlock levels automatically
+            if (game.currentLevel.getText().equals("Level: 1")){
+                Levels.unlock2 = true;
+                levels.levelUnlocked();
+            } else if (game.currentLevel.getText().equals("Level: 2")){
+                Levels.unlock3 = true; // Mark Level 2 as unlocked
+                levels.levelUnlocked();
+            } else if (game.currentLevel.getText().equals("Level: 3")){
+                Levels.unlock4 = true;
+                levels.levelUnlocked();
+            } else if (game.currentLevel.getText().equals("Level: 4")){
+                Levels.unlock5 = true;
+                levels.levelUnlocked();
+            } else if (game.currentLevel.getText().equals("Level: 5")){
+                Tunog.stopBGMusic();
+                Tunog.stopPGMusic();
+            }
+            //JOptionPane pop-up
             int a = JOptionPane.showOptionDialog(this,"<html>You have solved the puzzle in time!<br>Play another level?</html>", "CONGRATULATIONS!!!", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, response1, 0);
             if(a==JOptionPane.YES_OPTION){
                 //Next Level
                 Tunog.playBMusic();
-                dispose();
                 Puzzle p = new Puzzle(this.levels);
-                ////resume playground music
+                Tunog.resumePGMusic();
                 game.solved = false;
                 if (game.currentLevel.getText().equals("Level: 1")){
-                    Levels.unlock2 = true;
-                    levels.levelUnlocked();
                     p.game.Level2();
                 } else if (game.currentLevel.getText().equals("Level: 2")){
-                    Levels.unlock3 = true; // Mark Level 2 as unlocked
-                    levels.levelUnlocked();
                     p.game.Level3();
                 } else if (game.currentLevel.getText().equals("Level: 3")){
-                    Levels.unlock4 = true;
-                    levels.levelUnlocked();
                     p.game.Level4();
                 } else if (game.currentLevel.getText().equals("Level: 4")){
-                    Levels.unlock5 = true;
-                    levels.levelUnlocked();
                     p.game.Level5();
                 } else if (game.currentLevel.getText().equals("Level: 5")){
                     Tunog.stopBGMusic();
-                    //stop pg music
+                    Tunog.stopPGMusic();
                     p.game.Level6();
                 }
+                dispose();
             } else if(a==JOptionPane.NO_OPTION){
                 //Replay
                 Tunog.playBMusic();
-                dispose();
                 Puzzle p = new Puzzle(this.levels);
-                ////resume playground music
+                Tunog.resumePGMusic();
                 game.solved = false;
                 if (game.currentLevel.getText().equals("Level: 1")){
                     p.game.Level1();
@@ -268,33 +257,18 @@ public class Puzzle extends JFrame implements ActionListener {
                 } else if (game.currentLevel.getText().equals("Level: 5")){
                     p.game.Level5();
                 }
+                dispose();
             } else if (a==JOptionPane.CANCEL_OPTION){
                 //Back to Levels
                 Tunog.playBMusic();
-                this.dispose();
-                if (game.currentLevel.getText().equals("Level: 1")){
-                    Levels.unlock2 = true;
-                    levels.levelUnlocked();
-                    new Levels();
-                } else if (game.currentLevel.getText().equals("Level: 2")) {
-                    Levels.unlock3 = true;
-                    levels.levelUnlocked();
-                    new Levels();
-                } else if (game.currentLevel.getText().equals("Level: 3")){
-                    Levels.unlock4 = true;
-                    levels.levelUnlocked();
-                    new Levels();
-                } else if (game.currentLevel.getText().equals("Level: 4")){
-                    Levels.unlock5 = true;
-                    levels.levelUnlocked();
-                    new Levels();
-                }
+                new Levels();
                 Tunog.playBGMusic();
+                dispose();
             }
         }
 
         if (hasFailed){
-            ////pause playground music
+            Tunog.pausePGMusic();
             Tunog.playFailMusic();
             game.b1.setEnabled(false); game.b2.setEnabled(false); game.b3.setEnabled(false);
             game.b4.setEnabled(false); game.b5.setEnabled(false); game.b6.setEnabled(false);
@@ -304,8 +278,7 @@ public class Puzzle extends JFrame implements ActionListener {
             if(b==JOptionPane.YES_OPTION){
                 //Replay
                 Tunog.playBMusic();
-                ////resume playground music
-                dispose();
+                Tunog.resumePGMusic();
                 Puzzle p = new Puzzle(this.levels);
                 game.solved = false;
                 if (game.currentLevel.getText().equals("Level: 1")){
@@ -321,12 +294,13 @@ public class Puzzle extends JFrame implements ActionListener {
                 } else if (game.currentLevel.getText().equals("Level: 6")){
                     p.game.Level6();
                 }
+                dispose();
             } else if(b==JOptionPane.NO_OPTION){
                 //Back to Levels
                 Tunog.playBMusic();
                 Tunog.playBGMusic();
-                dispose();
                 new Levels();
+                dispose();
             }
         }//end of if hasFailed
     }//end of checkIfGameIsSolved
@@ -334,16 +308,19 @@ public class Puzzle extends JFrame implements ActionListener {
     public void ifGameWin(){
         System.out.println("Game won");
         try {
-            Thread.sleep(2000); //delay for suspense lmao
+            Thread.sleep(1000); //delay for suspense lmao
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         Tunog.stopBossMusic();
+        try {
+            Thread.sleep(1000); //delay for suspense lmao
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         Tunog.playWinMusic();
-        //delay while the final output of the puzzle is to be displayed
         leftCon.add(displayBoss2);
         con.setVisible(false);
-        this.remove(con);
         this.add(onceWon, BorderLayout.CENTER);
         onceWon.setVisible(true);
         this.setVisible(true);
