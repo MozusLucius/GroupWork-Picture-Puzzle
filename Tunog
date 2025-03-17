@@ -72,10 +72,9 @@ public class Tunog {
             }
         }
         if (muted1) {
-            sound1.close();
+            System.out.println("Entered muted 1 if");
             sound1.start();
             volume1.setValue(volume1.getMinimum());
-            muted1 = true;
         }
     }
     // Stop and release resources
@@ -112,10 +111,8 @@ public class Tunog {
             }
         }
         if (muted2) {
-            sound2.close();
             sound2.start();
             volume2.setValue(volume2.getMinimum());
-            muted2 = true;
         }
     }
     // Stop and release resources
@@ -253,10 +250,8 @@ public class Tunog {
         }
 
         if (muted8) {
-            sound8.close();
             sound8.start();
             volume8.setValue(volume8.getMinimum());
-            muted8 = true;
         }
     }
     // Stop and release resources
@@ -294,10 +289,8 @@ public class Tunog {
             }
         }
         if (muted7) {
-            sound7.close();
             sound7.start();
             volume7.setValue(volume7.getMinimum());
-            muted7 = true;
         }
     }
     // Stop and release resources
