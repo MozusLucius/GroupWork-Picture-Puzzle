@@ -21,6 +21,7 @@ public class Game implements ActionListener {
     boolean solved = false;
     //class calls
     Puzzle puzzle;
+    Icon[] correctOrder = null;
 
     Game(Puzzle puzzle) {
         System.out.println("Constructor: Game");
@@ -282,6 +283,7 @@ public class Game implements ActionListener {
     }
 
     public void Level1() {
+        correctOrder = new Icon[]{pics.humss1, pics.humss2, pics.humss3, pics.humss4, pics.humss5, pics.humss6, pics.humss7, pics.humss8, pics.humss9};
         limit = limit1;
         currentLevel.setText("Level: 1");
         timeLimit.setText("Time Limit: 01:00");
@@ -295,6 +297,7 @@ public class Game implements ActionListener {
     }
 
     public void Level2() {
+        correctOrder = new Icon[]{pics.stem1, pics.stem2, pics.stem3, pics.stem4, pics.stem5, pics.stem6, pics.stem7, pics.stem8, pics.stem9};
         limit = limit2;
         currentLevel.setText("Level: 2");
         timeLimit.setText("Time Limit: 00:50");
@@ -307,6 +310,7 @@ public class Game implements ActionListener {
     }
 
     public void Level3() {
+        correctOrder = new Icon[]{pics.abm1, pics.abm2, pics.abm3, pics.abm4, pics.abm5, pics.abm6, pics.abm7, pics.abm8, pics.abm9};
         limit = limit3;
         currentLevel.setText("Level: 3");
         timeLimit.setText("Time Limit: 00:40");
@@ -319,6 +323,7 @@ public class Game implements ActionListener {
     }
 
     public void Level4() {
+        correctOrder = new Icon[]{pics.he1, pics.he2, pics.he3, pics.he4, pics.he5, pics.he6, pics.he7, pics.he8, pics.he9};
         limit = limit4;
         currentLevel.setText("Level: 4");
         timeLimit.setText("Time Limit: 00:30");
@@ -330,18 +335,20 @@ public class Game implements ActionListener {
         icon.setIcon(b1.getIcon());
     }
     public void Level5() {
+        correctOrder = new Icon[]{pics.ict1, pics.ict2, pics.ict3, pics.ict4, pics.ict5, pics.ict6, pics.ict7, pics.ict8, pics.ict9};
         limit = limit5;
         currentLevel.setText("Level: 5");
         timeLimit.setText("Time Limit: 00:20");
-        b1.setIcon(pics.ict4); b2.setIcon(pics.ict7); b3.setIcon(pics.ict5);
-        b4.setIcon(pics.ict2); b5.setIcon(pics.ict3); b6.setIcon(pics.ict9);
-        b7.setIcon(pics.ict8); b8.setIcon(pics.ict6); b9.setIcon(pics.ict1);
+        b1.setIcon(pics.ict5); b2.setIcon(pics.ict7); b3.setIcon(pics.ict8);
+        b4.setIcon(pics.ict1); b5.setIcon(pics.ict9); b6.setIcon(pics.ict4);
+        b7.setIcon(pics.ict3); b8.setIcon(pics.ict6); b9.setIcon(pics.ict2);
         basisImage.setIcon(pics.ict);
         mover = b1.getIcon();
         icon.setIcon(b1.getIcon());
     }
 
     public void Level6() {
+        correctOrder = new Icon[]{pics.l1, pics.l2, pics.l3, pics.l4, pics.l5, pics.l6, pics.l7, pics.l8, pics.l9};
         Tunog.playBossMusic();
         limit = limit6;
         currentLevel.setText("<html><i>BOSS  LEVEL</i></html>");
@@ -362,35 +369,6 @@ public class Game implements ActionListener {
                 b1.getIcon(), b2.getIcon(), b3.getIcon(),
                 b4.getIcon(), b5.getIcon(), b6.getIcon(),
                 b7.getIcon(), b8.getIcon(), b9.getIcon()};
-        Icon[] correctOrder = null;
-
-        Icon[] correctLevel1 = {pics.humss1, pics.humss2, pics.humss3, pics.humss4, pics.humss5, pics.humss6, pics.humss7, pics.humss8, pics.humss9};
-        Icon[] correctLevel2 = {pics.stem1, pics.stem2, pics.stem3, pics.stem4, pics.stem5, pics.stem6, pics.stem7, pics.stem8, pics.stem9};
-        Icon[] correctLevel3 = {pics.abm1, pics.abm2, pics.abm3, pics.abm4, pics.abm5, pics.abm6, pics.abm7, pics.abm8, pics.abm9};
-        Icon[] correctLevel4 = {pics.he1, pics.he2, pics.he3, pics.he4, pics.he5, pics.he6, pics.he7, pics.he8, pics.he9};
-        Icon[] correctLevel5 = {pics.ict1, pics.ict2, pics.ict3, pics.ict4, pics.ict5, pics.ict6, pics.ict7, pics.ict8, pics.ict9};
-        Icon[] correctLevel6 = {pics.l1, pics.l2, pics.l3, pics.l4, pics.l5, pics.l6, pics.l7, pics.l8, pics.l9};
-
-        Icon currentPic = basisImage.getIcon();
-        if (currentPic == pics.humss) {
-            System.out.println("Curent Picture checked is for 1st Level");
-            correctOrder = correctLevel1;
-        } else if (currentPic == pics.stem) {
-            System.out.println("Curent Picture checked is for 2nd Level");
-            correctOrder = correctLevel2;
-        } else if (currentPic == pics.abm) {
-            System.out.println("Curent Picture checked is for 3rd Level");
-            correctOrder = correctLevel3;
-        } else if (currentPic == pics.he) {
-            System.out.println("Curent Picture checked is for 4th Level");
-            correctOrder = correctLevel4;
-        } else if (currentPic == pics.ict) {
-            System.out.println("Curent Picture checked is for 5th Level");
-            correctOrder = correctLevel5;
-        } else if (currentPic == pics.logo) {
-            System.out.println("Curent Picture checked is for Boss Level");
-            correctOrder = correctLevel6;
-        }
 
         boolean isSolved = true;
         for (int i = 0; i < buttons.length; i++) {
