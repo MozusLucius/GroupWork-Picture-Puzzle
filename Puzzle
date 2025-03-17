@@ -129,8 +129,8 @@ public class Puzzle extends JFrame implements ActionListener {
         onceWon.add(forToothless); onceWon.add(wonLevels); onceWon.add(displayBoss);
 
 
-        forBack.add(oncePaused, BorderLayout.CENTER);
-        //forBack.add(con, BorderLayout.CENTER);
+        //forBack.add(oncePaused, BorderLayout.CENTER);
+        forBack.add(con, BorderLayout.CENTER);
         //forBack.add(onceWon, BorderLayout.CENTER);
         setContentPane(forBack);
         this.setVisible(true);
