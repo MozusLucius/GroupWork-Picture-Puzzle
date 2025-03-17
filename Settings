@@ -4,8 +4,8 @@ import javax.swing.*;
 
 public class Settings extends JFrame implements ActionListener {
 
-    Icon picMute = new ImageIcon("src/Coding/Musika/Sounds/no saund.png");
-    Icon picNotMute = new ImageIcon("src/Coding/Musika/Sounds/BOLYUME AP.png");
+    Icon picMute = new ImageIcon("src/Coding/Buttons/no saund.png");
+    Icon picNotMute = new ImageIcon("src/Coding/Buttons/BOLYUME AP.png");
     JLabel bg, buttons, playB, fail, complete, forBack;
     JPanel mainCon, forMenu, con, forTitle, con1;
     JButton mainM,
