@@ -14,7 +14,6 @@ public class Settings extends JFrame implements ActionListener {
             pBMute,
             fMute,
             cMute;
-    Tunog m = new Tunog();
 
     Settings() {
         forBack = new JLabel(new ImageIcon("src\\Coding\\GIF\\SETTINGS.gif"));
@@ -35,12 +34,9 @@ public class Settings extends JFrame implements ActionListener {
 
         forMenu = new JPanel(new FlowLayout(FlowLayout.LEADING));
         forMenu.setOpaque(false); forMenu.setPreferredSize(new Dimension(10,55));
-        mainM = new JButton("<html><center>Main<br>Menu</center></html>");
-        mainM.setPreferredSize(new Dimension(75,45));
-        mainM.setFocusable(false);
-        mainM.setBackground(new Color(0xf5e8a6));
-        mainM.setForeground(Color.BLACK);
-        mainM.setFont(new Font("Lucida Console", Font.PLAIN, 17));
+        mainM = new JButton(new ImageIcon("src/Coding/Buttons/back1.png"));
+        mainM.setPreferredSize(new Dimension(80,51));
+        mainM.setBorderPainted(false); mainM.setContentAreaFilled(false); mainM.setFocusPainted(false);
         mainM.addActionListener(this);
         //title
         forTitle = new JPanel(new FlowLayout()); forTitle.setOpaque(false);
