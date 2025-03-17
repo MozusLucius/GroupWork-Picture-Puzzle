@@ -3,20 +3,20 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class Puzzle extends JFrame implements ActionListener {
-    JPanel  con, leftCon, centerCon, pgC, forIcon, oncePaused, forPauseTitle, forPause, forRestart, forLevels, onceWon, forWon, wonMessagePanel;
+    JPanel  con, leftCon, centerCon, pgC, forIcon, forPauseTitle, forPause, forRestart, forLevels;
     JButton backL, levelsBack, wonLevels, displayBoss, displayBoss2;
-    JLabel forBack, leftBG, title, iconLabel, wonTitle, wonLabel, forToothless;
+    JLabel forBack, oncePaused, iconLabel, forToothless, onceWon;
     boolean hasFailed = false;
+    //from JOptionPanes
     //Classes call
     Game game = new Game(this);
-    Tunog m = new Tunog();
     String [] response1 = {"Next Level", "Replay", "Back to Levels"};
     String [] response2 = {"Replay", "Back to Levels"};
     Levels levels;
 
     Puzzle(Levels levels){
-        forBack = new JLabel(new ImageIcon(""));
-        leftBG = new JLabel(new ImageIcon(""));
+        forBack = new JLabel(new ImageIcon("src/Coding/GIF/pixelBG.gif"));
+        forBack.setLayout(new BorderLayout());
 
         this.levels = levels;
         this.setTitle("Piczzle");
@@ -32,11 +32,11 @@ public class Puzzle extends JFrame implements ActionListener {
 
         //first Panel for Playground
         con = new JPanel();
-        con.setBackground(new Color(0xf5b982));
+        con.setOpaque(false);
         con.setLayout(new BorderLayout());
         //all components in the left
         leftCon = new JPanel();
-        leftCon.setBackground(new Color(0xa6784c));
+        leftCon.setBackground(new Color(0x6b215a));
         leftCon.setPreferredSize(new Dimension(480,430));
         leftCon.setLayout(null);
         backL = new JButton("<html><center>Back to<br>Levels</center></html>");
@@ -48,11 +48,12 @@ public class Puzzle extends JFrame implements ActionListener {
         backL.addActionListener(this);
         game.currentLevel.setBounds(150,10,300,55);
         game.currentLevel.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 46));
-        game.currentLevel.setForeground(Color.BLACK);
+        game.currentLevel.setForeground(Color.WHITE);
         game.basisImage.setBounds(13,200,450,450);
         game.timeLimit.setFont(new Font("Lucida Console", Font.BOLD, 27));
-        game.timeLimit.setForeground(Color.BLACK); game.timeLimit.setBounds(20,160,290,40);
-        displayBoss2 = new JButton("SHOW WIN PANEL"); displayBoss2.setBounds(130,680, 200,80); displayBoss2.addActionListener(this);
+        game.timeLimit.setForeground(Color.WHITE); game.timeLimit.setBounds(20,160,290,40);
+        displayBoss2 = new JButton(new ImageIcon("src/Coding/Buttons/SWP2.png")); displayBoss2.setBounds(100,675, 250,50); displayBoss2.addActionListener(this);
+        displayBoss2.setBorderPainted(false); displayBoss2.setContentAreaFilled(false); displayBoss2.setFocusPainted(false);
         leftCon.add(backL);
         leftCon.add(game.currentLevel);
         leftCon.add(game.basisImage);
@@ -76,14 +77,10 @@ public class Puzzle extends JFrame implements ActionListener {
         pgC.add(game.b1); pgC.add(game.b2); pgC.add(game.b3);
         pgC.add(game.b4); pgC.add(game.b5); pgC.add(game.b6);
         pgC.add(game.b7); pgC.add(game.b8); pgC.add(game.b9);
-//        game.b1.addActionListener(this); game.b2.addActionListener(this); game.b3.addActionListener(this);
-//        game.b4.addActionListener(this); game.b5.addActionListener(this); game.b6.addActionListener(this);
-//        game.b7.addActionListener(this); game.b8.addActionListener(this); game.b9.addActionListener(this);
 
         forIcon = new JPanel(null);
         forIcon.setBackground(new Color(0xbab5a8));
         forIcon.setBounds(960,250,270,310);
-//        g.icon.setBounds(700,270,167,167);
         game.icon.setBounds(10,10,250,250);
         iconLabel = new JLabel("Icon");
         iconLabel.setForeground(Color.BLACK);
@@ -97,58 +94,45 @@ public class Puzzle extends JFrame implements ActionListener {
         con.add(leftCon, BorderLayout.WEST);
         con.add(centerCon, BorderLayout.CENTER);
 
-
         //pause panel window
-        oncePaused = new JPanel(new GridLayout(0,1)); oncePaused.setBackground(new Color(0xb3875f));
-        forPauseTitle = new JPanel(new FlowLayout(FlowLayout.CENTER,0,70));
+        oncePaused = new JLabel(new ImageIcon("src/Coding/GIF/GAME PAUSE.png")); oncePaused.setLayout(new GridLayout(0,1));
+        forPauseTitle = new JPanel();
         forPause = new JPanel(new FlowLayout(FlowLayout.CENTER));
         forRestart = new JPanel(new FlowLayout(FlowLayout.CENTER));
         forLevels = new JPanel(new FlowLayout(FlowLayout.CENTER));
         forPauseTitle.setOpaque(false); forRestart.setOpaque(false);
         forPause.setOpaque(false); forLevels.setOpaque(false);
-        title = new JLabel("GAME PAUSED");
-        title.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 50));
-        title.setForeground(Color.BLACK);
-        game.resume.setPreferredSize(new Dimension(220,100));
+        game.resume.setPreferredSize(new Dimension(386,125));
         game.resume.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 24));
-        game.resume.setFocusable(false);
         game.resume.addActionListener(this);
-        game.restart.setPreferredSize(new Dimension(220,100));
+        game.restart.setPreferredSize(new Dimension(386,125));
         game.restart.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 24));
-        game.restart.setFocusable(false);
         game.restart.addActionListener(this);
-        levelsBack = new JButton("LEVELS");
+        levelsBack = new JButton(new ImageIcon("src/Coding/Buttons/leevels.png"));
         levelsBack.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 24));
-        levelsBack.setFocusable(false);
-        levelsBack.setPreferredSize(new Dimension(220,100));
-        levelsBack.addActionListener(this);
-        forPauseTitle.add(title);   forRestart.add(game.restart);
-        forPause.add(game.resume);     forLevels.add(levelsBack);
+        levelsBack.setBorderPainted(false); levelsBack.setContentAreaFilled(false); levelsBack.setFocusPainted(false);
+        levelsBack.setPreferredSize(new Dimension(386,125)); levelsBack.addActionListener(this);
+        forRestart.add(game.restart); forPause.add(game.resume); forLevels.add(levelsBack);
         oncePaused.add(forPauseTitle);
         oncePaused.add(forPause);
         oncePaused.add(forRestart);
         oncePaused.add(forLevels);
 
         //Win Panel (Lol)
-        onceWon = new JPanel(new BorderLayout()); onceWon.setOpaque(false);
-        forWon = new JPanel(new FlowLayout()); forWon.setOpaque(false);
-        wonTitle = new JLabel("YOU'VE BEATEN THE GAME!!!"); wonTitle.setFont(new Font("Book Antiqua", Font.BOLD, 50));
-        forWon.add(wonTitle);
-        forToothless = new JLabel(new ImageIcon("src\\Coding\\toothless.gif"));
-        wonMessagePanel = new JPanel(null); wonMessagePanel.setPreferredSize(new Dimension(0,250));
-        wonLabel = new JLabel("Thank you for playing our game! Please do rate Piczzle!"); wonLabel.setBounds(220,10,1100,60); wonLabel.setFont(new Font("Times New Roman", Font.PLAIN, 45));
-        wonLevels = new JButton("BACK TO LEVELS"); wonLevels.setBounds(840,100, 200,80);
-        displayBoss = new JButton("SHOW BOSS LEVEL"); displayBoss.setBounds(440,100, 200,80);
+        onceWon = new JLabel(new ImageIcon("src/Coding/GIF/Winn.png")); onceWon.setLayout(null);
+        forToothless = new JLabel(new ImageIcon("src/Coding/toothless.gif")); forToothless.setBounds(550,100,498,413);
+        wonLevels = new JButton(new ImageIcon("src/Coding/Buttons/BTL2.png")); wonLevels.setBounds(860,750, 250,50);
+        wonLevels.setBorderPainted(false); wonLevels.setContentAreaFilled(false); wonLevels.setFocusPainted(false);
+        displayBoss = new JButton(new ImageIcon("src/Coding/Buttons/SBL2.png")); displayBoss.setBounds(460,750, 250,50);
+        displayBoss.setBorderPainted(false); displayBoss.setContentAreaFilled(false); displayBoss.setFocusPainted(false);
         displayBoss.addActionListener(this); wonLevels.addActionListener(this);
-        wonMessagePanel.add(wonLabel); wonMessagePanel.add(wonLevels); wonMessagePanel.add(displayBoss);
-        onceWon.add(forWon, BorderLayout.NORTH);
-        onceWon.add(forToothless, BorderLayout.CENTER);
-        onceWon.add(wonMessagePanel, BorderLayout.SOUTH);
+        onceWon.add(forToothless); onceWon.add(wonLevels); onceWon.add(displayBoss);
 
 
-        //this.add(oncePaused, BorderLayout.CENTER);
-        this.add(con, BorderLayout.CENTER);
-        //this.add(onceWon, BorderLayout.CENTER);
+        forBack.add(oncePaused, BorderLayout.CENTER);
+        //forBack.add(con, BorderLayout.CENTER);
+        //forBack.add(onceWon, BorderLayout.CENTER);
+        setContentPane(forBack);
         this.setVisible(true);
     }
 
@@ -167,19 +151,20 @@ public class Puzzle extends JFrame implements ActionListener {
 
         if (e.getSource() == game.pause){
             con.setVisible(false);
-            this.remove(con);
-            this.add(oncePaused, BorderLayout.CENTER);
+            forBack.remove(con);
+            forBack.add(oncePaused, BorderLayout.CENTER);
             oncePaused.setVisible(true);
-            this.setVisible(true);
+            forBack.setVisible(true);
             Tunog.pausePGMusic();
         } else if (e.getSource() == game.resume){
             oncePaused.setVisible(false);
-            this.remove(oncePaused);
-            this.add(con, BorderLayout.CENTER);
+            forBack.remove(oncePaused);
+            forBack.add(con, BorderLayout.CENTER);
             con.setVisible(true);
-            this.setVisible(true);
+            forBack.setVisible(true);
             Tunog.resumePGMusic();
-        } else if (e.getSource() == game.restart){
+        }
+        if (e.getSource() == game.restart ){
             Tunog.resumePGMusic();
             System.out.println("Puzzle Restart button clicked");
             dispose();
@@ -187,13 +172,12 @@ public class Puzzle extends JFrame implements ActionListener {
 
         if (e.getSource() == displayBoss){
             onceWon.setVisible(false);
-            //this.add(con, BorderLayout.CENTER);
             con.setVisible(true);
-            this.setVisible(true);
+            forBack.setVisible(true);
         } else if (e.getSource() == displayBoss2) {
             con.setVisible(false);
             onceWon.setVisible(true);
-            this.setVisible(true);
+            forBack.setVisible(true);
         }
     }
 
@@ -240,12 +224,11 @@ public class Puzzle extends JFrame implements ActionListener {
                     p.game.Level6();
                 }
                 dispose();
-            } else if(a==JOptionPane.NO_OPTION){
+            } else if (a==JOptionPane.NO_OPTION){
                 //Replay
                 Tunog.playBMusic();
                 Puzzle p = new Puzzle(this.levels);
                 Tunog.resumePGMusic();
-                game.solved = false;
                 if (game.currentLevel.getText().equals("Level: 1")){
                     p.game.Level1();
                 } else if (game.currentLevel.getText().equals("Level: 2")){
@@ -261,8 +244,8 @@ public class Puzzle extends JFrame implements ActionListener {
             } else if (a==JOptionPane.CANCEL_OPTION){
                 //Back to Levels
                 Tunog.playBMusic();
-                new Levels();
                 Tunog.playBGMusic();
+                new Levels();
                 dispose();
             }
         }
@@ -321,9 +304,9 @@ public class Puzzle extends JFrame implements ActionListener {
         Tunog.playWinMusic();
         leftCon.add(displayBoss2);
         con.setVisible(false);
-        this.add(onceWon, BorderLayout.CENTER);
+        forBack.add(onceWon, BorderLayout.CENTER);
         onceWon.setVisible(true);
-        this.setVisible(true);
+        forBack.setVisible(true);
     }
     public static void main (String[] args){
         new Puzzle(null);
