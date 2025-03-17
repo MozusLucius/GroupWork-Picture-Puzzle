@@ -20,13 +20,12 @@ public class Game implements ActionListener {
     public static Timer timer;
     boolean solved = false;
     //class calls
-    Tunog m = new Tunog();
     Puzzle puzzle;
 
     Game(Puzzle puzzle) {
         System.out.println("Constructor: Game");
         this.puzzle = puzzle;
-        currentLevel = new JLabel("Level: X"); timerLabel = new JLabel("00:00"); pause = new JButton("PAUSE"); resume = new JButton("RESUME"); restart = new JButton("RESTART");
+        currentLevel = new JLabel("Level: X"); timerLabel = new JLabel("00:00"); pause = new JButton("PAUSE"); resume = new JButton(new ImageIcon("src/Coding/Buttons/resume.png")); restart = new JButton(new ImageIcon("src/Coding/Buttons/restart.png"));
         timeLimit = new JLabel("Time Limit: 00:00");
         b1 = new JButton(); b2 = new JButton(); b3 = new JButton();
         b4 = new JButton(); b5 = new JButton(); b6 = new JButton();
@@ -40,6 +39,8 @@ public class Game implements ActionListener {
         b7.addActionListener(this); b8.addActionListener(this); b9.addActionListener(this);
         icon.addActionListener(this);
 
+        resume.setBorderPainted(false); resume.setContentAreaFilled(false); resume.setFocusPainted(false);
+        restart.setBorderPainted(false); restart.setContentAreaFilled(false); restart.setFocusPainted(false);
         pause.addActionListener(this);
         resume.addActionListener(this);
         restart.addActionListener(this);
@@ -393,26 +394,15 @@ public class Game implements ActionListener {
 
         boolean isSolved = true;
         for (int i = 0; i < buttons.length; i++) {
-            System.out.println("entered for loop");
             if (buttons[i] != correctOrder[i]) {
                 isSolved = false;
-                System.out.println(i);
-                System.out.println(isSolved);
                 break;
             }
         }
         if (isSolved) {
             timer.stop();
             solved = true;
-            if (basisImage.getIcon() == pics.humss){
-                puzzle.ifGameSolved();
-            } else if (basisImage.getIcon() == pics.stem){
-                puzzle.ifGameSolved();
-            } else if (basisImage.getIcon() == pics.abm){
-                puzzle.ifGameSolved();
-            } else if (basisImage.getIcon() == pics.he){
-                puzzle.ifGameSolved();
-            } else if (basisImage.getIcon() == pics.ict){
+            if ((basisImage.getIcon() == pics.humss) || (basisImage.getIcon() == pics.stem) || (basisImage.getIcon() == pics.abm) || (basisImage.getIcon() == pics.he) || (basisImage.getIcon() == pics.ict)){
                 puzzle.ifGameSolved();
             } else if (basisImage.getIcon() == pics.logo){
                 puzzle.ifGameWin();
