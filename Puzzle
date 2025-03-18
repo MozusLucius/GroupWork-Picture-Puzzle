@@ -5,7 +5,7 @@ import javax.swing.*;
 public class Puzzle extends JFrame implements ActionListener {
     JPanel  con, leftCon, centerCon, pgC, forIcon, forPauseTitle, forPause, forRestart, forLevels;
     JButton backL, levelsBack, wonLevels, displayBoss, displayBoss2;
-    JLabel forBack, oncePaused, iconLabel, forToothless, onceWon;
+    JLabel forBack, oncePaused, iconLabel, forToothless, onceWon, forBasisImage;
     boolean hasFailed = false;
     //from JOptionPanes
     //Classes call
@@ -47,13 +47,15 @@ public class Puzzle extends JFrame implements ActionListener {
         game.currentLevel.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 46));
         game.currentLevel.setForeground(Color.WHITE);
         game.basisImage.setBounds(13,200,450,450);
+        forBasisImage = new JLabel("Don't forget to click this once you're done!"); forBasisImage.setFont(new Font("Eras Bold ITC", Font.PLAIN, 21)); forBasisImage.setBounds(18,660, 500,35); forBasisImage.setForeground(Color.WHITE);
         game.timeLimit.setFont(new Font("Lucida Console", Font.BOLD, 27));
         game.timeLimit.setForeground(Color.WHITE); game.timeLimit.setBounds(20,160,290,40);
-        displayBoss2 = new JButton(new ImageIcon("src/Coding/Buttons/SWP2.png")); displayBoss2.setBounds(100,675, 250,50); displayBoss2.addActionListener(this);
+        displayBoss2 = new JButton(new ImageIcon("src/Coding/Buttons/SWP2.png")); displayBoss2.setBounds(100,720, 250,50); displayBoss2.addActionListener(this);
         displayBoss2.setBorderPainted(false); displayBoss2.setContentAreaFilled(false); displayBoss2.setFocusPainted(false);
         leftCon.add(backL);
         leftCon.add(game.currentLevel);
         leftCon.add(game.basisImage);
+        leftCon.add(forBasisImage);
         leftCon.add(game.timeLimit);
         //Playground
         centerCon = new JPanel();
