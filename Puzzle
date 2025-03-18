@@ -145,7 +145,7 @@ public class Puzzle extends JFrame implements ActionListener {
             Tunog.stopBossMusic();
             Tunog.playBGMusic();
             new Levels();
-            this.dispose();
+            dispose();
         }
 
         if (e.getSource() == game.pause){
@@ -204,7 +204,6 @@ public class Puzzle extends JFrame implements ActionListener {
                 Tunog.playBMusic();
                 Puzzle p = new Puzzle(this.levels);
                 Tunog.resumePGMusic();
-                game.solved = false;
                 if (game.currentLevel.getText().equals("Level: 1")){
                     p.game.Level2();
                 } else if (game.currentLevel.getText().equals("Level: 2")){
@@ -258,7 +257,6 @@ public class Puzzle extends JFrame implements ActionListener {
                 Tunog.playBMusic();
                 Tunog.resumePGMusic();
                 Puzzle p = new Puzzle(this.levels);
-                game.solved = false;
                 if (game.currentLevel.getText().equals("Level: 1")){
                     p.game.Level1();
                 } else if (game.currentLevel.getText().equals("Level: 2")){
