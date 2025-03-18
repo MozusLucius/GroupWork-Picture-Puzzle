@@ -62,15 +62,18 @@ public class Puzzle extends JFrame implements ActionListener {
         centerCon.setOpaque(false);
         centerCon.setLayout(null);
         game.pause.setFont(new Font("Lucida Console", Font.BOLD, 19));
-        game.pause.setBounds(822,74,98,30);
+        //game.pause.setBounds(822,74,98,30);
+        game.pause.setBounds(662,34,98,30);
         game.pause.setFocusable(false);
         game.pause.setBackground(new Color(0xfcacac));
         game.pause.addActionListener(this);
-        game.timerLabel.setBounds(170,65,100,50);
+        //game.timerLabel.setBounds(170,65,100,50);
+        game.timerLabel.setBounds(10,25,100,50);
         game.timerLabel.setFont(new Font("Lucida Console", Font.BOLD, 30));
         game.timerLabel.setBackground(Color.BLACK);
         pgC = new JPanel();
-        pgC.setBounds(170,110,750,750);
+//        pgC.setBounds(170,110,750,750);
+        pgC.setBounds(10,70,750,750);
         pgC.setBackground(Color.BLACK);
         pgC.setLayout(new GridLayout(3,3));
         pgC.add(game.b1); pgC.add(game.b2); pgC.add(game.b3);
@@ -79,7 +82,8 @@ public class Puzzle extends JFrame implements ActionListener {
 
         forIcon = new JPanel(null);
         forIcon.setBackground(new Color(0xbab5a8));
-        forIcon.setBounds(960,250,270,310);
+        //forIcon.setBounds(960,250,270,310);
+        forIcon.setBounds(780,250,270,310);
         game.icon.setBounds(10,10,250,250);
         iconLabel = new JLabel("Icon");
         iconLabel.setForeground(Color.BLACK);
@@ -146,9 +150,7 @@ public class Puzzle extends JFrame implements ActionListener {
             Tunog.playBGMusic();
             new Levels();
             dispose();
-        }
-
-        if (e.getSource() == game.pause){
+        } else if (e.getSource() == game.pause){
             con.setVisible(false);
             forBack.remove(con);
             forBack.add(oncePaused, BorderLayout.CENTER);
@@ -166,9 +168,7 @@ public class Puzzle extends JFrame implements ActionListener {
             Tunog.resumePGMusic();
             System.out.println("Puzzle Restart button clicked");
             dispose();
-        }
-
-        if (e.getSource() == displayBoss){
+        } else if (e.getSource() == displayBoss){
             onceWon.setVisible(false);
             con.setVisible(true);
             forBack.setVisible(true);
@@ -198,7 +198,7 @@ public class Puzzle extends JFrame implements ActionListener {
                 levels.levelUnlocked();
             }
             //JOptionPane pop-up
-            int a = JOptionPane.showOptionDialog(this,"<html>You have solved the puzzle in time!<br>Play another level?</html>", "CONGRATULATIONS!!!", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, response1, 0);
+            int a = JOptionPane.showOptionDialog(this,"<html>You have solved the puzzle in time!<br>Play another level?</html>", "CONGRATULATIONS!!!", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/Coding/1f929.png"), response1, 0);
             if(a==JOptionPane.YES_OPTION){
                 //Next Level
                 Tunog.playBMusic();
@@ -251,7 +251,7 @@ public class Puzzle extends JFrame implements ActionListener {
             game.b4.setEnabled(false); game.b5.setEnabled(false); game.b6.setEnabled(false);
             game.b7.setEnabled(false); game.b8.setEnabled(false); game.b9.setEnabled(false);
             game.icon.setEnabled(false); game.pause.setEnabled(false);
-            int b = JOptionPane.showOptionDialog(this, "<html>You didn't solve the puzzle in time.<br>Better luck next try.</html>", "TIME'S UP!!!⏰", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE, null, response2, 0);
+            int b = JOptionPane.showOptionDialog(this, "<html>You didn't solve the puzzle in time.<br>Better luck next try.</html>", "TIME'S UP!!!⏰", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE, new ImageIcon("src/Coding/1f974.png"), response2, 0);
             if(b==JOptionPane.YES_OPTION){
                 //Replay
                 Tunog.playBMusic();
