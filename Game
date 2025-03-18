@@ -5,8 +5,8 @@ import java.awt.event.*;
 public class Game implements ActionListener {
 
     Pictures pics = new Pictures();
-    JButton icon, b1, b2, b3, b4, b5, b6, b7, b8, b9, pause, resume, restart;
-    JLabel basisImage, currentLevel, timerLabel, timeLimit;
+    JButton icon, basisImage, b1, b2, b3, b4, b5, b6, b7, b8, b9, pause, resume, restart;
+    JLabel currentLevel, timerLabel, timeLimit;
     Icon mover;
     //timer stuffs
     int timerSeconds = 0;
@@ -20,19 +20,20 @@ public class Game implements ActionListener {
     public static Timer timer;
     boolean solved = false;
     //class calls
-    Tunog m = new Tunog();
     Puzzle puzzle;
+    Icon[] correctOrder = null;
 
     Game(Puzzle puzzle) {
-        System.out.println("Constructor: "+solved);
+        System.out.println("Constructor: Game");
         this.puzzle = puzzle;
-        currentLevel = new JLabel("Level: X"); timerLabel = new JLabel("00:00"); pause = new JButton("PAUSE"); resume = new JButton("RESUME"); restart = new JButton("RESTART");
+        currentLevel = new JLabel("Level: X"); timerLabel = new JLabel("00:00"); pause = new JButton("PAUSE"); resume = new JButton(new ImageIcon("src/Coding/Buttons/resume.png")); restart = new JButton(new ImageIcon("src/Coding/Buttons/restart.png"));
         timeLimit = new JLabel("Time Limit: 00:00");
         b1 = new JButton(); b2 = new JButton(); b3 = new JButton();
         b4 = new JButton(); b5 = new JButton(); b6 = new JButton();
         b7 = new JButton(); b8 = new JButton(); b9 = new JButton();
 
-        basisImage = new JLabel(); basisImage.setIcon(pics.logo);
+        //basisImage = new JLabel(); basisImage.setIcon(pics.logo);
+        basisImage = new JButton(); basisImage.setIcon(pics.logo); basisImage.addActionListener(this);
         mover = b1.getIcon(); icon = new JButton(); icon.setIcon(b1.getIcon());
 
         b1.addActionListener(this); b2.addActionListener(this); b3.addActionListener(this);
@@ -40,16 +41,17 @@ public class Game implements ActionListener {
         b7.addActionListener(this); b8.addActionListener(this); b9.addActionListener(this);
         icon.addActionListener(this);
 
+        resume.setBorderPainted(false); resume.setContentAreaFilled(false); resume.setFocusPainted(false);
+        restart.setBorderPainted(false); restart.setContentAreaFilled(false); restart.setFocusPainted(false);
         pause.addActionListener(this);
         resume.addActionListener(this);
         restart.addActionListener(this);
-        timer = new Timer(1000, e -> {
+        timer = new Timer(1000, _ -> {
             System.out.println("+time");
             timerSeconds++;
             updateTimerLabel();
         });
         timer.start();
-
     }
 
     public void updateTimerLabel(){
@@ -59,7 +61,7 @@ public class Game implements ActionListener {
         if (timerSeconds >= limit){
             timer.stop();
             puzzle.hasFailed = true;
-            puzzle.checkIfGameIsSolved();
+            puzzle.ifGameSolved();
         }
     }
 
@@ -81,7 +83,7 @@ public class Game implements ActionListener {
         } else if (e.getSource() == resume){
             if(solved){
                 timer.stop();
-            } else if (!solved){
+            } else {
                 timer.start();
             }
         } else if(e.getSource() == restart){
@@ -148,7 +150,7 @@ public class Game implements ActionListener {
                 b1.setIcon(mover);
                 Tunog.playPBMusic();
             }
-            checkPuzzle();
+            //checkPuzzle();
         }
         //second button
         if (e.getSource() == b2) {
@@ -165,7 +167,7 @@ public class Game implements ActionListener {
                 b2.setIcon(mover);
                 Tunog.playPBMusic();
             }
-            checkPuzzle();
+            //checkPuzzle();
         }
         //third button
         if (e.getSource() == b3) {
@@ -178,7 +180,7 @@ public class Game implements ActionListener {
                 b3.setIcon(mover);
                 Tunog.playPBMusic();
             }
-            checkPuzzle();
+            //checkPuzzle();
         }
         //fourth button
         if (e.getSource() == b4) {
@@ -195,7 +197,7 @@ public class Game implements ActionListener {
                 b4.setIcon(mover);
                 Tunog.playPBMusic();
             }
-            checkPuzzle();
+            //checkPuzzle();
         }
         //fifth button
         if (e.getSource() == b5) {
@@ -216,7 +218,7 @@ public class Game implements ActionListener {
                 b5.setIcon(mover);
                 Tunog.playPBMusic();
             }
-            checkPuzzle();
+            //checkPuzzle();
         }
         //sixth button
         if (e.getSource() == b6) {
@@ -233,7 +235,7 @@ public class Game implements ActionListener {
                 b6.setIcon(mover);
                 Tunog.playPBMusic();
             }
-            checkPuzzle();
+            //checkPuzzle();
         }
         //seventh button
         if (e.getSource() == b7) {
@@ -246,7 +248,7 @@ public class Game implements ActionListener {
                 b7.setIcon(mover);
                 Tunog.playPBMusic();
             }
-            checkPuzzle();
+            //checkPuzzle();
         }
         //eighth button
         if (e.getSource() == b8) {
@@ -263,7 +265,7 @@ public class Game implements ActionListener {
                 b8.setIcon(mover);
                 Tunog.playPBMusic();
             }
-            checkPuzzle();
+            //checkPuzzle();
         }
         //ninth button
         if (e.getSource() == b9) {
@@ -276,68 +278,17 @@ public class Game implements ActionListener {
                 b9.setIcon(mover);
                 Tunog.playPBMusic();
             }
-            checkPuzzle();
+            //checkPuzzle();
         }
 
-    }
-
-    public void checkPuzzle() {
-        if ((b1.getIcon() == pics.humss1) && (b2.getIcon() == pics.humss2) && (b3.getIcon() == pics.humss3)
-                && (b4.getIcon() == pics.humss4) && (b5.getIcon() == pics.humss5) && (b6.getIcon() == pics.humss6)
-                && (b7.getIcon() == pics.humss7) && (b8.getIcon() == pics.humss8) && (b9.getIcon() == pics.humss9)){
-            //level 1
-            System.out.println("Puzzle Solved");
-            solved = true;
-            System.out.println("checkPuzzle: "+solved);
-            timer.stop();
-            puzzle.checkIfGameIsSolved();
-        } else if ((b1.getIcon() == pics.stem1) && (b2.getIcon() == pics.stem2) && (b3.getIcon() == pics.stem3)
-                && (b4.getIcon() == pics.stem4) && (b5.getIcon() == pics.stem5) && (b6.getIcon() == pics.stem6)
-                && (b7.getIcon() == pics.stem7) && (b8.getIcon() == pics.stem8) && (b9.getIcon() == pics.stem9)){
-            //paris
-            System.out.println("Puzzle Solved");
-            solved = true;
-            System.out.println(solved);
-            timer.stop();
-            puzzle.checkIfGameIsSolved();
-        } else if ((b1.getIcon() == pics.abm1) && (b2.getIcon() == pics.abm2) && (b3.getIcon() == pics.abm3)
-                && (b4.getIcon() == pics.abm4) && (b5.getIcon() == pics.abm5) && (b6.getIcon() == pics.abm6)
-                && (b7.getIcon() == pics.abm7) && (b8.getIcon() == pics.abm8) && (b9.getIcon() == pics.abm9)) {
-            //taj mahal
-            System.out.println("Puzzle Solved");
-            solved = true;
-            System.out.println(solved);
-            timer.stop();
-            puzzle.checkIfGameIsSolved();
-        } else if ((b1.getIcon() == pics.he1) && (b2.getIcon() == pics.he2) && (b3.getIcon() == pics.he3)
-                && (b4.getIcon() == pics.he4) && (b5.getIcon() == pics.he5) && (b6.getIcon() == pics.he6)
-                && (b7.getIcon() == pics.he7) && (b8.getIcon() == pics.he8) && (b9.getIcon() == pics.he9)) {
-            //fuji
-            System.out.println("Puzzle Solved");
-            solved = true;
-            System.out.println(solved);
-            timer.stop();
-            puzzle.checkIfGameIsSolved();
-        } else if ((b1.getIcon() == pics.ict1) && (b2.getIcon() == pics.ict2) && (b3.getIcon() == pics.ict3)
-                && (b4.getIcon() == pics.ict4) && (b5.getIcon() == pics.ict5) && (b6.getIcon() == pics.ict6)
-                && (b7.getIcon() == pics.ict7) && (b8.getIcon() == pics.ict8) && (b9.getIcon() == pics.ict9)) {
-            System.out.println("Puzzle Solved");
-            solved = true;
-            System.out.println(solved);
-            timer.stop();
-            puzzle.checkIfGameIsSolved();
-        } else if ((b1.getIcon() == pics.l1) && (b2.getIcon() == pics.l2) && (b3.getIcon() == pics.l3)
-                && (b4.getIcon() == pics.l4) && (b5.getIcon() == pics.l5) && (b6.getIcon() == pics.l6)
-                && (b7.getIcon() == pics.l7) && (b8.getIcon() == pics.l8) && (b9.getIcon() == pics.l9)) {
-            System.out.println("Puzzle Solved");
-            solved = true;
-            System.out.println(solved);
-            timer.stop();
-            puzzle.ifGameWin();
+        if (e.getSource() == basisImage){
+            Tunog.playBMusic();
+            checkPuzzle();
         }
     }
 
     public void Level1() {
+        correctOrder = new Icon[]{pics.humss1, pics.humss2, pics.humss3, pics.humss4, pics.humss5, pics.humss6, pics.humss7, pics.humss8, pics.humss9};
         limit = limit1;
         currentLevel.setText("Level: 1");
         timeLimit.setText("Time Limit: 01:00");
@@ -346,10 +297,12 @@ public class Game implements ActionListener {
         b7.setIcon(pics.humss6); b8.setIcon(pics.humss9); b9.setIcon(pics.humss5);
         basisImage.setIcon(pics.humss);
         mover = b1.getIcon();
+        timer.start();
         icon.setIcon(b1.getIcon());
     }
 
     public void Level2() {
+        correctOrder = new Icon[]{pics.stem1, pics.stem2, pics.stem3, pics.stem4, pics.stem5, pics.stem6, pics.stem7, pics.stem8, pics.stem9};
         limit = limit2;
         currentLevel.setText("Level: 2");
         timeLimit.setText("Time Limit: 00:50");
@@ -362,6 +315,7 @@ public class Game implements ActionListener {
     }
 
     public void Level3() {
+        correctOrder = new Icon[]{pics.abm1, pics.abm2, pics.abm3, pics.abm4, pics.abm5, pics.abm6, pics.abm7, pics.abm8, pics.abm9};
         limit = limit3;
         currentLevel.setText("Level: 3");
         timeLimit.setText("Time Limit: 00:40");
@@ -374,6 +328,7 @@ public class Game implements ActionListener {
     }
 
     public void Level4() {
+        correctOrder = new Icon[]{pics.he1, pics.he2, pics.he3, pics.he4, pics.he5, pics.he6, pics.he7, pics.he8, pics.he9};
         limit = limit4;
         currentLevel.setText("Level: 4");
         timeLimit.setText("Time Limit: 00:30");
@@ -385,18 +340,20 @@ public class Game implements ActionListener {
         icon.setIcon(b1.getIcon());
     }
     public void Level5() {
+        correctOrder = new Icon[]{pics.ict1, pics.ict2, pics.ict3, pics.ict4, pics.ict5, pics.ict6, pics.ict7, pics.ict8, pics.ict9};
         limit = limit5;
         currentLevel.setText("Level: 5");
         timeLimit.setText("Time Limit: 00:20");
-        b1.setIcon(pics.ict4); b2.setIcon(pics.ict7); b3.setIcon(pics.ict5);
-        b4.setIcon(pics.ict2); b5.setIcon(pics.ict3); b6.setIcon(pics.ict9);
-        b7.setIcon(pics.ict8); b8.setIcon(pics.ict6); b9.setIcon(pics.ict1);
+        b1.setIcon(pics.ict5); b2.setIcon(pics.ict7); b3.setIcon(pics.ict8);
+        b4.setIcon(pics.ict1); b5.setIcon(pics.ict9); b6.setIcon(pics.ict4);
+        b7.setIcon(pics.ict3); b8.setIcon(pics.ict6); b9.setIcon(pics.ict2);
         basisImage.setIcon(pics.ict);
         mover = b1.getIcon();
         icon.setIcon(b1.getIcon());
     }
 
     public void Level6() {
+        correctOrder = new Icon[]{pics.l1, pics.l2, pics.l3, pics.l4, pics.l5, pics.l6, pics.l7, pics.l8, pics.l9};
         Tunog.playBossMusic();
         limit = limit6;
         currentLevel.setText("<html><i>BOSS  LEVEL</i></html>");
@@ -410,4 +367,28 @@ public class Game implements ActionListener {
         mover = b1.getIcon();
         icon.setIcon(b1.getIcon());
     }
+
+    public void checkPuzzle() {
+        System.out.println("solving");
+        Icon[] buttons = {
+                b1.getIcon(), b2.getIcon(), b3.getIcon(),
+                b4.getIcon(), b5.getIcon(), b6.getIcon(),
+                b7.getIcon(), b8.getIcon(), b9.getIcon()};
+        boolean isSolved = true;
+        for (int i = 0; i < buttons.length; i++) {
+            if (buttons[i] != correctOrder[i]) {
+                isSolved = false;
+                break;
+            }
+        }
+        if (isSolved) {
+            timer.stop();
+            solved = true;
+            if ((basisImage.getIcon() == pics.humss) || (basisImage.getIcon() == pics.stem) || (basisImage.getIcon() == pics.abm) || (basisImage.getIcon() == pics.he) || (basisImage.getIcon() == pics.ict)){
+                puzzle.ifGameSolved();
+            } else if (basisImage.getIcon() == pics.logo){
+                puzzle.ifGameWin();
+            }
+        }
+    }//checkPuzzle end
 }
