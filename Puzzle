@@ -196,9 +196,6 @@ public class Puzzle extends JFrame implements ActionListener {
             } else if (game.currentLevel.getText().equals("Level: 4")){
                 Levels.unlock5 = true;
                 levels.levelUnlocked();
-            } else if (game.currentLevel.getText().equals("Level: 5")){
-                Tunog.stopBGMusic();
-                Tunog.stopPGMusic();
             }
             //JOptionPane pop-up
             int a = JOptionPane.showOptionDialog(this,"<html>You have solved the puzzle in time!<br>Play another level?</html>", "CONGRATULATIONS!!!", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, response1, 0);
