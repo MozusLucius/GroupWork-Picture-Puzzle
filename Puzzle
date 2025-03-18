@@ -15,7 +15,7 @@ public class Puzzle extends JFrame implements ActionListener {
     Levels levels;
 
     Puzzle(Levels levels){
-        forBack = new JLabel(new ImageIcon("src/Coding/GIF/pixelBG.gif"));
+        forBack = new JLabel(new ImageIcon("src/Coding/GIF/pixelBG.png"));
         forBack.setLayout(new BorderLayout());
 
         this.levels = levels;
